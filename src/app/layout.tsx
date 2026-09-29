@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Brick & Beams",
@@ -13,8 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased bg-zinc-950 text-zinc-100 selection:bg-amber-400 selection:text-zinc-950 min-h-screen">
+      <body className="antialiased bg-zinc-950 text-zinc-100 selection:bg-amber-400 selection:text-zinc-950 min-h-screen relative">
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
