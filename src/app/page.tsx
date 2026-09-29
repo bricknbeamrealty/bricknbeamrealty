@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
   ArrowUpRight,
   Sparkles,
@@ -367,9 +368,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative z-10 border-t border-white/10 py-8 px-4 text-center text-xs text-zinc-500">
-        <p>© 2026 Brick & Beams Architectural & Structural Engineering. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
