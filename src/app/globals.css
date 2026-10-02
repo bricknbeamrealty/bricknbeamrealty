@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --color-brand-maroon: #a01115;
+  --color-brand-600: #a01115;
+}

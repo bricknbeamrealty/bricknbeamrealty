@@ -1,371 +1,283 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CredentialsSection from "@/components/CredentialsSection";
+import FinalCTA from "@/components/FinalCTA";
 import {
   ArrowUpRight,
-  Sparkles,
   Building2,
-  Compass,
-  Layers,
-  DraftingCompass,
   CheckCircle2,
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
   ShieldCheck,
 } from "lucide-react";
 
 export default function Home() {
-  const properties = [
-    {
-      id: "villas",
-      category: "villas",
-      title: "Villa Solarium",
-      location: "Bellagio, Lake Como",
-      type: "Cantilevered Estate",
-      sqft: "12,400 sq.ft",
-      status: "Under Construction",
-      imageGrad: "from-amber-950/40 via-zinc-900 to-zinc-950",
-      accent: "text-amber-400",
-    },
-    {
-      id: "penthouses",
-      category: "penthouses",
-      title: "The Vertex Sky Penthouse",
-      location: "Financial District, Singapore",
-      type: "Triplex Monolith",
-      sqft: "8,950 sq.ft",
-      status: "Completed 2025",
-      imageGrad: "from-zinc-800/50 via-zinc-900 to-zinc-950",
-      accent: "text-amber-300",
-    },
-    {
-      id: "commercial",
-      category: "commercial",
-      title: "Aether Tower & Pavilions",
-      location: "KAFD, Riyadh",
-      type: "LEED Platinum Commercial",
-      sqft: "84,000 sq.ft",
-      status: "Engineering Phase",
-      imageGrad: "from-[#af7953]/30 via-zinc-900 to-zinc-950",
-      accent: "text-[#d89f76]",
-    },
-  ];
+  const shouldReduceMotion = useReducedMotion();
 
-  const workflowSteps = [
-    {
-      step: "01",
-      title: "Vision & Site Topography",
-      description: "LiDAR terrestrial scans, solar envelope modeling, and structural zoning feasibility studies.",
+  // Centralized staggered entrance animation sequence for hero section
+  const heroContainerVariants = {
+    hidden: { opacity: shouldReduceMotion ? 1 : 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.15,
+      },
     },
-    {
-      step: "02",
-      title: "Computational Architecture",
-      description: "Parametric geometry formulation, acoustic simulation, and finite-element structural stress testing.",
+  };
+
+  const tagVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      y: shouldReduceMotion ? 0 : -10,
     },
-    {
-      step: "03",
-      title: "Bespoke Material Engineering",
-      description: "Custom pre-cast concrete mix designs, low-iron structural glazing, and thermal timber integration.",
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.5,
+        ease: [0.25, 0.1, 0.25, 1] as const,
+      },
     },
-    {
-      step: "04",
-      title: "Precision Execution",
-      description: "On-site millimeter-tolerance engineering governance from foundation pouring to final turnkey commissioning.",
+  };
+
+  const headlineVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      y: shouldReduceMotion ? 0 : 20,
     },
-  ];
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.5,
+        ease: [0.25, 0.1, 0.25, 1] as const,
+      },
+    },
+  };
+
+  const ctaVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      y: shouldReduceMotion ? 0 : 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.5,
+        ease: [0.25, 0.1, 0.25, 1] as const,
+      },
+    },
+  };
+
+
+
+
+
 
   return (
-    <div className="relative min-h-screen bg-zinc-950 text-zinc-100 selection:bg-amber-400 selection:text-zinc-950 overflow-x-hidden font-sans scroll-smooth">
-      {/* Dynamic Warm Ambient Architectural Lighting (Smooth, streak-free surface) */}
+    <div className="relative min-h-screen bg-[#faf8f5] text-stone-900 selection:bg-[#a01115] selection:text-white overflow-x-hidden font-sans scroll-smooth">
+      {/* Dynamic Warm Ambient Architectural Lighting (Soft sunlit ambience) */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[550px] bg-gradient-to-b from-[#af7953]/20 via-zinc-900/10 to-transparent blur-3xl opacity-70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/20 via-zinc-950/60 to-zinc-950" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[550px] bg-gradient-to-b from-[#af7953]/10 via-amber-500/5 to-transparent blur-3xl opacity-70" />
       </div>
 
       {/* Floating Pill Glassmorphic Navbar */}
       <Navbar />
 
-      {/* SECTION 1: HERO */}
-      <section id="home" className="relative z-10 pt-32 sm:pt-40 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center"
-        >
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur-md shadow-inner">
-            <span className="flex h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-            <span className="text-xs font-medium tracking-wider uppercase text-zinc-200">
-              Architectural & Structural Engineering
-            </span>
-          </div>
-        </motion.div>
+      {/* SECTION 1: HERO (Minimal, Premium Dark Editorial Treatment) */}
+      <section
+        id="home"
+        className="relative z-10 h-screen min-h-[680px] w-full overflow-hidden flex items-end bg-zinc-950"
+      >
+        {/* Full-Bleed Hero Image with Dark Toning */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero_section.png"
+            alt="Thane Skyline - Brick and Beam Realty"
+            fill
+            priority
+            quality={100}
+            sizes="100vw"
+            className="object-cover object-center brightness-[0.85] saturate-[0.90]"
+          />
+          {/* Subtle top scrim for floating navbar contrast */}
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/80 via-black/30 to-transparent pointer-events-none" />
+          {/* Multi-stop legibility gradient overlay (guarantees WCAG AAA contrast for light text) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent pointer-events-none" />
+          {/* Minimal bottom blend into properties section (low, subtle feathered seam) */}
+          <div className="absolute inset-x-0 bottom-0 h-8 sm:h-10 md:h-12 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/60 to-transparent pointer-events-none z-10" />
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="mt-8 text-center max-w-4xl mx-auto space-y-5"
-        >
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-white leading-tight">
-            Where Vision Meets{" "}
-            <span className="font-serif italic font-normal bg-gradient-to-r from-amber-200 via-amber-400 to-[#c89065] bg-clip-text text-transparent">
-              Precision
-            </span>{" "}
-            Engineering.
-          </h1>
-          <p className="text-base sm:text-lg text-zinc-300/80 max-w-2xl mx-auto leading-relaxed">
-            Elevating modern living spaces and commercial monoliths through meticulous structural design, bespoke materials, and pioneering sustainable engineering.
-          </p>
-        </motion.div>
+        {/* Editorial Headline & CTA Lockup (Left-Aligned Lower-Third) */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-20 sm:pb-24 lg:pb-28">
+          <motion.div
+            variants={heroContainerVariants}
+            initial={shouldReduceMotion ? false : "hidden"}
+            animate="visible"
+            className="max-w-4xl flex flex-col items-start text-left select-none"
+          >
+            {/* Line 1: "THANE" tag + underline */}
+            <motion.div variants={tagVariants}>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#a01115] shadow-sm shadow-[#a01115]/60" />
+                <span className="text-xs sm:text-sm font-medium tracking-[0.2em] uppercase text-zinc-300 font-sans">
+                  Real Estate in Thane
+                </span>
+              </div>
+              <div className="w-10 sm:w-14 h-[2px] bg-[#a01115] rounded-full mt-2.5 mb-3 origin-left" />
+            </motion.div>
 
-        {/* Hero Quick Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
-        >
-          {[
-            { value: "$1.4B+", label: "Portfolio Delivered" },
-            { value: "48 Awards", label: "International Design" },
-            { value: "100%", label: "Structural Compliance" },
-            { value: "0 Carbon", label: "Target Ready" },
-          ].map((stat, i) => (
-            <div
-              key={i}
-              className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-center backdrop-blur-sm"
+            {/* Line 2: Small, Minimal & Clean Headline */}
+            <motion.h1
+              variants={headlineVariants}
+              className="text-3xl sm:text-5xl md:text-6xl font-serif font-normal text-white tracking-tight leading-[1.15]"
             >
-              <div className="text-2xl sm:text-3xl font-bold text-white font-mono tracking-tight">{stat.value}</div>
-              <div className="text-xs text-zinc-400 mt-1 uppercase tracking-wider">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
+              Find Your Dream Home <br />
+              <span className="italic text-amber-200/90 font-serif">in Thane</span>
+            </motion.h1>
+
+            {/* Line 3: Simple & Understandable Sub-headline for Local Buyers */}
+            <motion.p
+              variants={headlineVariants}
+              className="mt-3 sm:mt-4 text-sm sm:text-base text-zinc-300 max-w-xl font-normal leading-relaxed"
+            >
+              Verified flats, luxury apartments, and commercial spaces across prime locations in Thane with complete trust and guidance.
+            </motion.p>
+
+            {/* Line 4: CTA Action Buttons */}
+            <motion.div
+              variants={ctaVariants}
+              className="mt-6 sm:mt-7 flex flex-wrap items-center gap-3"
+            >
+              <Link
+                href="#properties"
+                className="group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-sm sm:text-base font-medium shadow-lg shadow-[#a01115]/30 hover:shadow-xl transition-all duration-200"
+              >
+                <span>Find Properties</span>
+                <ArrowUpRight className="w-4 h-4 text-white/90 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
+                href="#contact-us"
+                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm sm:text-base font-medium backdrop-blur-md transition-all duration-200"
+              >
+                <span>Contact Us</span>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
       </section>
 
+      {/* SECTION: CREDENTIALS (Trust & Transparency) */}
+      <CredentialsSection />
+
       {/* SECTION 2: PROPERTIES */}
-      <section id="properties" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
+      <section id="properties" className="relative z-10 pt-14 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 tracking-wider uppercase mb-2">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#a01115] tracking-wider uppercase mb-2">
               <Building2 className="w-3.5 h-3.5" />
               <span>Curated Portfolio</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-              Featured Architectural <span className="font-serif italic text-amber-200">Properties</span>
+            <h2 className="text-3xl sm:text-4xl font-light text-stone-900 tracking-tight">
+              Featured Architectural <span className="font-serif italic text-[#a01115]">Properties</span>
             </h2>
           </div>
-          <p className="text-sm text-zinc-400 max-w-md">
+          <p className="text-sm text-stone-600 max-w-md">
             Each commission reflects bespoke structural calculation, micro-climate integration, and timeless materiality.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {properties.map((property) => (
-            <div
-              key={property.id}
-              className="group relative rounded-3xl border border-white/15 bg-zinc-900/60 p-6 backdrop-blur-xl hover:border-white/30 transition-all duration-300 flex flex-col justify-between overflow-hidden"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-b ${property.imageGrad} opacity-30 group-hover:opacity-50 transition-opacity`} />
-              
-              <div className="relative z-10">
-                <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
-                  <span>{property.type}</span>
-                  <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-zinc-300 border border-white/10">
-                    {property.status}
-                  </span>
-                </div>
-
-                <h3 className="mt-8 text-2xl font-bold text-white group-hover:text-amber-200 transition-colors">
-                  {property.title}
-                </h3>
-                <div className="mt-2 flex items-center gap-1.5 text-xs text-zinc-400">
-                  <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                  <span>{property.location}</span>
-                </div>
-              </div>
-
-              <div className="relative z-10 mt-12 pt-4 border-t border-white/10 flex items-center justify-between">
-                <span className="text-xs font-mono text-zinc-400">{property.sqft}</span>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-white group-hover:text-amber-300 transition-colors">
-                  <span>Explore Case Study</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 3: SERVICES */}
-      <section id="services" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 tracking-wider uppercase mb-2">
-            <DraftingCompass className="w-3.5 h-3.5" />
-            <span>Comprehensive Disciplines</span>
+        {/* Coming Soon Notice */}
+        <div className="relative rounded-3xl border border-stone-200/80 bg-white py-16 px-6 sm:py-20 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-medium text-stone-600 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#a01115] animate-pulse" />
+            <span>Curating Prime Thane Inventory</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-            Integrated Architectural & <span className="font-serif italic text-amber-200">Engineering Services</span>
-          </h2>
-          <p className="text-sm text-zinc-400 mt-3">
-            From concept drafting to computational load optimization, we operate at the vanguard of modern structural engineering.
+          <h3 className="text-2xl sm:text-4xl font-serif font-normal text-stone-900 tracking-tight">
+            Featured Properties <span className="italic text-[#a01115]">Coming Soon</span>
+          </h3>
+          <p className="mt-3 text-sm sm:text-base text-stone-600 max-w-md mx-auto leading-relaxed">
+            We are curating handpicked, verified luxury flats, penthouses, and prime commercial projects in Thane. Stay tuned.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[
-            {
-              icon: DraftingCompass,
-              title: "Architectural & Spatial",
-              desc: "Parametric blueprints, bioclimatic orientation, and photorealistic 3D visualization.",
-            },
-            {
-              icon: Compass,
-              title: "Structural Engineering",
-              desc: "Deep pile foundations, reinforced post-tensioned slabs, and seismic damping solutions.",
-            },
-            {
-              icon: Layers,
-              title: "Interior Architecture",
-              desc: "Harmonizing natural stone, acoustic acoustic wood slating, and architectural illumination.",
-            },
-            {
-              icon: Sparkles,
-              title: "Sustainable Monoliths",
-              desc: "Net-zero energy balancing, thermal envelope maximization, and LEED Platinum certification.",
-            },
-          ].map((service, i) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={i}
-                className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 hover:bg-white/[0.06] hover:border-white/20 transition-all duration-200"
-              >
-                <div className="h-10 w-10 rounded-2xl bg-[#af7953]/20 border border-[#af7953]/40 flex items-center justify-center text-amber-400 mb-4">
-                  <Icon className="w-5 h-5" />
-                </div>
-                <h4 className="text-base font-semibold text-white">{service.title}</h4>
-                <p className="text-xs text-zinc-400 mt-2 leading-relaxed">{service.desc}</p>
-              </div>
-            );
-          })}
-        </div>
       </section>
 
-      {/* SECTION 4: HOW WE WORK */}
-      <section id="how-we-work" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
-        <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 tracking-wider uppercase mb-2">
-            <Clock className="w-3.5 h-3.5" />
-            <span>Process & Methodology</span>
+      {/* SECTION: HOW WE WORK */}
+      <section id="how-we-work" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stone-200">
+        <div className="relative rounded-3xl border border-stone-200/80 bg-white py-16 px-6 sm:py-20 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-medium text-stone-600 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#a01115] animate-pulse" />
+            <span>Process &amp; Methodology</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-            How We <span className="font-serif italic text-amber-200">Work</span>
-          </h2>
-          <p className="text-sm text-zinc-400 mt-2">
-            Our disciplined four-phase delivery framework guarantees millimeter tolerance and on-schedule realization.
+          <h3 className="text-2xl sm:text-4xl font-serif font-normal text-stone-900 tracking-tight">
+            How We Work <span className="italic text-[#a01115]">In Progress</span>
+          </h3>
+          <p className="mt-3 text-sm sm:text-base text-stone-600 max-w-md mx-auto leading-relaxed">
+            Our step-by-step buyer guidance and client onboarding framework is currently being updated.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {workflowSteps.map((step) => (
-            <div
-              key={step.step}
-              className="relative rounded-3xl border border-white/10 bg-zinc-900/50 p-6 backdrop-blur-md"
-            >
-              <div className="text-3xl font-mono font-bold text-amber-500/40 mb-3">{step.step}</div>
-              <h4 className="text-base font-semibold text-white">{step.title}</h4>
-              <p className="text-xs text-zinc-400 mt-2 leading-relaxed">{step.description}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
-      {/* SECTION 5: ABOUT US */}
-      <section id="about-us" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
-        <div className="rounded-3xl border border-white/15 bg-zinc-900/40 p-8 sm:p-12 backdrop-blur-2xl grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 tracking-wider uppercase mb-2">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Legacy & Craftsmanship</span>
+      {/* SECTION: ABOUT US */}
+      <section id="about-us" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stone-200">
+        <div className="relative rounded-3xl border border-stone-200/80 bg-white p-8 sm:p-14 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-medium text-stone-600">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#a01115] animate-pulse" />
+              <span>Who We Are &amp; Our Story</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-              About <span className="font-serif italic text-amber-200">Brick & Beams</span>
-            </h2>
-            <p className="text-sm text-zinc-300/80 mt-4 leading-relaxed">
-              Founded on the belief that enduring structures demand a union of mathematical rigor and sculptural beauty, Brick & Beams operates as a hybrid studio of registered architects, structural engineers, and parametric computational designers.
+
+            <h3 className="text-2xl sm:text-4xl font-serif font-normal text-stone-900 tracking-tight">
+              About Us <span className="italic text-[#a01115]">Work in Progress</span>
+            </h3>
+
+            <p className="text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl mx-auto">
+              We are currently finalizing our in-depth company profile, founding story, and local real estate vision for Thane.
+              While our full story is being documented here, our team is actively on the ground delivering transparent, verified property consulting.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-xs font-medium text-zinc-300">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                Licensed Structural Masters
-              </div>
-              <div className="flex items-center gap-2 text-xs font-medium text-zinc-300">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                Global Regulatory Accreditation
-              </div>
-            </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-zinc-950/80 p-6 font-mono text-xs text-zinc-300 space-y-3">
-            <div className="text-amber-400 font-semibold uppercase tracking-wider text-[11px]">Studio Fact Sheet</div>
-            <div className="flex justify-between border-b border-zinc-800 pb-2">
-              <span className="text-zinc-500">Established</span>
-              <span className="text-white">2014</span>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left">
+              <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
+                <ShieldCheck className="w-4 h-4" />
+              </div>
+              <h4 className="text-sm font-semibold text-stone-900">MahaRERA Registered</h4>
+              <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
+                Operating with complete regulatory compliance, verified titles, and zero-brokerage direct builder access across Thane.
+              </p>
             </div>
-            <div className="flex justify-between border-b border-zinc-800 pb-2">
-              <span className="text-zinc-500">Principal Partners</span>
-              <span className="text-white">Milan • London • Zurich</span>
+
+            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left">
+              <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
+                <Building2 className="w-4 h-4" />
+              </div>
+              <h4 className="text-sm font-semibold text-stone-900">Local Thane Expertise</h4>
+              <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
+                Specialized focus on high-growth prime corridors including Majiwada, Ghodbunder Road, and Pokhran Road.
+              </p>
             </div>
-            <div className="flex justify-between border-b border-zinc-800 pb-2">
-              <span className="text-zinc-500">Structural Software</span>
-              <span className="text-white">Grasshopper, ETABS, Revit BIM</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-zinc-500">Specialization</span>
-              <span className="text-white">High-Stakes Cantilever & High-Rise</span>
+
+            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left">
+              <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              </div>
+              <h4 className="text-sm font-semibold text-stone-900">Transparent Advisory</h4>
+              <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
+                Unbiased, client-first guidance from initial private site tours to structural review and key handover.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: CONTACT US */}
-      <section id="contact-us" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
-        <div className="max-w-4xl mx-auto text-center space-y-4">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold text-amber-400 tracking-wider uppercase">
-            <Mail className="w-3.5 h-3.5" />
-            <span>Connect With Our Principals</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight">
-            Initiate Your <span className="font-serif italic text-amber-200">Architectural Dialogue</span>
-          </h2>
-          <p className="text-sm text-zinc-400 max-w-xl mx-auto">
-            Ready to break ground or engineer a landmark? Our senior partners are available for confidential consultations.
-          </p>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center">
-            <MapPin className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-            <div className="text-sm font-semibold text-white">Main Studio</div>
-            <div className="text-xs text-zinc-400 mt-1">45 Boulevard Haussmann, Paris / Milan</div>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center">
-            <Phone className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-            <div className="text-sm font-semibold text-white">Direct Line</div>
-            <div className="text-xs text-zinc-400 mt-1">+1 (800) 849-2742</div>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-center">
-            <Mail className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-            <div className="text-sm font-semibold text-white">Email Advisory</div>
-            <div className="text-xs text-zinc-400 mt-1">inquiry@bricknbeams.com</div>
-          </div>
-        </div>
-      </section>
+      {/* SECTION 6: FINAL CTA (Modern, Premium, Minimalist & In-Depth) */}
+      <FinalCTA />
 
       {/* FOOTER */}
       <Footer />
