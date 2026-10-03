@@ -6,16 +6,32 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CredentialsSection from "@/components/CredentialsSection";
+import FAQSection from "@/components/FAQSection";
 import FinalCTA from "@/components/FinalCTA";
 import {
   ArrowUpRight,
+  ArrowRight,
+  Building,
   Building2,
   CheckCircle2,
   ShieldCheck,
+  MapPin,
+  Sparkles,
+  Calendar,
+  Search,
+  Compass,
+  KeyRound,
+  Home as HomeIcon,
+  BadgeCheck,
+  Bell,
+  Clock,
+  Handshake,
 } from "lucide-react";
+import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
+  const { openModal } = useConsultationModal();
 
   // Centralized staggered entrance animation sequence for hero section
   const heroContainerVariants = {
@@ -123,8 +139,8 @@ export default function Home() {
           >
             {/* Line 1: "THANE" tag + underline */}
             <motion.div variants={tagVariants}>
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#a01115] shadow-sm shadow-[#a01115]/60" />
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-amber-300" />
                 <span className="text-xs sm:text-sm font-medium tracking-[0.2em] uppercase text-zinc-300 font-sans">
                   Real Estate in Thane
                 </span>
@@ -161,12 +177,29 @@ export default function Home() {
                 <span>Find Properties</span>
                 <ArrowUpRight className="w-4 h-4 text-white/90 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-              <Link
-                href="#contact-us"
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm sm:text-base font-medium backdrop-blur-md transition-all duration-200"
+              <button
+                type="button"
+                onClick={openModal}
+                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm sm:text-base font-medium backdrop-blur-md transition-all duration-200 cursor-pointer active:scale-[0.98]"
               >
-                <span>Contact Us</span>
-              </Link>
+                <Calendar className="w-4 h-4 text-amber-200/90" />
+                <span>Book Consultation</span>
+              </button>
+            </motion.div>
+
+            {/* Line 5: Hero Trust Proof Bar */}
+            <motion.div
+              variants={ctaVariants}
+              className="mt-8 pt-5 border-t border-white/15 flex flex-wrap items-center gap-5 sm:gap-8 text-xs text-zinc-300"
+            >
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>MahaRERA Verified</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Building2 className="w-4 h-4 text-sky-300 shrink-0" />
+                <span>Prime Thane Locations</span>
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -192,8 +225,8 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Coming Soon Notice */}
-        <div className="relative rounded-3xl border border-stone-200/80 bg-white py-16 px-6 sm:py-20 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+        {/* Coming Soon Notice with Category Highlights */}
+        <div className="relative rounded-3xl border border-stone-200/80 bg-white py-14 px-6 sm:py-16 sm:px-10 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-medium text-stone-600 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#a01115] animate-pulse" />
             <span>Curating Prime Thane Inventory</span>
@@ -202,24 +235,103 @@ export default function Home() {
             Featured Properties <span className="italic text-[#a01115]">Coming Soon</span>
           </h3>
           <p className="mt-3 text-sm sm:text-base text-stone-600 max-w-md mx-auto leading-relaxed">
-            We are curating handpicked, verified luxury flats, penthouses, and prime commercial projects in Thane. Stay tuned.
+            We are curating handpicked, verified luxury flats, penthouses, and prime commercial projects in Thane.
           </p>
+
+          {/* Curated Category Chips */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-medium text-stone-700">
+              <HomeIcon className="w-3.5 h-3.5 text-[#a01115]" />
+              <span>1, 2, 3 &amp; 4 BHK Apartments</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-medium text-stone-700">
+              <Building className="w-3.5 h-3.5 text-[#a01115]" />
+              <span>Sky Penthouses &amp; Duplexes</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-medium text-stone-700">
+              <Compass className="w-3.5 h-3.5 text-[#a01115]" />
+              <span>Grade-A Commercial &amp; Retail</span>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <button
+              type="button"
+              onClick={openModal}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#a01115] hover:bg-[#850e11] text-white text-xs sm:text-sm font-medium shadow-md shadow-[#a01115]/20 hover:shadow-lg transition-all cursor-pointer"
+            >
+              <Bell className="w-4 h-4" />
+              <span>Get Priority Launch Access</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </section>
 
       {/* SECTION: HOW WE WORK */}
       <section id="how-we-work" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stone-200">
-        <div className="relative rounded-3xl border border-stone-200/80 bg-white py-16 px-6 sm:py-20 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-medium text-stone-600 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#a01115] animate-pulse" />
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 border border-stone-200 text-xs font-semibold text-stone-700 tracking-wider uppercase mb-3">
+            <Compass className="w-3.5 h-3.5 text-[#a01115]" />
             <span>Process &amp; Methodology</span>
           </div>
-          <h3 className="text-2xl sm:text-4xl font-serif font-normal text-stone-900 tracking-tight">
-            How We Work <span className="italic text-[#a01115]">In Progress</span>
-          </h3>
-          <p className="mt-3 text-sm sm:text-base text-stone-600 max-w-md mx-auto leading-relaxed">
-            Our step-by-step buyer guidance and client onboarding framework is currently being updated.
+          <h2 className="text-3xl sm:text-4xl font-light text-stone-900 tracking-tight">
+            How We Guide Your <span className="font-serif italic text-[#a01115]">Purchase</span>
+          </h2>
+          <p className="mt-3 text-sm sm:text-base text-stone-600 font-normal leading-relaxed">
+            Our step-by-step buyer guidance and client onboarding framework guarantees complete peace of mind.
           </p>
+        </div>
+
+        {/* 4-Step Process Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {/* Step 1 */}
+          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-left hover:border-stone-300 transition-all duration-200">
+            <div className="w-10 h-10 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-4">
+              <Search className="w-5 h-5" />
+            </div>
+            <span className="text-[11px] font-mono font-semibold text-[#a01115] uppercase tracking-wider">Step 01</span>
+            <h4 className="text-base font-semibold text-stone-900 mt-1">Requirement Mapping</h4>
+            <p className="text-xs text-stone-600 mt-2 leading-relaxed">
+              We analyze your preferred unit layout, budget band, and key micro-markets across Thane.
+            </p>
+          </div>
+
+          {/* Step 2 */}
+          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-left hover:border-stone-300 transition-all duration-200">
+            <div className="w-10 h-10 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-4">
+              <Compass className="w-5 h-5" />
+            </div>
+            <span className="text-[11px] font-mono font-semibold text-[#a01115] uppercase tracking-wider">Step 02</span>
+            <h4 className="text-base font-semibold text-stone-900 mt-1">Curated Site Visits</h4>
+            <p className="text-xs text-stone-600 mt-2 leading-relaxed">
+              Private, chauffeured site tours across vetted projects without unsolicited sales pressure.
+            </p>
+          </div>
+
+          {/* Step 3 */}
+          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-left hover:border-stone-300 transition-all duration-200">
+            <div className="w-10 h-10 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-4">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <span className="text-[11px] font-mono font-semibold text-[#a01115] uppercase tracking-wider">Step 03</span>
+            <h4 className="text-base font-semibold text-stone-900 mt-1">Due Diligence &amp; RERA</h4>
+            <p className="text-xs text-stone-600 mt-2 leading-relaxed">
+              Rigorous verification of MahaRERA certifications, title deeds, and developer approvals.
+            </p>
+          </div>
+
+          {/* Step 4 */}
+          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-left hover:border-stone-300 transition-all duration-200">
+            <div className="w-10 h-10 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-4">
+              <KeyRound className="w-5 h-5" />
+            </div>
+            <span className="text-[11px] font-mono font-semibold text-[#a01115] uppercase tracking-wider">Step 04</span>
+            <h4 className="text-base font-semibold text-stone-900 mt-1">Seamless Key Handover</h4>
+            <p className="text-xs text-stone-600 mt-2 leading-relaxed">
+              Direct builder pricing with professional guidance, loan assistance, and seamless key handover.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -227,8 +339,8 @@ export default function Home() {
       <section id="about-us" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stone-200">
         <div className="relative rounded-3xl border border-stone-200/80 bg-white p-8 sm:p-14 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
           <div className="max-w-3xl mx-auto text-center space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-medium text-stone-600">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#a01115] animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-semibold text-stone-700 uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-[#a01115]" />
               <span>Who We Are &amp; Our Story</span>
             </div>
 
@@ -243,17 +355,17 @@ export default function Home() {
           </div>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left">
+            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left hover:border-stone-300 transition-colors">
               <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
                 <ShieldCheck className="w-4 h-4" />
               </div>
               <h4 className="text-sm font-semibold text-stone-900">MahaRERA Registered</h4>
               <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
-                Operating with complete regulatory compliance, verified titles, and zero-brokerage direct builder access across Thane.
+                Operating with complete regulatory compliance, verified titles, and direct builder access across Thane.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left">
+            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left hover:border-stone-300 transition-colors">
               <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
                 <Building2 className="w-4 h-4" />
               </div>
@@ -263,9 +375,9 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left">
+            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left hover:border-stone-300 transition-colors">
               <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <Handshake className="w-4 h-4 text-emerald-600" />
               </div>
               <h4 className="text-sm font-semibold text-stone-900">Transparent Advisory</h4>
               <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
@@ -273,8 +385,27 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          {/* Micro Trust Proof Strip */}
+          <div className="mt-10 pt-6 border-t border-stone-200/70 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-stone-600 font-medium">
+            <div className="flex items-center gap-1.5">
+              <BadgeCheck className="w-4 h-4 text-emerald-600" />
+              <span>Licensed Channel Advisory</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Clock className="w-4 h-4 text-[#a01115]" />
+              <span>1-Hour Verified Response</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <span>100% Client Interest First</span>
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* SECTION: FAQ */}
+      <FAQSection />
 
       {/* SECTION 6: FINAL CTA (Modern, Premium, Minimalist & In-Depth) */}
       <FinalCTA />

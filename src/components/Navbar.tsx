@@ -2,24 +2,40 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  Menu,
+  X,
+  Home,
+  Building2,
+  Compass,
+  Users,
+  PhoneCall,
+  Sparkles,
+  Phone,
+  Mail,
+  Calendar,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 interface NavItem {
   label: string;
   href: string;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
-  { label: "Properties", href: "#properties" },
-  { label: "How We Work", href: "#how-we-work" },
-  { label: "About Us", href: "#about-us" },
-  { label: "Contact Us", href: "#contact-us" },
+  { label: "Home", href: "#home", icon: Home },
+  { label: "Properties", href: "#properties", icon: Building2 },
+  { label: "How We Work", href: "#how-we-work", icon: Compass },
+  { label: "About Us", href: "#about-us", icon: Users },
+  { label: "Contact Us", href: "#contact-us", icon: PhoneCall },
 ];
 
 export default function Navbar() {
+  const { openModal } = useConsultationModal();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
@@ -123,11 +139,12 @@ export default function Navbar() {
 
             {/* Right: Book Consultation Button (Rounded pill + circular badge) */}
             <div className="flex items-center gap-2 sm:gap-3">
-              <Link
-                href="#contact-us"
-                onClick={() => setActiveItem("Contact Us")}
-                className="hidden sm:inline-flex group relative items-center gap-2.5 pl-4 sm:pl-4.5 pr-1.5 py-1.5 rounded-full bg-[#a01115] hover:bg-[#850e11] text-white font-medium text-xs sm:text-sm tracking-tight shadow-md hover:shadow-xl shadow-[#a01115]/20 hover:shadow-[#a01115]/30 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a01115]/80 active:scale-95"
+              <button
+                type="button"
+                onClick={openModal}
+                className="hidden sm:inline-flex group relative items-center gap-2 pl-4 sm:pl-4.5 pr-1.5 py-1.5 rounded-full bg-[#a01115] hover:bg-[#850e11] text-white font-medium text-xs sm:text-sm tracking-tight shadow-md hover:shadow-xl shadow-[#a01115]/20 hover:shadow-[#a01115]/30 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a01115]/80 active:scale-95 cursor-pointer"
               >
+                <Calendar className="w-3.5 h-3.5 text-white/90" />
                 <span className="font-semibold text-white select-none">Book Consultation</span>
                 <span className="relative flex items-center justify-center w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-full bg-white/20 group-hover:bg-white/30 text-white shadow-inner transition-colors duration-500 overflow-hidden">
                   {/* Primary Arrow - Exits diagonally to top-right on hover */}
@@ -141,7 +158,7 @@ export default function Navbar() {
                     strokeWidth={2.5}
                   />
                 </span>
-              </Link>
+              </button>
 
               {/* Mobile Menu Hamburger Button */}
               <button
@@ -192,7 +209,10 @@ export default function Navbar() {
                     height={118}
                     className="h-9 sm:h-10 w-auto object-contain"
                   />
-                  <span className="text-[11px] uppercase tracking-widest text-stone-500 font-mono">Directory</span>
+                  <div className="flex items-center gap-1 text-[11px] uppercase tracking-widest text-stone-500 font-mono">
+                    <Sparkles className="w-3 h-3 text-[#a01115]" />
+                    <span>Directory</span>
+                  </div>
                 </div>
                 <button
                   type="button"
@@ -207,6 +227,7 @@ export default function Navbar() {
               <div className="py-4 space-y-1.5">
                 {navItems.map((item, index) => {
                   const isActive = activeItem === item.label;
+                  const Icon = item.icon;
                   return (
                     <motion.div
                       key={item.label}
@@ -220,15 +241,21 @@ export default function Navbar() {
                           setActiveItem(item.label);
                           setMobileMenuOpen(false);
                         }}
-                        className={`flex items-center justify-between py-3.5 px-4 rounded-2xl text-base transition-all ${
+                        className={`flex items-center justify-between py-3 px-3.5 rounded-2xl text-base transition-all ${
                           isActive
                             ? "bg-stone-100 text-stone-950 font-semibold border border-stone-200/80"
                             : "text-stone-700 font-medium hover:text-stone-950 hover:bg-stone-50"
                         }`}
                       >
-                        <div className="flex items-center gap-3.5">
-                          <span className="font-mono text-xs text-[#a01115] font-semibold">
-                            0{index + 1}
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${
+                              isActive
+                                ? "bg-[#a01115] text-white"
+                                : "bg-stone-100 text-stone-600"
+                            }`}
+                          >
+                            <Icon className="w-4 h-4" />
                           </span>
                           <span className="tracking-tight">{item.label}</span>
                         </div>
@@ -241,23 +268,38 @@ export default function Navbar() {
 
               {/* Drawer Bottom Actions */}
               <div className="pt-3 border-t border-stone-200 space-y-3">
-                <Link
-                  href="#contact-us"
+                <button
+                  type="button"
                   onClick={() => {
-                    setActiveItem("Contact Us");
                     setMobileMenuOpen(false);
+                    openModal();
                   }}
-                  className="group w-full flex items-center justify-between rounded-full bg-[#a01115] text-white px-5 py-3 text-sm font-semibold hover:bg-[#850e11] transition-all shadow-md shadow-[#a01115]/20 active:scale-[0.99]"
+                  className="group w-full flex items-center justify-between rounded-full bg-[#a01115] text-white px-5 py-3 text-sm font-semibold hover:bg-[#850e11] transition-all shadow-md shadow-[#a01115]/20 active:scale-[0.99] cursor-pointer"
                 >
-                  <span className="select-none">Book Consultation</span>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-white/90" />
+                    <span className="select-none">Book Consultation</span>
+                  </div>
                   <span className="flex items-center justify-center w-7.5 h-7.5 rounded-full bg-white/20 text-white">
                     <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />
                   </span>
-                </Link>
+                </button>
 
                 <div className="flex items-center justify-between text-[11px] text-stone-500 pt-1 px-1 font-mono">
-                  <span>Direct: +1 (800) 849-2742</span>
-                  <span>inquiry@bricknbeams.com</span>
+                  <a
+                    href="tel:+18008492742"
+                    className="flex items-center gap-1.5 hover:text-stone-900 transition-colors"
+                  >
+                    <Phone className="w-3 h-3 text-[#a01115]" />
+                    <span>+1 (800) 849-2742</span>
+                  </a>
+                  <a
+                    href="mailto:inquiry@bricknbeams.com"
+                    className="flex items-center gap-1.5 hover:text-stone-900 transition-colors"
+                  >
+                    <Mail className="w-3 h-3 text-[#a01115]" />
+                    <span>inquiry@bricknbeams.com</span>
+                  </a>
                 </div>
               </div>
             </motion.div>

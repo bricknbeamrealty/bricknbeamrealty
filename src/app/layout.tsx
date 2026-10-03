@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ConsultationModal from "@/components/ConsultationModal";
+import { ConsultationModalProvider } from "@/context/ConsultationModalContext";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -22,8 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={fraunces.variable}>
       <body className="antialiased bg-[#faf8f5] text-stone-900 selection:bg-[#a01115] selection:text-white min-h-screen relative">
-        {children}
-        <WhatsAppButton />
+        <ConsultationModalProvider>
+          {children}
+          <ConsultationModal />
+          <WhatsAppButton />
+        </ConsultationModalProvider>
       </body>
     </html>
   );
