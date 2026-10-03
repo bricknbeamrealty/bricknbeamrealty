@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CredentialsSection from "@/components/CredentialsSection";
 import FAQSection from "@/components/FAQSection";
+import FeaturedProperties from "@/components/FeaturedProperties";
 import FinalCTA from "@/components/FinalCTA";
 import {
   ArrowUpRight,
@@ -209,63 +210,28 @@ export default function Home() {
       <CredentialsSection />
 
       {/* SECTION 2: PROPERTIES */}
-      <section id="properties" className="relative z-10 pt-14 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#a01115] tracking-wider uppercase mb-2">
-              <Building2 className="w-3.5 h-3.5" />
-              <span>Curated Portfolio</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-light text-stone-900 tracking-tight">
-              Featured Architectural <span className="font-serif italic text-[#a01115]">Properties</span>
-            </h2>
+      <section id="properties" className="relative z-10 pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          {/* Eyebrow Badge */}
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-semibold tracking-wider uppercase mb-3">
+            <Building2 className="w-3.5 h-3.5 text-[#a01115]" />
+            <span>Featured Properties</span>
           </div>
-          <p className="text-sm text-stone-600 max-w-md">
-            Each commission reflects bespoke structural calculation, micro-climate integration, and timeless materiality.
+
+          {/* Main Heading */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight font-sans">
+            Featured Properties
+          </h2>
+
+          {/* Subtitle */}
+          <p className="mt-3 text-sm sm:text-base text-slate-600 font-normal max-w-xl mx-auto leading-relaxed">
+            Explore verified 1, 2 &amp; 3 BHK luxury residences and landmark communities in prime locations across Thane, with zero brokerage on direct bookings.
           </p>
         </div>
 
-        {/* Coming Soon Notice with Category Highlights */}
-        <div className="relative rounded-3xl border border-stone-200/80 bg-white py-14 px-6 sm:py-16 sm:px-10 text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-medium text-stone-600 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#a01115] animate-pulse" />
-            <span>Curating Prime Thane Inventory</span>
-          </div>
-          <h3 className="text-2xl sm:text-4xl font-serif font-normal text-stone-900 tracking-tight">
-            Featured Properties <span className="italic text-[#a01115]">Coming Soon</span>
-          </h3>
-          <p className="mt-3 text-sm sm:text-base text-stone-600 max-w-md mx-auto leading-relaxed">
-            We are curating handpicked, verified luxury flats, penthouses, and prime commercial projects in Thane.
-          </p>
-
-          {/* Curated Category Chips */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-medium text-stone-700">
-              <HomeIcon className="w-3.5 h-3.5 text-[#a01115]" />
-              <span>1, 2, 3 &amp; 4 BHK Apartments</span>
-            </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-medium text-stone-700">
-              <Building className="w-3.5 h-3.5 text-[#a01115]" />
-              <span>Sky Penthouses &amp; Duplexes</span>
-            </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200/80 text-xs font-medium text-stone-700">
-              <Compass className="w-3.5 h-3.5 text-[#a01115]" />
-              <span>Grade-A Commercial &amp; Retail</span>
-            </div>
-          </div>
-
-          <div className="mt-8">
-            <button
-              type="button"
-              onClick={openModal}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#a01115] hover:bg-[#850e11] text-white text-xs sm:text-sm font-medium shadow-md shadow-[#a01115]/20 hover:shadow-lg transition-all cursor-pointer"
-            >
-              <Bell className="w-4 h-4" />
-              <span>Get Priority Launch Access</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
+        {/* Featured Properties Interactive Grid & Filter System */}
+        <FeaturedProperties />
       </section>
 
       {/* SECTION: HOW WE WORK */}
