@@ -29,7 +29,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/", icon: Home },
-  { label: "Properties", href: "/#properties", icon: Building2 },
+  { label: "Properties", href: "/properties", icon: Building2 },
   { label: "How We Work", href: "/#how-we-work", icon: Compass },
   { label: "About Us", href: "/about-us", icon: Users },
   { label: "Contact Us", href: "/#contact-us", icon: PhoneCall },
@@ -40,11 +40,19 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState(pathname === "/about-us" ? "About Us" : "Home");
+  const [activeItem, setActiveItem] = useState(
+    pathname === "/about-us"
+      ? "About Us"
+      : pathname?.startsWith("/properties")
+      ? "Properties"
+      : "Home"
+  );
 
   useEffect(() => {
     if (pathname === "/about-us") {
       setActiveItem("About Us");
+    } else if (pathname?.startsWith("/properties")) {
+      setActiveItem("Properties");
     } else {
       setActiveItem("Home");
     }

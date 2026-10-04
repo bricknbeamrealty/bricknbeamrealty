@@ -126,7 +126,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#properties" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                <Link href="/properties" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                   <span>Properties</span>
                 </Link>
