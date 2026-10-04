@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 interface NavItem {
@@ -27,18 +28,27 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "#home", icon: Home },
-  { label: "Properties", href: "#properties", icon: Building2 },
-  { label: "How We Work", href: "#how-we-work", icon: Compass },
-  { label: "About Us", href: "#about-us", icon: Users },
-  { label: "Contact Us", href: "#contact-us", icon: PhoneCall },
+  { label: "Home", href: "/", icon: Home },
+  { label: "Properties", href: "/#properties", icon: Building2 },
+  { label: "How We Work", href: "/#how-we-work", icon: Compass },
+  { label: "About Us", href: "/about-us", icon: Users },
+  { label: "Contact Us", href: "/#contact-us", icon: PhoneCall },
 ];
 
 export default function Navbar() {
   const { openModal } = useConsultationModal();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
+  const [activeItem, setActiveItem] = useState(pathname === "/about-us" ? "About Us" : "Home");
+
+  useEffect(() => {
+    if (pathname === "/about-us") {
+      setActiveItem("About Us");
+    } else {
+      setActiveItem("Home");
+    }
+  }, [pathname]);
 
   // Dynamic scroll detection with passive listener
   useEffect(() => {
@@ -99,7 +109,7 @@ export default function Navbar() {
             {/* Left: Brick & Beam Realty Official Brand Logo */}
             <div className="flex items-center gap-2">
               <Link
-                href="#home"
+                href="/"
                 onClick={() => setActiveItem("Home")}
                 className="group flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a01115]/50 rounded-md py-0.5"
                 aria-label="Brick and Beam Realty - Return to home"

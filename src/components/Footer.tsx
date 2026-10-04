@@ -53,7 +53,7 @@ export default function Footer() {
           <div className="lg:col-span-4 space-y-5">
             {/* Official Brand Logo */}
             <Link
-              href="#home"
+              href="/"
               className="inline-block group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a01115]/50 rounded-lg"
               aria-label="Brick and Beam Realty - Return to home"
             >
@@ -120,25 +120,25 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300">
               <li>
-                <Link href="#home" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                <Link href="/" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                   <span>Home</span>
                 </Link>
               </li>
               <li>
-                <Link href="#properties" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                <Link href="/#properties" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                   <span>Properties</span>
                 </Link>
               </li>
               <li>
-                <Link href="#about-us" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                <Link href="/about-us" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                   <span>About Us</span>
                 </Link>
               </li>
               <li>
-                <Link href="#contact-us" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                <Link href="/#contact-us" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                   <span>Contact Us</span>
                 </Link>
@@ -146,26 +146,32 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Navigation */}
+          {/* Column 3: Legal & Support */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="text-sm font-semibold text-white tracking-wide">
-              Navigation
+              Legal &amp; Support
             </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300">
               <li>
-                <Link href="#" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                <Link href="/privacy-policy" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                   <span>Privacy Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                <Link href="/terms-and-conditions" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>Terms &amp; Condition</span>
+                  <span>Terms &amp; Conditions</span>
                 </Link>
               </li>
               <li>
-                <Link href="#faq" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                <Link href="/disclaimer" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                  <span>Disclaimer</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/#faq" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                   <span>FAQ</span>
                 </Link>

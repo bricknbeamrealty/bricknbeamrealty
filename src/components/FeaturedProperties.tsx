@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   MapPin,
   Calendar,
@@ -9,6 +10,7 @@ import {
   Eye,
   Sparkles,
   Ruler,
+  ArrowUpRight,
 } from "lucide-react";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
 
@@ -81,9 +83,12 @@ export default function FeaturedProperties() {
 
   return (
     <div className="w-full">
-      {/* 3-Column Properties Grid matching the exact live PM Properties reference card */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {PROPERTIES.map((property) => (
+      {/* Properties Grid: 3 Flagship Featured Developments */}
+      <div
+        id="featured-properties-grid"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+      >
+        {PROPERTIES.map((property, index) => (
           <div
             key={property.id}
             role="button"
@@ -95,10 +100,10 @@ export default function FeaturedProperties() {
                 openModal();
               }
             }}
-            aria-label={`View details for ${property.title}`}
-            className="group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#a01115]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-[#a01115]/40"
+            aria-label={`View details for ${property.title} by ${property.developer}`}
+            className="group w-full bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#a01115]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-[#a01115]/40"
           >
-            {/* Top Media: 16/9 aspect ratio for compact sleek height */}
+            {/* Top Media: 16/9 aspect ratio */}
             <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
               <Image
                 src={property.image}
@@ -106,7 +111,7 @@ export default function FeaturedProperties() {
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-                priority
+                priority={index < 2}
               />
 
               {/* Gradient scrim at bottom */}
@@ -150,7 +155,7 @@ export default function FeaturedProperties() {
               </div>
             </div>
 
-            {/* Card Content Body: Compact padding & streamlined vertical spacing */}
+            {/* Card Content Body */}
             <div className="p-4 sm:p-5 flex flex-col flex-1">
               {/* Developer & Location Row */}
               <div className="flex items-center justify-between gap-2 mb-1">
@@ -241,6 +246,43 @@ export default function FeaturedProperties() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Premium 'Explore More Properties' Navigation Button (Configured to redirect to page) */}
+      <div className="mt-10 sm:mt-12 flex justify-center">
+        <div className="relative group">
+          {/* Subtle Ambient Crimson Glow blooming behind button on hover */}
+          <div
+            aria-hidden="true"
+            className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#a01115]/40 via-rose-500/35 to-[#a01115]/40 blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none -z-10"
+          />
+
+          <Link
+            href="/properties"
+            className="relative inline-flex items-center gap-3.5 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#a01115] via-[#b51419] to-[#8d0d10] text-white font-semibold text-sm sm:text-base shadow-[0_10px_25px_-5px_rgba(160,17,21,0.35),0_8px_10px_-6px_rgba(160,17,21,0.2)] hover:shadow-[0_18px_38px_-5px_rgba(160,17,21,0.5),0_10px_16px_-6px_rgba(160,17,21,0.3)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 cursor-pointer overflow-hidden select-none focus:outline-none focus:ring-2 focus:ring-[#a01115]/50 focus:ring-offset-2"
+          >
+            {/* Specular Light-Sweep Sheen */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[350%] transition-transform duration-1000 ease-out pointer-events-none"
+            />
+
+            {/* Subtle top edge specular reflection line */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-6 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+            />
+
+            <span className="relative z-10 tracking-[0.01em]">
+              Explore More Properties
+            </span>
+
+            {/* Circular Micro-Action Icon Pill */}
+            <span className="relative z-10 flex items-center justify-center w-7 h-7 rounded-full bg-white/20 text-white group-hover:bg-white group-hover:text-[#a01115] transition-all duration-300 shadow-sm">
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
   );
