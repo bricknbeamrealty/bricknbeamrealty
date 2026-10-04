@@ -32,7 +32,7 @@ const navItems: NavItem[] = [
   { label: "Properties", href: "/properties", icon: Building2 },
   { label: "How We Work", href: "/#how-we-work", icon: Compass },
   { label: "About Us", href: "/about-us", icon: Users },
-  { label: "Contact Us", href: "/#contact-us", icon: PhoneCall },
+  { label: "Contact Us", href: "/contact-us", icon: PhoneCall },
 ];
 
 export default function Navbar() {
@@ -43,6 +43,8 @@ export default function Navbar() {
   const [activeItem, setActiveItem] = useState(
     pathname === "/about-us"
       ? "About Us"
+      : pathname === "/contact-us"
+      ? "Contact Us"
       : pathname?.startsWith("/properties")
       ? "Properties"
       : "Home"
@@ -51,6 +53,8 @@ export default function Navbar() {
   useEffect(() => {
     if (pathname === "/about-us") {
       setActiveItem("About Us");
+    } else if (pathname === "/contact-us") {
+      setActiveItem("Contact Us");
     } else if (pathname?.startsWith("/properties")) {
       setActiveItem("Properties");
     } else {
