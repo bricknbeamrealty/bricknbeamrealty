@@ -29,8 +29,8 @@ export default function CredentialsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-10 flex flex-col items-center">
-            <h2 className="font-heading text-2xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] text-[#0a1128] mb-6">Our Credentials</h2>
-            <p className="font-body font-normal text-sm sm:text-base leading-[1.6] text-slate-600 max-w-2xl mx-auto mb-4">
+            <h2 className="font-serif text-2xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em] text-[#0a1128] mb-6">Our Credentials</h2>
+            <p className="font-sans font-normal text-sm sm:text-base leading-[1.6] text-slate-600 max-w-2xl mx-auto mb-4">
               We operate with strict adherence to industry regulations and ethical standards to ensure your investments are always safe.
             </p>
           </div>

@@ -199,11 +199,11 @@ export default function ConsultationModal() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-300 bg-emerald-950/50 px-3 py-1 rounded-full border border-emerald-700/40">
+                    <div className="inline-flex items-center gap-1.5 text-xs font-medium font-sans text-emerald-300 bg-emerald-950/50 px-3 py-1 rounded-full border border-emerald-700/40">
                       <Sparkles className="w-3.5 h-3.5" />
                       <span>Consultation Confirmed</span>
                     </div>
-                    <h3 className="text-2xl font-serif text-white tracking-tight">
+                    <h3 className="text-2xl font-sans font-semibold text-white tracking-tight">
                       Thank You, {fullName.split(" ")[0]}!
                     </h3>
                     <p className="text-xs sm:text-sm text-zinc-300 max-w-md mx-auto leading-relaxed">
@@ -326,7 +326,7 @@ export default function ConsultationModal() {
                     <div>
                       {/* Top Header with Title and Close Button */}
                       <div className="flex items-center justify-between mb-4 sm:mb-5">
-                        <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                        <h3 className="text-base sm:text-lg font-semibold font-sans text-white tracking-tight">
                           Specify Your Preferences
                         </h3>
                         <button
@@ -505,7 +505,7 @@ export default function ConsultationModal() {
                           <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="group relative w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl sm:rounded-2xl bg-white hover:bg-zinc-100 active:scale-[0.99] text-zinc-950 text-xs sm:text-sm font-bold shadow-lg shadow-white/5 transition-all duration-200 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                            className="group relative w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl sm:rounded-2xl bg-white hover:bg-zinc-100 active:scale-[0.99] text-zinc-950 text-xs sm:text-sm font-semibold font-sans shadow-lg shadow-white/5 transition-all duration-200 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                           >
                             {isSubmitting ? (
                               <div className="flex items-center gap-2 text-zinc-900">

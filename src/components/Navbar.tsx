@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
@@ -30,7 +30,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "Home", href: "/", icon: Home },
   { label: "Properties", href: "/properties", icon: Building2 },
-  { label: "How We Work", href: "/#how-we-work", icon: Compass },
+  { label: "How We Work", href: "/how-we-work", icon: Compass },
   { label: "About Us", href: "/about-us", icon: Users },
   { label: "Contact Us", href: "/contact-us", icon: PhoneCall },
 ];
@@ -40,26 +40,13 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState(
-    pathname === "/about-us"
-      ? "About Us"
-      : pathname === "/contact-us"
-      ? "Contact Us"
-      : pathname?.startsWith("/properties")
-      ? "Properties"
-      : "Home"
-  );
-
-  useEffect(() => {
-    if (pathname === "/about-us") {
-      setActiveItem("About Us");
-    } else if (pathname === "/contact-us") {
-      setActiveItem("Contact Us");
-    } else if (pathname?.startsWith("/properties")) {
-      setActiveItem("Properties");
-    } else {
-      setActiveItem("Home");
-    }
+  // Pure derived activeItem to guarantee 100% deterministic SSR and hydration
+  const activeItem = useMemo(() => {
+    if (pathname === "/about-us") return "About Us";
+    if (pathname === "/contact-us") return "Contact Us";
+    if (pathname === "/how-we-work") return "How We Work";
+    if (pathname?.startsWith("/properties")) return "Properties";
+    return "Home";
   }, [pathname]);
 
   // Dynamic scroll detection with passive listener
@@ -122,7 +109,6 @@ export default function Navbar() {
             <div className="flex items-center gap-2">
               <Link
                 href="/"
-                onClick={() => setActiveItem("Home")}
                 className="group flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a01115]/50 rounded-md py-0.5"
                 aria-label="Brick and Beam Realty - Return to home"
               >
@@ -146,7 +132,6 @@ export default function Navbar() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    onClick={() => setActiveItem(item.label)}
                     className={`px-3.5 py-1.5 xl:px-4 xl:py-2 rounded-full text-sm xl:text-[15px] tracking-[-0.01em] transition-all duration-200 ${
                       isActive
                         ? "text-stone-950 font-semibold bg-stone-100 shadow-xs border border-stone-200/60"
@@ -164,10 +149,10 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={openModal}
-                className="hidden sm:inline-flex group relative items-center gap-2 pl-4 sm:pl-4.5 pr-1.5 py-1.5 rounded-full bg-[#a01115] hover:bg-[#850e11] text-white font-medium text-xs sm:text-sm tracking-tight shadow-md hover:shadow-xl shadow-[#a01115]/20 hover:shadow-[#a01115]/30 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a01115]/80 active:scale-95 cursor-pointer"
+                className="hidden sm:inline-flex group relative items-center gap-2 pl-4 sm:pl-4.5 pr-1.5 py-1.5 rounded-full bg-[#a01115] hover:bg-[#850e11] text-white font-semibold font-sans text-xs sm:text-sm tracking-tight shadow-md hover:shadow-xl shadow-[#a01115]/20 hover:shadow-[#a01115]/30 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#a01115]/80 active:scale-95 cursor-pointer"
               >
                 <Calendar className="w-3.5 h-3.5 text-white/90" />
-                <span className="font-semibold text-white select-none">Book Consultation</span>
+                <span className="font-semibold font-sans text-white select-none">Book Consultation</span>
                 <span className="relative flex items-center justify-center w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-full bg-white/20 group-hover:bg-white/30 text-white shadow-inner transition-colors duration-500 overflow-hidden">
                   {/* Primary Arrow - Exits diagonally to top-right on hover */}
                   <ArrowUpRight
@@ -259,10 +244,7 @@ export default function Navbar() {
                     >
                       <Link
                         href={item.href}
-                        onClick={() => {
-                          setActiveItem(item.label);
-                          setMobileMenuOpen(false);
-                        }}
+                        onClick={() => setMobileMenuOpen(false)}
                         className={`flex items-center justify-between py-3 px-3.5 rounded-2xl text-base transition-all ${
                           isActive
                             ? "bg-stone-100 text-stone-950 font-semibold border border-stone-200/80"
@@ -296,7 +278,7 @@ export default function Navbar() {
                     setMobileMenuOpen(false);
                     openModal();
                   }}
-                  className="group w-full flex items-center justify-between rounded-full bg-[#a01115] text-white px-5 py-3 text-sm font-semibold hover:bg-[#850e11] transition-all shadow-md shadow-[#a01115]/20 active:scale-[0.99] cursor-pointer"
+                  className="group w-full flex items-center justify-between rounded-full bg-[#a01115] text-white px-5 py-3 text-sm font-semibold font-sans hover:bg-[#850e11] transition-all shadow-md shadow-[#a01115]/20 active:scale-[0.99] cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-white/90" />

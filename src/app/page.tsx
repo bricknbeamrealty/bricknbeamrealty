@@ -9,24 +9,14 @@ import CredentialsSection from "@/components/CredentialsSection";
 import FAQSection from "@/components/FAQSection";
 import FeaturedProperties from "@/components/FeaturedProperties";
 import FinalCTA from "@/components/FinalCTA";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import TrustTransparencySection from "@/components/TrustTransparencySection";
 import {
   ArrowUpRight,
-  ArrowRight,
-  Building,
   Building2,
-  CheckCircle2,
   ShieldCheck,
   MapPin,
-  Sparkles,
   Calendar,
-  Search,
-  Compass,
-  KeyRound,
-  Home as HomeIcon,
-  BadgeCheck,
-  Bell,
-  Clock,
-  Handshake,
 } from "lucide-react";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
 
@@ -152,7 +142,7 @@ export default function Home() {
             {/* Line 2: Small, Minimal & Clean Headline */}
             <motion.h1
               variants={headlineVariants}
-              className="text-3xl sm:text-5xl md:text-6xl font-serif font-normal text-white tracking-tight leading-[1.15]"
+              className="text-3xl sm:text-5xl md:text-6xl font-serif font-semibold text-white tracking-tight leading-[1.15]"
             >
               Find Your Dream Home <br />
               <span className="italic text-amber-200/90 font-serif">in Thane</span>
@@ -161,7 +151,7 @@ export default function Home() {
             {/* Line 3: Simple & Understandable Sub-headline for Local Buyers */}
             <motion.p
               variants={headlineVariants}
-              className="mt-3 sm:mt-4 text-sm sm:text-base text-zinc-300 max-w-xl font-normal leading-relaxed"
+              className="mt-3 sm:mt-4 text-sm sm:text-base text-zinc-300 max-w-xl font-normal font-sans leading-relaxed"
             >
               Verified flats, luxury apartments, and commercial spaces across prime locations in Thane with complete trust and guidance.
             </motion.p>
@@ -173,7 +163,7 @@ export default function Home() {
             >
               <Link
                 href="#properties"
-                className="group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-sm sm:text-base font-medium shadow-lg shadow-[#a01115]/30 hover:shadow-xl transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-sm sm:text-base font-semibold font-sans shadow-lg shadow-[#a01115]/30 hover:shadow-xl transition-all duration-200"
               >
                 <span>Find Properties</span>
                 <ArrowUpRight className="w-4 h-4 text-white/90 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -181,7 +171,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={openModal}
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm sm:text-base font-medium backdrop-blur-md transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm sm:text-base font-semibold font-sans backdrop-blur-md transition-all duration-200 cursor-pointer active:scale-[0.98]"
               >
                 <Calendar className="w-4 h-4 text-amber-200/90" />
                 <span>Book Consultation</span>
@@ -191,7 +181,7 @@ export default function Home() {
             {/* Line 5: Hero Trust Proof Bar */}
             <motion.div
               variants={ctaVariants}
-              className="mt-8 pt-5 border-t border-white/15 flex flex-wrap items-center gap-5 sm:gap-8 text-xs text-zinc-300"
+              className="mt-8 pt-5 border-t border-white/15 flex flex-wrap items-center gap-5 sm:gap-8 text-xs font-sans text-zinc-300"
             >
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -214,18 +204,18 @@ export default function Home() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           {/* Eyebrow Badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-semibold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-medium font-sans tracking-wider uppercase mb-3">
             <Building2 className="w-3.5 h-3.5 text-[#a01115]" />
             <span>Featured Properties</span>
           </div>
 
           {/* Main Heading */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight font-sans">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-slate-900 tracking-tight">
             Featured Properties
           </h2>
 
           {/* Subtitle */}
-          <p className="mt-3 text-sm sm:text-base text-slate-600 font-normal max-w-xl mx-auto leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base text-slate-600 font-normal font-sans max-w-xl mx-auto leading-relaxed">
             Explore verified 1, 2 &amp; 3 BHK luxury residences and landmark communities in prime locations across Thane, with zero brokerage on direct bookings.
           </p>
         </div>
@@ -234,141 +224,11 @@ export default function Home() {
         <FeaturedProperties />
       </section>
 
-      {/* SECTION: HOW WE WORK */}
-      <section id="how-we-work" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stone-200">
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 border border-stone-200 text-xs font-semibold text-stone-700 tracking-wider uppercase mb-3">
-            <Compass className="w-3.5 h-3.5 text-[#a01115]" />
-            <span>Process &amp; Methodology</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-light text-stone-900 tracking-tight">
-            How We Guide Your <span className="font-serif italic text-[#a01115]">Purchase</span>
-          </h2>
-          <p className="mt-3 text-sm sm:text-base text-stone-600 font-normal leading-relaxed">
-            Our step-by-step buyer guidance and client onboarding framework guarantees complete peace of mind.
-          </p>
-        </div>
+      {/* SECTION: WHY CHOOSE US (Replaces How We Work) */}
+      <WhyChooseUs />
 
-        {/* 4-Step Process Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {/* Step 1 */}
-          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-left hover:border-stone-300 transition-all duration-200">
-            <div className="w-10 h-10 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-4">
-              <Search className="w-5 h-5" />
-            </div>
-            <span className="text-[11px] font-mono font-semibold text-[#a01115] uppercase tracking-wider">Step 01</span>
-            <h4 className="text-base font-semibold text-stone-900 mt-1">Requirement Mapping</h4>
-            <p className="text-xs text-stone-600 mt-2 leading-relaxed">
-              We analyze your preferred unit layout, budget band, and key micro-markets across Thane.
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-left hover:border-stone-300 transition-all duration-200">
-            <div className="w-10 h-10 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-4">
-              <Compass className="w-5 h-5" />
-            </div>
-            <span className="text-[11px] font-mono font-semibold text-[#a01115] uppercase tracking-wider">Step 02</span>
-            <h4 className="text-base font-semibold text-stone-900 mt-1">Curated Site Visits</h4>
-            <p className="text-xs text-stone-600 mt-2 leading-relaxed">
-              Private, chauffeured site tours across vetted projects without unsolicited sales pressure.
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-left hover:border-stone-300 transition-all duration-200">
-            <div className="w-10 h-10 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-4">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <span className="text-[11px] font-mono font-semibold text-[#a01115] uppercase tracking-wider">Step 03</span>
-            <h4 className="text-base font-semibold text-stone-900 mt-1">Due Diligence &amp; RERA</h4>
-            <p className="text-xs text-stone-600 mt-2 leading-relaxed">
-              Rigorous verification of MahaRERA certifications, title deeds, and developer approvals.
-            </p>
-          </div>
-
-          {/* Step 4 */}
-          <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-left hover:border-stone-300 transition-all duration-200">
-            <div className="w-10 h-10 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-4">
-              <KeyRound className="w-5 h-5" />
-            </div>
-            <span className="text-[11px] font-mono font-semibold text-[#a01115] uppercase tracking-wider">Step 04</span>
-            <h4 className="text-base font-semibold text-stone-900 mt-1">Seamless Key Handover</h4>
-            <p className="text-xs text-stone-600 mt-2 leading-relaxed">
-              Direct builder pricing with professional guidance, loan assistance, and seamless key handover.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION: ABOUT US */}
-      <section id="about-us" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stone-200">
-        <div className="relative rounded-3xl border border-stone-200/80 bg-white p-8 sm:p-14 shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs font-semibold text-stone-700 uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-[#a01115]" />
-              <span>Who We Are &amp; Our Story</span>
-            </div>
-
-            <h3 className="text-2xl sm:text-4xl font-serif font-normal text-stone-900 tracking-tight">
-              About Us <span className="italic text-[#a01115]">Work in Progress</span>
-            </h3>
-
-            <p className="text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl mx-auto">
-              We are currently finalizing our in-depth company profile, founding story, and local real estate vision for Thane.
-              While our full story is being documented here, our team is actively on the ground delivering transparent, verified property consulting.
-            </p>
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left hover:border-stone-300 transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <h4 className="text-sm font-semibold text-stone-900">MahaRERA Registered</h4>
-              <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
-                Operating with complete regulatory compliance, verified titles, and direct builder access across Thane.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left hover:border-stone-300 transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
-                <Building2 className="w-4 h-4" />
-              </div>
-              <h4 className="text-sm font-semibold text-stone-900">Local Thane Expertise</h4>
-              <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
-                Specialized focus on high-growth prime corridors including Majiwada, Ghodbunder Road, and Pokhran Road.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-stone-50/70 border border-stone-200/70 text-left hover:border-stone-300 transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-[#a01115]/10 border border-[#a01115]/20 text-[#a01115] flex items-center justify-center mb-3">
-                <Handshake className="w-4 h-4 text-emerald-600" />
-              </div>
-              <h4 className="text-sm font-semibold text-stone-900">Transparent Advisory</h4>
-              <p className="text-xs text-stone-600 mt-1.5 leading-relaxed">
-                Unbiased, client-first guidance from initial private site tours to structural review and key handover.
-              </p>
-            </div>
-          </div>
-
-          {/* Micro Trust Proof Strip */}
-          <div className="mt-10 pt-6 border-t border-stone-200/70 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-stone-600 font-medium">
-            <div className="flex items-center gap-1.5">
-              <BadgeCheck className="w-4 h-4 text-emerald-600" />
-              <span>Licensed Channel Advisory</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-[#a01115]" />
-              <span>1-Hour Verified Response</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>100% Client Interest First</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SECTION: ABOUT US / TRUST & TRANSPARENCY */}
+      <TrustTransparencySection />
 
       {/* SECTION: FAQ */}
       <FAQSection />

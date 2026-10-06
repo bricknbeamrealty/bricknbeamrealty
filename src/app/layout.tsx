@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ConsultationModal from "@/components/ConsultationModal";
@@ -7,7 +7,15 @@ import { ConsultationModalProvider } from "@/context/ConsultationModalContext";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
+  axes: ["opsz"],
   variable: "--font-fraunces",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -34,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={fraunces.variable}>
-      <body className="antialiased bg-[#faf8f5] text-stone-900 selection:bg-[#a01115] selection:text-white min-h-screen relative">
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+      <body className="antialiased font-sans bg-[#faf8f5] text-stone-900 selection:bg-[#a01115] selection:text-white min-h-screen relative">
         <ConsultationModalProvider>
           {children}
           <ConsultationModal />

@@ -33,11 +33,11 @@ export default function TermsAndConditionsPage() {
 
           {/* Header Title Section */}
           <div className="mb-10 sm:mb-12">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#a01115]/10 text-[#a01115] border border-[#a01115]/20 backdrop-blur-xs mb-4">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium font-sans tracking-wider uppercase bg-[#a01115]/10 text-[#a01115] border border-[#a01115]/20 backdrop-blur-xs mb-4">
               <Scale className="w-3.5 h-3.5 text-[#a01115]" />
               Terms of Use &amp; Service
             </span>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 tracking-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-stone-900 tracking-tight">
               Terms &amp; Conditions
             </h1>
             <p className="mt-3 text-xs sm:text-sm text-stone-500">
@@ -49,7 +49,7 @@ export default function TermsAndConditionsPage() {
           <div className="bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-2xl p-6 sm:p-10 md:p-12 shadow-xs space-y-10 text-stone-700 leading-relaxed text-sm sm:text-base">
             {/* Section 1 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 1. Acceptance of Terms
               </h2>
               <p>
@@ -62,7 +62,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 2 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 2. Nature of Service: Broker / Advisory Facilitator
               </h2>
               <p>
@@ -83,7 +83,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 3 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 3. Listing Accuracy &amp; Project Details
               </h2>
               <p>
@@ -104,7 +104,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 4 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 4. User Conduct &amp; Acceptable Use
               </h2>
               <p>When using our website, enquiry forms, and WhatsApp channels, you agree that you will not:</p>
@@ -118,7 +118,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 5 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 5. Intellectual Property
               </h2>
               <p>
@@ -131,7 +131,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 6 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 6. Third-Party Links &amp; Services
               </h2>
               <p>
@@ -144,7 +144,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 7 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 7. Limitation of Liability
               </h2>
               <p>
@@ -159,7 +159,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 8 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 8. Governing Law &amp; Jurisdiction
               </h2>
               <p>
@@ -172,7 +172,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 9 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 9. Contact Information
               </h2>
               <p>
@@ -191,7 +191,7 @@ export default function TermsAndConditionsPage() {
           <div className="mt-8 text-center">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#a01115] hover:text-[#850e12] transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold font-sans text-[#a01115] hover:text-[#850e12] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Return to Home Page</span>

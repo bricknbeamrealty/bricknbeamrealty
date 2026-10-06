@@ -115,7 +115,7 @@ export default function ContactUsClient() {
           >
             {/* Left Main Title */}
             <div>
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#111e1c] leading-[1.08] font-sans">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif font-semibold tracking-tight text-[#111e1c] leading-[1.08]">
                 <span>LET’S CONNECT</span>
                 <br />
                 <span>– WE’RE HERE TO HELP!</span>
@@ -202,7 +202,7 @@ export default function ContactUsClient() {
             {/* Box 2: Question Not Answered Yet? Modular Form */}
             <div className="rounded-3xl bg-[#f4f3ec] p-8 sm:p-10 lg:p-12 flex flex-col justify-between shadow-xs border border-stone-200/50">
               <div>
-                <h3 className="text-3xl sm:text-4xl font-normal text-stone-900 tracking-tight font-sans mb-7 sm:mb-8">
+                <h3 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight font-sans mb-7 sm:mb-8">
                   Question not answered yet?
                 </h3>
 
@@ -218,7 +218,7 @@ export default function ContactUsClient() {
                       <div className="w-14 h-14 rounded-full bg-[#2e594d]/10 text-[#2e594d] flex items-center justify-center">
                         <CheckCircle2 className="w-8 h-8" />
                       </div>
-                      <h4 className="text-2xl font-normal text-stone-900 font-sans">
+                      <h4 className="text-2xl font-semibold text-stone-900 font-sans">
                         Message Sent Successfully!
                       </h4>
                       <p className="text-sm text-stone-600 max-w-sm leading-relaxed font-normal">
@@ -404,7 +404,7 @@ export default function ContactUsClient() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-[#3d6e63] hover:bg-[#2f574e] active:scale-[0.98] text-white text-sm sm:text-base font-medium shadow-xs transition-all duration-200 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed group"
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-[#3d6e63] hover:bg-[#2f574e] active:scale-[0.98] text-white text-sm sm:text-base font-semibold font-sans shadow-xs transition-all duration-200 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed group"
                         >
                           {/* Circular icon badge */}
                           <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 shadow-xs">

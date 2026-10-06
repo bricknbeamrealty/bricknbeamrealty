@@ -146,7 +146,7 @@ export default function PropertiesClientView() {
           className="scroll-mt-28 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-stone-200/80"
         >
           <div>
-            <h2 className="text-xl sm:text-2xl font-serif text-stone-900 tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-serif font-medium text-stone-900 tracking-tight">
               Verified Properties in Thane
             </h2>
             <p className="text-xs sm:text-sm text-stone-500 mt-1">
@@ -252,22 +252,22 @@ export default function PropertiesClientView() {
                 <div className="p-5 flex flex-col flex-1">
                   {/* Developer Name & Micro-location */}
                   <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <span className="font-bold text-xs uppercase tracking-wider text-[#a01115]">
+                    <span className="font-semibold font-sans text-xs uppercase tracking-wider text-[#a01115]">
                       {property.developer}
                     </span>
-                    <div className="flex items-center gap-1 text-xs text-stone-500 font-medium truncate">
+                    <div className="flex items-center gap-1 text-xs text-stone-500 font-medium font-sans truncate">
                       <MapPin className="w-3 h-3 text-stone-400 shrink-0" />
                       <span className="truncate">{property.location}</span>
                     </div>
                   </div>
 
                   {/* Project Title */}
-                  <h3 className="font-serif text-xl font-bold text-stone-900 group-hover:text-[#a01115] transition-colors leading-tight mb-1">
+                  <h3 className="font-sans text-xl font-semibold text-stone-900 group-hover:text-[#a01115] transition-colors leading-tight mb-1">
                     {property.title}
                   </h3>
 
                   {/* Sub-location Address */}
-                  <p className="text-xs text-stone-500 line-clamp-1 mb-3">
+                  <p className="text-xs text-stone-500 font-normal font-sans line-clamp-1 mb-3">
                     {property.subLocation}
                   </p>
 
@@ -307,10 +307,10 @@ export default function PropertiesClientView() {
                   {/* Pricing and Action Footer */}
                   <div className="pt-3 border-t border-stone-100 flex items-center justify-between gap-3 mt-auto">
                     <div>
-                      <span className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider block">
+                      <span className="text-[10px] font-semibold font-sans text-stone-400 uppercase tracking-wider block">
                         Starting From
                       </span>
-                      <span className="font-bold text-base sm:text-lg text-stone-900 leading-tight">
+                      <span className="font-semibold font-sans text-base sm:text-lg text-stone-900 leading-tight">
                         {property.priceStartingFrom}
                       </span>
                     </div>
@@ -318,7 +318,7 @@ export default function PropertiesClientView() {
                     <button
                       type="button"
                       onClick={openModal}
-                      className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-xs sm:text-sm font-medium transition-all shadow-sm shadow-[#a01115]/20 cursor-pointer"
+                      className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold font-sans transition-all shadow-sm shadow-[#a01115]/20 cursor-pointer"
                     >
                       <span>Enquire Now</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -334,17 +334,17 @@ export default function PropertiesClientView() {
             <div className="w-12 h-12 rounded-full bg-rose-50 text-[#a01115] flex items-center justify-center mx-auto mb-4">
               <Building className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-serif font-bold text-stone-900 mb-1">
+            <h3 className="text-lg font-sans font-semibold text-stone-900 mb-1">
               No matching properties found
             </h3>
-            <p className="text-xs sm:text-sm text-stone-500 mb-6">
+            <p className="text-xs sm:text-sm text-stone-500 font-normal font-sans mb-6">
               We couldn’t find properties matching your current filter criteria.
               Try adjusting your filters or resetting to view all Thane inventory.
             </p>
             <button
               type="button"
               onClick={handleResetFilters}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#a01115] text-white text-xs sm:text-sm font-medium hover:bg-[#850e11] transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#a01115] text-white text-xs sm:text-sm font-semibold font-sans hover:bg-[#850e11] transition-all cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Reset All Filters</span>

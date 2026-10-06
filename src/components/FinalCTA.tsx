@@ -36,19 +36,19 @@ export default function FinalCTA() {
         className="space-y-6"
       >
         {/* Minimal Eyebrow */}
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#a01115] tracking-[0.2em] uppercase">
+        <div className="inline-flex items-center gap-2 text-xs font-medium font-sans text-[#a01115] tracking-[0.2em] uppercase">
           <Sparkles className="w-3.5 h-3.5 text-[#a01115]" />
           <span>Start Your Journey</span>
         </div>
 
         {/* Clean Luxury Headline */}
-        <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif font-normal text-stone-900 tracking-tight leading-[1.15]">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif font-medium text-stone-900 tracking-tight leading-[1.15]">
           Ready to find your dream home <br className="hidden sm:inline" />
-          <span className="italic text-[#a01115]">in Thane?</span>
+          <span className="italic text-[#a01115] font-serif">in Thane?</span>
         </h2>
 
         {/* Minimal Subtitle */}
-        <p className="text-sm sm:text-base md:text-lg text-stone-600 max-w-xl mx-auto font-normal leading-relaxed">
+        <p className="text-sm sm:text-base md:text-lg text-stone-600 max-w-xl mx-auto font-normal font-sans leading-relaxed">
           Verified homes and luxury flats in prime locations across Thane.
           Direct builder prices and trusted guidance from private site visit to handover.
         </p>
@@ -58,7 +58,7 @@ export default function FinalCTA() {
           <button
             type="button"
             onClick={openModal}
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-sm sm:text-base font-medium shadow-lg shadow-[#a01115]/20 hover:shadow-xl transition-all duration-200 cursor-pointer"
+            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-sm sm:text-base font-semibold font-sans shadow-lg shadow-[#a01115]/20 hover:shadow-xl transition-all duration-200 cursor-pointer"
           >
             <Calendar className="w-4 h-4 text-white" />
             <span>Book a Consultation</span>
@@ -68,7 +68,7 @@ export default function FinalCTA() {
           <button
             type="button"
             onClick={handleWhatsApp}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-stone-50 border border-stone-200 text-stone-800 text-sm sm:text-base font-medium shadow-xs hover:border-stone-300 transition-all duration-200 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white hover:bg-stone-50 border border-stone-200 text-stone-800 text-sm sm:text-base font-semibold font-sans shadow-xs hover:border-stone-300 transition-all duration-200 cursor-pointer"
           >
             <WhatsAppIcon className="w-5 h-5 text-[#25D366] fill-current shrink-0" />
             <span>Chat on WhatsApp</span>
@@ -76,7 +76,7 @@ export default function FinalCTA() {
         </div>
 
         {/* Product Trust Assurance Ribbon */}
-        <div className="pt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-stone-500 font-medium">
+        <div className="pt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs text-stone-500 font-medium font-sans">
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
             <span>MahaRERA Verified</span>

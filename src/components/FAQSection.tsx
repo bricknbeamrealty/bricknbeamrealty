@@ -80,7 +80,7 @@ export default function FAQSection() {
           aria-expanded={isOpen}
           aria-controls={`faq-answer-${faq.id}`}
         >
-          <span className={`text-base sm:text-[17px] font-bold transition-colors pr-4 leading-snug ${
+          <span className={`text-base sm:text-[17px] font-semibold font-sans transition-colors pr-4 leading-snug ${
             isOpen ? "text-[#a01115]" : "text-slate-900 group-hover:text-[#a01115]"
           }`}>
             {faq.question}
@@ -102,7 +102,7 @@ export default function FAQSection() {
               transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <div className="pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <div className="pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal font-sans">
                 <p>{faq.answer}</p>
               </div>
             </motion.div>
@@ -117,18 +117,18 @@ export default function FAQSection() {
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
         {/* Eyebrow */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-semibold tracking-wider uppercase mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-medium font-sans tracking-wider uppercase mb-3">
           <HelpCircle className="w-3.5 h-3.5 text-[#a01115]" />
           <span>Frequently Asked Questions</span>
         </div>
 
         {/* Main Heading */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight font-sans">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-slate-900 tracking-tight">
           Frequently Asked Question
         </h2>
 
         {/* Subtitle */}
-        <p className="mt-3 text-sm sm:text-base text-slate-500 font-normal">
+        <p className="mt-3 text-sm sm:text-base text-slate-500 font-normal font-sans">
           Did you find the question as you expected?
         </p>
       </div>

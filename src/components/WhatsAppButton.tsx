@@ -71,12 +71,12 @@ export default function WhatsAppButton() {
 
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h3 className="text-sm font-semibold tracking-tight text-white leading-tight">
+                    <h3 className="text-sm font-semibold font-sans tracking-tight text-white leading-tight">
                       Brick &amp; Beams Properties
                     </h3>
                     <BadgeCheck className="w-4 h-4 text-emerald-300 fill-emerald-500/20 shrink-0" />
                   </div>
-                  <p className="text-[11px] text-emerald-100/80 mt-0.5">
+                  <p className="text-[11px] font-sans text-emerald-100/80 mt-0.5">
                     Typically replies within an hour
                   </p>
                 </div>
@@ -108,15 +108,15 @@ export default function WhatsAppButton() {
                     height={24}
                     className="h-3.5 w-auto object-contain"
                   />
-                  <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">
+                  <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase font-sans">
                     BRICK &amp; BEAMS
                   </span>
                 </div>
-                <div className="text-sm font-normal text-zinc-800 leading-snug space-y-1">
+                <div className="text-sm font-normal font-sans text-zinc-800 leading-snug space-y-1">
                   <p>Hi there 👋</p>
                   <p>How can I help you?</p>
                 </div>
-                <div className="text-[10px] text-zinc-400 text-right mt-1.5 font-medium select-none flex items-center justify-end gap-1">
+                <div className="text-[10px] text-zinc-400 text-right mt-1.5 font-medium font-sans select-none flex items-center justify-end gap-1">
                   <span>{timeString}</span>
                   <CheckCheck className="w-3.5 h-3.5 text-[#53bdeb]" />
                 </div>
@@ -128,7 +128,7 @@ export default function WhatsAppButton() {
               <button
                 type="button"
                 onClick={handleStartChat}
-                className="w-full bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.98] text-white font-medium py-3 rounded-full flex items-center justify-center gap-2.5 shadow-md shadow-green-500/25 transition-all text-sm sm:text-base focus:outline-none focus-visible:ring-4 focus-visible:ring-green-400 cursor-pointer"
+                className="w-full bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.98] text-white font-semibold font-sans py-3 rounded-full flex items-center justify-center gap-2.5 shadow-md shadow-green-500/25 transition-all text-sm sm:text-base focus:outline-none focus-visible:ring-4 focus-visible:ring-green-400 cursor-pointer"
               >
                 <WhatsAppIcon className="w-5 h-5 fill-white text-white shrink-0" />
                 <span>Start Chat</span>
@@ -153,7 +153,7 @@ export default function WhatsAppButton() {
 
         {/* Hover Tooltip when closed */}
         {!isOpen && (
-          <span className="absolute right-full mr-3.5 top-1/2 -translate-y-1/2 px-3.5 py-1.5 rounded-full bg-white/95 text-stone-900 text-xs font-semibold tracking-wide shadow-xl border border-stone-200/90 backdrop-blur-md opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200 pointer-events-none whitespace-nowrap hidden sm:flex items-center gap-2">
+          <span className="absolute right-full mr-3.5 top-1/2 -translate-y-1/2 px-3.5 py-1.5 rounded-full bg-white/95 text-stone-900 text-xs font-medium font-sans tracking-wide shadow-xl border border-stone-200/90 backdrop-blur-md opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200 pointer-events-none whitespace-nowrap hidden sm:flex items-center gap-2">
             <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] fill-current" />
             <span>Chat with us</span>
             <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />

@@ -159,22 +159,22 @@ export default function FeaturedProperties() {
             <div className="p-4 sm:p-5 flex flex-col flex-1">
               {/* Developer & Location Row */}
               <div className="flex items-center justify-between gap-2 mb-1">
-                <span className="font-bold text-xs uppercase tracking-[0.05em] text-[#a01115]">
+                <span className="font-semibold font-sans text-xs uppercase tracking-[0.05em] text-[#a01115]">
                   {property.developer}
                 </span>
-                <div className="flex items-center gap-1 font-medium text-xs text-slate-500">
+                <div className="flex items-center gap-1 font-medium font-sans text-xs text-slate-500">
                   <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                   <span>{property.location}</span>
                 </div>
               </div>
 
               {/* Project Title */}
-              <h3 className="font-bold text-lg sm:text-[19px] text-slate-900 mb-0.5 leading-[1.2] tracking-[-0.02em] group-hover:text-[#a01115] transition-colors">
+              <h3 className="font-semibold font-sans text-lg sm:text-[19px] text-slate-900 mb-0.5 leading-[1.2] tracking-[-0.02em] group-hover:text-[#a01115] transition-colors">
                 {property.title}
               </h3>
 
               {/* Sub-Location */}
-              <p className="font-normal text-xs text-slate-500 line-clamp-1 mb-2.5 leading-normal">
+              <p className="font-normal font-sans text-xs text-slate-500 line-clamp-1 mb-2.5 leading-normal">
                 {property.subLocation}
               </p>
 
@@ -183,10 +183,10 @@ export default function FeaturedProperties() {
                 <div className="flex items-start gap-1.5 min-w-0">
                   <Ruler className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
                   <div className="flex flex-col min-w-0">
-                    <span className="text-[10px] font-mono text-slate-400 uppercase font-semibold leading-none mb-0.5">
+                    <span className="text-[10px] font-sans text-slate-400 uppercase font-semibold leading-none mb-0.5">
                       Area
                     </span>
-                    <span className="font-semibold text-xs text-slate-800 leading-snug break-words">
+                    <span className="font-semibold font-sans text-xs text-slate-800 leading-snug break-words">
                       {property.area}
                     </span>
                   </div>
@@ -195,10 +195,10 @@ export default function FeaturedProperties() {
                 <div className="flex items-start gap-1.5 min-w-0">
                   <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
                   <div className="flex flex-col min-w-0">
-                    <span className="text-[10px] font-mono text-slate-400 uppercase font-semibold leading-none mb-0.5">
+                    <span className="text-[10px] font-sans text-slate-400 uppercase font-semibold leading-none mb-0.5">
                       Possession
                     </span>
-                    <span className="font-semibold text-xs text-slate-800 leading-snug break-words">
+                    <span className="font-semibold font-sans text-xs text-slate-800 leading-snug break-words">
                       {property.possession}
                     </span>
                   </div>
@@ -210,7 +210,7 @@ export default function FeaturedProperties() {
                 {property.bhks.map((bhk) => (
                   <span
                     key={bhk}
-                    className="font-medium text-[11px] px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200/60"
+                    className="font-medium font-sans text-[11px] px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200/60"
                   >
                     {bhk}
                   </span>
@@ -220,10 +220,10 @@ export default function FeaturedProperties() {
               {/* Pricing & Details Action */}
               <div className="mt-auto pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
                 <div>
-                  <span className="block font-bold text-[10px] uppercase tracking-[0.05em] text-slate-400">
+                  <span className="block font-semibold font-sans text-[10px] uppercase tracking-[0.05em] text-slate-400">
                     Pricing
                   </span>
-                  <div className="font-normal text-lg sm:text-xl text-slate-900 leading-tight">
+                  <div className="font-semibold font-sans text-lg sm:text-xl text-slate-900 leading-tight">
                     {property.pricing}
                   </div>
                 </div>
@@ -235,7 +235,7 @@ export default function FeaturedProperties() {
                       e.stopPropagation();
                       openModal();
                     }}
-                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 font-semibold text-xs leading-none text-white bg-[#a01115] hover:bg-[#850e11] active:bg-[#6b0b0e] rounded-xl transition-all shadow-sm hover:shadow cursor-pointer"
+                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 font-semibold font-sans text-xs leading-none text-white bg-[#a01115] hover:bg-[#850e11] active:bg-[#6b0b0e] rounded-xl transition-all shadow-sm hover:shadow cursor-pointer"
                     title="Quick Details"
                   >
                     <Eye className="w-3.5 h-3.5" />

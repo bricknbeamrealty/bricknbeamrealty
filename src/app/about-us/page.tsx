@@ -8,7 +8,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/FinalCTA";
 import {
-  Building2,
   ShieldCheck,
   Sparkles,
   ArrowRight,
@@ -16,15 +15,9 @@ import {
   ChevronRight,
   ChevronDown,
   Home,
-  CheckCircle2,
   Calendar,
-  Users,
   Compass,
-  MapPin,
   Award,
-  TrendingUp,
-  Briefcase,
-  FileCheck2,
   KeyRound,
   Handshake,
 } from "lucide-react";
@@ -62,14 +55,6 @@ export default function AboutUsPage() {
       opacity: 1,
       y: 0,
       transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
-    },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: shouldReduceMotion ? 0 : 0.12 },
     },
   };
 
@@ -142,19 +127,19 @@ export default function AboutUsPage() {
               variants={fadeIn}
               className="max-w-3xl mx-auto"
             >
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#a01115]/30 border border-[#a01115]/50 text-rose-200 text-xs font-semibold tracking-wider uppercase mb-4 backdrop-blur-md">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#a01115]/30 border border-[#a01115]/50 text-rose-200 text-xs font-medium font-sans tracking-wider uppercase mb-4 backdrop-blur-md">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300" />
                 <span>Brick &amp; Beam Realty • Thane Legacy</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-normal text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-semibold text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]">
                 About Our Legacy &amp; <br />
                 <span className="italic text-amber-200 font-serif drop-shadow-[0_2px_16px_rgba(0,0,0,0.9)]">
                   Property Advisory
                 </span>
               </h1>
 
-              <p className="mt-4 sm:mt-5 text-base sm:text-lg text-zinc-200 leading-relaxed font-normal max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+              <p className="mt-4 sm:mt-5 text-base sm:text-lg text-zinc-200 leading-relaxed font-normal font-sans max-w-2xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
                 With an unwavering commitment to transparency and architectural rigor, we connect discerning homebuyers and investors to Thane’s landmark developments with zero brokerage on direct bookings.
               </p>
             </motion.div>
@@ -173,13 +158,13 @@ export default function AboutUsPage() {
               className="lg:col-span-6 flex flex-col items-start text-left"
             >
               {/* Eyebrow Pill Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-semibold tracking-wider uppercase mb-4 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-medium font-sans tracking-wider uppercase mb-4 shadow-2xs">
                 <Sparkles className="w-3.5 h-3.5 text-[#a01115]" />
                 <span>About Us • Established Excellence</span>
               </div>
 
               {/* Main Headline with Signature Serif Accent */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-stone-900 tracking-tight leading-[1.18]">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-medium text-stone-900 tracking-tight leading-[1.18]">
                 Guiding Your Property Journey With <br className="hidden sm:inline" />
                 <span className="italic text-[#a01115] font-serif">
                   Honesty &amp; Rigor
@@ -187,7 +172,7 @@ export default function AboutUsPage() {
               </h2>
 
               {/* Body Paragraph */}
-              <p className="mt-4 sm:mt-5 text-sm sm:text-base text-stone-600 leading-relaxed font-normal max-w-xl">
+              <p className="mt-4 sm:mt-5 text-sm sm:text-base text-stone-600 leading-relaxed font-normal font-sans max-w-xl">
                 With an unwavering commitment to excellence, we connect discerning homebuyers, commercial investors, and growing families with landmark developments across prime Thane corridors. Our registered advisors guide every milestone with transparent diligence and zero brokerage on direct developer bookings.
               </p>
 
@@ -195,7 +180,7 @@ export default function AboutUsPage() {
               <div className="mt-7 sm:mt-8 flex flex-wrap items-center gap-3.5">
                 <Link
                   href="/properties"
-                  className="group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-sm sm:text-base font-medium shadow-lg shadow-[#a01115]/25 hover:shadow-xl hover:shadow-[#a01115]/30 transition-all duration-300"
+                  className="group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-sm sm:text-base font-semibold font-sans shadow-lg shadow-[#a01115]/25 hover:shadow-xl hover:shadow-[#a01115]/30 transition-all duration-300"
                 >
                   <span>See Properties</span>
                   <ArrowUpRight className="w-4 h-4 text-white/90 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -204,7 +189,7 @@ export default function AboutUsPage() {
                 <button
                   type="button"
                   onClick={openModal}
-                  className="group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-white hover:bg-stone-50 text-stone-800 border border-stone-200 hover:border-stone-300 text-sm sm:text-base font-medium shadow-xs hover:shadow-sm transition-all duration-300 cursor-pointer active:scale-[0.98]"
+                  className="group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl bg-white hover:bg-stone-50 text-stone-800 border border-stone-200 hover:border-stone-300 text-sm sm:text-base font-semibold font-sans shadow-xs hover:shadow-sm transition-all duration-300 cursor-pointer active:scale-[0.98]"
                 >
                   <Calendar className="w-4 h-4 text-[#a01115]" />
                   <span>Contact Us</span>
@@ -282,12 +267,12 @@ export default function AboutUsPage() {
               className="lg:col-span-6 flex flex-col justify-center text-left"
             >
               {/* Eyebrow Pill Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-semibold tracking-wider uppercase mb-4 shadow-2xs self-start">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-medium font-sans tracking-wider uppercase mb-4 shadow-2xs self-start">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#a01115]" />
                 <span>Our Core Values</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-stone-900 tracking-tight leading-[1.18] mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-medium text-stone-900 tracking-tight leading-[1.18] mb-6">
                 Trust &amp; Transparency Through Out <br className="hidden sm:inline" />
                 <span className="italic text-[#a01115] font-serif">
                   Your Real Estate Journey
@@ -314,7 +299,7 @@ export default function AboutUsPage() {
                         aria-expanded={isOpen}
                       >
                         <span
-                          className={`text-lg sm:text-xl font-bold transition-colors ${
+                          className={`text-lg sm:text-xl font-semibold font-sans transition-colors ${
                             isOpen ? "text-[#a01115]" : "text-stone-900 group-hover:text-[#a01115]"
                           }`}
                         >
@@ -446,14 +431,14 @@ export default function AboutUsPage() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
             >
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-semibold tracking-wider uppercase mb-4 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-medium font-sans tracking-wider uppercase mb-4 shadow-2xs">
                 <Compass className="w-3.5 h-3.5 text-[#a01115]" />
                 <span>Streamlined Advisory Flow</span>
               </div>
 
               <h2
                 id="how-it-works-title"
-                className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-stone-900 tracking-tight leading-[1.18]"
+                className="text-3xl sm:text-4xl lg:text-5xl font-serif font-medium text-stone-900 tracking-tight leading-[1.18]"
               >
                 How It Works? Simple Steps to <br className="hidden sm:inline" />
                 <span className="italic text-[#a01115] font-serif">
@@ -461,7 +446,7 @@ export default function AboutUsPage() {
                 </span>
               </h2>
 
-              <p className="mt-3.5 text-sm sm:text-base text-stone-600 max-w-xl mx-auto leading-relaxed font-normal">
+              <p className="mt-3.5 text-sm sm:text-base text-stone-600 max-w-xl mx-auto leading-relaxed font-normal font-sans">
                 From verified property discovery and legal title diligence to price negotiation and seamless key handover.
               </p>
             </motion.div>
@@ -493,17 +478,17 @@ export default function AboutUsPage() {
                   <div className="w-0 h-0 border-x-[4.5px] border-x-transparent border-t-[8px] border-t-stone-600 -mt-[1px]" />
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mt-5 sm:mt-6 mb-2.5 tracking-tight group-hover:text-[#a01115] transition-colors">
+                <h3 className="text-xl sm:text-2xl font-semibold font-sans text-stone-900 mt-5 sm:mt-6 mb-2.5 tracking-tight group-hover:text-[#a01115] transition-colors">
                   Buy A Home
                 </h3>
 
-                <p className="text-sm sm:text-[15px] text-stone-500 leading-relaxed max-w-[280px] sm:max-w-xs font-normal flex-1">
+                <p className="text-sm sm:text-[15px] text-stone-500 leading-relaxed max-w-[280px] sm:max-w-xs font-normal font-sans flex-1">
                   Find your perfect home with ease. Explore properties that match your lifestyle and budget, and make your homeownership dream come true.
                 </p>
 
                 <Link
                   href="/#properties"
-                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-[#a01115] hover:text-[#850e11] group-hover:translate-x-1 transition-all"
+                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold font-sans text-[#a01115] hover:text-[#850e11] group-hover:translate-x-1 transition-all"
                 >
                   <span>Explore Residences</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -535,18 +520,18 @@ export default function AboutUsPage() {
                   <div className="w-0 h-0 border-x-[4.5px] border-x-transparent border-t-[8px] border-t-stone-600 -mt-[1px]" />
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mt-5 sm:mt-6 mb-2.5 tracking-tight group-hover:text-[#a01115] transition-colors">
+                <h3 className="text-xl sm:text-2xl font-semibold font-sans text-stone-900 mt-5 sm:mt-6 mb-2.5 tracking-tight group-hover:text-[#a01115] transition-colors">
                   Rent A Home
                 </h3>
 
-                <p className="text-sm sm:text-[15px] text-stone-500 leading-relaxed max-w-[280px] sm:max-w-xs font-normal flex-1">
+                <p className="text-sm sm:text-[15px] text-stone-500 leading-relaxed max-w-[280px] sm:max-w-xs font-normal font-sans flex-1">
                   Discover your ideal rental home with options from cozy apartments to spacious family residences in prime locations, all tailored to fit your lifestyle.
                 </p>
 
                 <button
                   type="button"
                   onClick={openModal}
-                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-[#a01115] hover:text-[#850e11] group-hover:translate-x-1 transition-all cursor-pointer"
+                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold font-sans text-[#a01115] hover:text-[#850e11] group-hover:translate-x-1 transition-all cursor-pointer"
                 >
                   <span>Inquire Rentals</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -566,18 +551,18 @@ export default function AboutUsPage() {
                   <Handshake className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.8]" />
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mt-5 sm:mt-6 mb-2.5 tracking-tight group-hover:text-[#a01115] transition-colors">
+                <h3 className="text-xl sm:text-2xl font-semibold font-sans text-stone-900 mt-5 sm:mt-6 mb-2.5 tracking-tight group-hover:text-[#a01115] transition-colors">
                   Sale Property
                 </h3>
 
-                <p className="text-sm sm:text-[15px] text-stone-500 leading-relaxed max-w-[280px] sm:max-w-xs font-normal flex-1">
+                <p className="text-sm sm:text-[15px] text-stone-500 leading-relaxed max-w-[280px] sm:max-w-xs font-normal font-sans flex-1">
                   Sale your home with ease receive expert guidance, a fast and hassle-free process, and access to a network of qualified buyers at every step, successful &amp; profitable Sale.
                 </p>
 
                 <button
                   type="button"
                   onClick={openModal}
-                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-[#a01115] hover:text-[#850e11] group-hover:translate-x-1 transition-all cursor-pointer"
+                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold font-sans text-[#a01115] hover:text-[#850e11] group-hover:translate-x-1 transition-all cursor-pointer"
                 >
                   <span>List Your Property</span>
                   <ArrowRight className="w-3.5 h-3.5" />

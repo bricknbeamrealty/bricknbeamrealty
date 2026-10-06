@@ -105,7 +105,7 @@ export default function NotFound() {
             {/* Single Punchy Real Estate / Broken Heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-stone-900 tracking-tight max-w-2xl mx-auto mt-6 sm:mt-8"
+              className="font-serif text-2xl sm:text-4xl md:text-5xl font-semibold text-stone-900 tracking-tight max-w-2xl mx-auto mt-6 sm:mt-8"
             >
               Broken Foundation: This Property Link Is Broken
             </motion.h1>
@@ -118,7 +118,7 @@ export default function NotFound() {
               {/* Button 1: Back to Home Page */}
               <Link
                 href="/"
-                className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[#a01115] text-white font-medium text-sm sm:text-base shadow-lg shadow-[#a01115]/25 hover:bg-[#850e12] hover:shadow-xl hover:shadow-[#a01115]/30 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[#a01115] text-white font-semibold font-sans text-sm sm:text-base shadow-lg shadow-[#a01115]/25 hover:bg-[#850e12] hover:shadow-xl hover:shadow-[#a01115]/30 active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
                 <Home className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
                 <span>Back to Home Page</span>
@@ -128,7 +128,7 @@ export default function NotFound() {
               {/* Button 2: Properties Page Button */}
               <Link
                 href="/#properties"
-                className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-white text-stone-900 font-medium text-sm sm:text-base border border-stone-300 hover:border-[#a01115] hover:text-[#a01115] hover:bg-stone-50/80 shadow-xs hover:shadow-md active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-white text-stone-900 font-semibold font-sans text-sm sm:text-base border border-stone-300 hover:border-[#a01115] hover:text-[#a01115] hover:bg-stone-50/80 shadow-xs hover:shadow-md active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
                 <Building2 className="w-4 h-4 text-[#a01115] transition-transform group-hover:scale-110" />
                 <span>Explore Properties</span>

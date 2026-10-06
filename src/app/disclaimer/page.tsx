@@ -33,11 +33,11 @@ export default function DisclaimerPage() {
 
           {/* Header Title Section */}
           <div className="mb-10 sm:mb-12">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#a01115]/10 text-[#a01115] border border-[#a01115]/20 backdrop-blur-xs mb-4">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium font-sans tracking-wider uppercase bg-[#a01115]/10 text-[#a01115] border border-[#a01115]/20 backdrop-blur-xs mb-4">
               <AlertCircle className="w-3.5 h-3.5 text-[#a01115]" />
               Regulatory &amp; Advisory Notice
             </span>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 tracking-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-stone-900 tracking-tight">
               Disclaimer
             </h1>
             <p className="mt-3 text-xs sm:text-sm text-stone-500">
@@ -49,7 +49,7 @@ export default function DisclaimerPage() {
           <div className="bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-2xl p-6 sm:p-10 md:p-12 shadow-xs space-y-10 text-stone-700 leading-relaxed text-sm sm:text-base">
             {/* Section 1 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 1. General Information Purpose
               </h2>
               <p>
@@ -62,7 +62,7 @@ export default function DisclaimerPage() {
 
             {/* Section 2 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 2. Visual Media &amp; Artistic Impressions
               </h2>
               <p>
@@ -76,7 +76,7 @@ export default function DisclaimerPage() {
 
             {/* Section 3 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 3. Indicative Pricing &amp; Specification Variations
               </h2>
               <p>
@@ -89,7 +89,7 @@ export default function DisclaimerPage() {
 
             {/* Section 4 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 4. No Guarantee of Property Availability
               </h2>
               <p>
@@ -102,7 +102,7 @@ export default function DisclaimerPage() {
 
             {/* Section 5 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 5. MahaRERA Verification Disclaimer
               </h2>
               <p>
@@ -133,7 +133,7 @@ export default function DisclaimerPage() {
 
             {/* Section 6 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 6. Not Legal, Tax, or Financial Advice
               </h2>
               <p>
@@ -146,7 +146,7 @@ export default function DisclaimerPage() {
 
             {/* Section 7 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 7. Contact for Verifications
               </h2>
               <p>
@@ -165,7 +165,7 @@ export default function DisclaimerPage() {
           <div className="mt-8 text-center">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#a01115] hover:text-[#850e12] transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold font-sans text-[#a01115] hover:text-[#850e12] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Return to Home Page</span>

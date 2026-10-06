@@ -72,7 +72,7 @@ export default function Footer() {
 
             {/* Social Follow */}
             <div className="pt-2">
-              <h4 className="flex items-center gap-2 text-xs font-bold text-white tracking-widest uppercase mb-3">
+              <h4 className="flex items-center gap-2 text-xs font-medium font-sans text-white tracking-widest uppercase mb-3">
                 <Share2 className="w-3.5 h-3.5 text-zinc-400" />
                 <span>FOLLOW US</span>
               </h4>
@@ -115,7 +115,7 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-sm font-semibold text-white tracking-wide">
+            <h3 className="text-sm font-semibold font-sans text-white tracking-wide">
               Quick Links
             </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300">
@@ -129,6 +129,12 @@ export default function Footer() {
                 <Link href="/properties" className="group flex items-center gap-1.5 hover:text-white transition-colors">
                   <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
                   <span>Properties</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/how-we-work" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                  <span>How We Work</span>
                 </Link>
               </li>
               <li>
@@ -148,7 +154,7 @@ export default function Footer() {
 
           {/* Column 3: Legal & Support */}
           <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-sm font-semibold text-white tracking-wide">
+            <h3 className="text-sm font-semibold font-sans text-white tracking-wide">
               Legal &amp; Support
             </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300">
@@ -181,7 +187,7 @@ export default function Footer() {
 
           {/* Column 4: Contact Info */}
           <div className="lg:col-span-4 space-y-4">
-            <h3 className="text-sm font-semibold text-white tracking-wide">
+            <h3 className="text-sm font-semibold font-sans text-white tracking-wide">
               Contact Info
             </h3>
             <ul className="space-y-3.5 text-xs sm:text-sm text-zinc-200">

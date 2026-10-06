@@ -2,6 +2,7 @@
 
 @theme {
   --font-serif: var(--font-fraunces), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --color-brand-maroon: #a01115;
   --color-brand-600: #a01115;
 }

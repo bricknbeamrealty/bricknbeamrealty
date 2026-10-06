@@ -33,11 +33,11 @@ export default function PrivacyPolicyPage() {
 
           {/* Header Title Section */}
           <div className="mb-10 sm:mb-12">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-[#a01115]/10 text-[#a01115] border border-[#a01115]/20 backdrop-blur-xs mb-4">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium font-sans tracking-wider uppercase bg-[#a01115]/10 text-[#a01115] border border-[#a01115]/20 backdrop-blur-xs mb-4">
               <ShieldCheck className="w-3.5 h-3.5 text-[#a01115]" />
               Data Protection &amp; Privacy
             </span>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 tracking-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-stone-900 tracking-tight">
               Privacy Policy
             </h1>
             <p className="mt-3 text-xs sm:text-sm text-stone-500">
@@ -49,7 +49,7 @@ export default function PrivacyPolicyPage() {
           <div className="bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-2xl p-6 sm:p-10 md:p-12 shadow-xs space-y-10 text-stone-700 leading-relaxed text-sm sm:text-base">
             {/* Section 1 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 1. Overview &amp; Scope
               </h2>
               <p>
@@ -62,7 +62,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 2 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 2. What Personal Data We Collect
               </h2>
               <p>
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 3 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 3. How We Collect Your Information
               </h2>
               <p>We collect personal information directly from you through the following channels:</p>
@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 4 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 4. Why We Collect and Use Your Data
               </h2>
               <p>The information collected is used exclusively for legitimate business and customer service purposes:</p>
@@ -120,7 +120,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 5 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 5. Third-Party Processors &amp; Data Sharing
               </h2>
               <p>
@@ -141,7 +141,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 6 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 6. Data Retention Policy
               </h2>
               <p>
@@ -154,7 +154,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 7 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 7. Your Data Rights &amp; How to Exercise Them
               </h2>
               <p>
@@ -179,7 +179,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 8 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 8. Cookies &amp; Website Analytics
               </h2>
               <p>
@@ -192,7 +192,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 9 */}
             <section className="space-y-3">
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 tracking-tight">
+              <h2 className="font-serif text-xl sm:text-2xl font-medium text-stone-900 tracking-tight">
                 9. Policy Updates
               </h2>
               <p>
@@ -205,7 +205,7 @@ export default function PrivacyPolicyPage() {
           <div className="mt-8 text-center">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#a01115] hover:text-[#850e12] transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold font-sans text-[#a01115] hover:text-[#850e12] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Return to Home Page</span>

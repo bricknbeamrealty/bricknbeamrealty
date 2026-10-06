@@ -146,7 +146,7 @@ export default function PropertiesHero({
 
           {/* Row 2: Simple & Authoritative Heading */}
           <motion.div variants={itemVariants} className="max-w-3xl">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal text-white tracking-tight leading-[1.14]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-semibold text-white tracking-tight leading-[1.14]">
               Find Your Ideal Property <br className="hidden sm:inline" />
               <span className="italic text-amber-200/90 font-serif">
                 in Thane
@@ -154,7 +154,7 @@ export default function PropertiesHero({
             </h1>
 
             {/* Row 3: Simple & Clear Subheading */}
-            <p className="mt-3.5 sm:mt-4 text-sm sm:text-base md:text-lg text-zinc-300 max-w-2xl font-normal leading-relaxed">
+            <p className="mt-3.5 sm:mt-4 text-sm sm:text-base md:text-lg text-zinc-300 max-w-2xl font-normal font-sans leading-relaxed">
               Explore verified flats, luxury high-rises, and gated communities
               across Thane’s prime locations with complete transparency and zero
               brokerage.
