@@ -15,6 +15,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { LUXURY_EASE } from "@/components/ui/AnimatedSection";
 
 interface FeatureCardProps {
   primaryIcon: React.ReactNode;
@@ -79,13 +80,13 @@ function FeatureCard({
 
   return (
     <motion.div
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, amount: 0.15, margin: "-30px 0px" }}
       transition={{
-        duration: 0.5,
-        delay: shouldReduceMotion ? 0 : delayIndex * 0.1,
-        ease: [0.25, 0.1, 0.25, 1],
+        duration: 0.7,
+        delay: shouldReduceMotion ? 0 : delayIndex * 0.08,
+        ease: LUXURY_EASE,
       }}
       onClick={onClick}
       className={`group relative bg-white/95 backdrop-blur-sm rounded-3xl p-6 sm:p-7 md:p-8 border border-stone-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-[#a01115]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between ${
@@ -148,8 +149,17 @@ export default function WhyChooseUs() {
         />
       </div>
 
-      {/* Section Header */}
-      <div className="max-w-4xl mb-12 sm:mb-16">
+      {/* Section Header with smooth entrance */}
+      <motion.div
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2, margin: "-30px 0px" }}
+        transition={{
+          duration: 0.75,
+          ease: LUXURY_EASE,
+        }}
+        className="max-w-4xl mb-12 sm:mb-16"
+      >
         {/* Eyebrow Badge */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-medium font-sans tracking-wider uppercase mb-3.5">
           <Sparkles className="w-3.5 h-3.5 text-[#a01115]" />
@@ -163,7 +173,7 @@ export default function WhyChooseUs() {
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-medium text-stone-900 tracking-tight leading-[1.1] mt-1">
           Tailored Your Needs
         </h2>
-      </div>
+      </motion.div>
 
       {/* Main Grid: 2x2 Feature Cards on Left, Showcase Card on Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
@@ -185,13 +195,13 @@ export default function WhyChooseUs() {
 
         {/* Right Column: Dark Modern Showcase Card (Span 5) */}
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, amount: 0.15, margin: "-40px 0px" }}
           transition={{
-            duration: 0.6,
-            delay: shouldReduceMotion ? 0 : 0.25,
-            ease: [0.25, 0.1, 0.25, 1],
+            duration: 0.8,
+            delay: shouldReduceMotion ? 0 : 0.2,
+            ease: LUXURY_EASE,
           }}
           className="group relative lg:col-span-5 min-h-[440px] sm:min-h-[500px] lg:min-h-full rounded-3xl overflow-hidden bg-zinc-950 border border-zinc-800 shadow-[0_12px_40px_rgba(0,0,0,0.12)] flex flex-col justify-between p-7 sm:p-9 lg:p-10"
         >

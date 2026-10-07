@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Plus, Minus, HelpCircle } from "lucide-react";
 
+import { LUXURY_EASE, SectionHeaderReveal, FadeInSection } from "@/components/ui/AnimatedSection";
+
 interface FAQItem {
   id: string;
   question: string;
@@ -99,7 +101,7 @@ export default function FAQSection() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: "easeInOut" }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.35, ease: LUXURY_EASE }}
               className="overflow-hidden"
             >
               <div className="pt-3 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal font-sans">
@@ -113,9 +115,9 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stone-200">
-      {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
+    <section id="faq" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-stone-200 scroll-mt-24">
+      {/* Section Header with smooth entrance */}
+      <SectionHeaderReveal>
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-medium font-sans tracking-wider uppercase mb-3">
           <HelpCircle className="w-3.5 h-3.5 text-[#a01115]" />
@@ -124,26 +126,26 @@ export default function FAQSection() {
 
         {/* Main Heading */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-slate-900 tracking-tight">
-          Frequently Asked Question
+          Frequently Asked Questions
         </h2>
 
         {/* Subtitle */}
         <p className="mt-3 text-sm sm:text-base text-slate-500 font-normal font-sans">
           Did you find the question as you expected?
         </p>
-      </div>
+      </SectionHeaderReveal>
 
       {/* Two Column Grid of FAQ Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 max-w-6xl mx-auto items-start">
-        {/* Left Column (2 cards) */}
-        <div className="space-y-5 sm:space-y-6">
+        {/* Left Column */}
+        <FadeInSection direction="up" delay={0.1} duration={0.7} className="space-y-5 sm:space-y-6">
           {leftColumnFaqs.map(renderFaqCard)}
-        </div>
+        </FadeInSection>
 
-        {/* Right Column (3 cards) */}
-        <div className="space-y-5 sm:space-y-6">
+        {/* Right Column */}
+        <FadeInSection direction="up" delay={0.2} duration={0.7} className="space-y-5 sm:space-y-6">
           {rightColumnFaqs.map(renderFaqCard)}
-        </div>
+        </FadeInSection>
       </div>
     </section>
   );

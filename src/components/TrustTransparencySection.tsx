@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ShieldCheck, Sparkles, ChevronDown, ArrowRight } from "lucide-react";
+import { LUXURY_EASE } from "@/components/ui/AnimatedSection";
 
 export interface AccordionItem {
   title: string;
@@ -48,6 +49,7 @@ export default function TrustTransparencySection({
 }: TrustTransparencySectionProps) {
   const shouldReduceMotion = useReducedMotion();
   const [openAccordion, setOpenAccordion] = useState<number | null>(0);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   return (
     <section
@@ -59,20 +61,27 @@ export default function TrustTransparencySection({
         <motion.div
           initial={{
             opacity: shouldReduceMotion ? 1 : 0,
-            scale: shouldReduceMotion ? 1 : 0.96,
+            scale: shouldReduceMotion ? 1 : 0.95,
+            y: shouldReduceMotion ? 0 : 20,
           }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15, margin: "-40px 0px" }}
+          transition={{ duration: 0.75, ease: LUXURY_EASE }}
           className="lg:col-span-6 relative w-full flex items-center justify-center"
         >
           <div className="relative aspect-[4/3] sm:aspect-[4/3] w-full rounded-3xl sm:rounded-4xl overflow-hidden border border-stone-200 shadow-xl bg-stone-100 group">
+            {!imgLoaded && (
+              <div className="absolute inset-0 skeleton-shimmer z-0" />
+            )}
             <Image
               src="/images/trust-consultation.jpg"
               alt="Trust & Transparency Consultation - Brick and Beam Realty"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              className={`object-cover object-center transition-all duration-700 group-hover:scale-105 ${
+                imgLoaded ? "opacity-100 scale-100" : "opacity-0 scale-102"
+              }`}
+              onLoad={() => setImgLoaded(true)}
             />
 
             {/* Floating Glass Reassurance Badge */}
@@ -90,8 +99,8 @@ export default function TrustTransparencySection({
             y: shouldReduceMotion ? 0 : 25,
           }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.15, margin: "-40px 0px" }}
+          transition={{ duration: 0.75, delay: 0.1, ease: LUXURY_EASE }}
           className="lg:col-span-6 flex flex-col justify-center text-left"
         >
           {/* Eyebrow Pill Badge */}

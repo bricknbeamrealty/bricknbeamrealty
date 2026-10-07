@@ -11,6 +11,7 @@ import FeaturedProperties from "@/components/FeaturedProperties";
 import FinalCTA from "@/components/FinalCTA";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import TrustTransparencySection from "@/components/TrustTransparencySection";
+import { SectionHeaderReveal } from "@/components/ui/AnimatedSection";
 import {
   ArrowUpRight,
   Building2,
@@ -200,9 +201,9 @@ export default function Home() {
       <CredentialsSection />
 
       {/* SECTION 2: PROPERTIES */}
-      <section id="properties" className="relative z-10 pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section id="properties" className="relative z-10 pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+        <SectionHeaderReveal>
           {/* Eyebrow Badge */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 text-[#a01115] text-xs font-medium font-sans tracking-wider uppercase mb-3">
             <Building2 className="w-3.5 h-3.5 text-[#a01115]" />
@@ -218,7 +219,7 @@ export default function Home() {
           <p className="mt-3 text-sm sm:text-base text-slate-600 font-normal font-sans max-w-xl mx-auto leading-relaxed">
             Explore verified 1, 2 &amp; 3 BHK luxury residences and landmark communities in prime locations across Thane, with zero brokerage on direct bookings.
           </p>
-        </div>
+        </SectionHeaderReveal>
 
         {/* Featured Properties Interactive Grid & Filter System */}
         <FeaturedProperties />

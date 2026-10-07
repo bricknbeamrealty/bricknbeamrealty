@@ -22,6 +22,7 @@ import {
   Handshake,
 } from "lucide-react";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { LUXURY_EASE } from "@/components/ui/AnimatedSection";
 
 export default function AboutUsPage() {
   const shouldReduceMotion = useReducedMotion();
@@ -50,11 +51,11 @@ export default function AboutUsPage() {
 
   // Animation variants
   const fadeIn = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 25 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
+      transition: { duration: 0.75, ease: LUXURY_EASE },
     },
   };
 

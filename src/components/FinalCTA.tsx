@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { LUXURY_EASE } from "@/components/ui/AnimatedSection";
 
 export default function FinalCTA() {
   const shouldReduceMotion = useReducedMotion();
@@ -26,13 +27,13 @@ export default function FinalCTA() {
   return (
     <section
       id="contact-us"
-      className="relative z-10 py-24 sm:py-32 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center"
+      className="relative z-10 py-24 sm:py-32 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center scroll-mt-24"
     >
       <motion.div
-        initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+        initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 28 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, amount: 0.2, margin: "-40px 0px" }}
+        transition={{ duration: 0.75, ease: LUXURY_EASE }}
         className="space-y-6"
       >
         {/* Minimal Eyebrow */}

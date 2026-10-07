@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
+import { LUXURY_EASE } from "@/components/ui/AnimatedSection";
 import {
   Home,
   ChevronRight,
@@ -139,7 +140,13 @@ export default function ContactUsClient() {
         <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
             {/* Box 1: Contact Details & Proper Google Maps Embed */}
-            <div className="rounded-3xl bg-[#f4f3ec] p-8 sm:p-10 lg:p-12 flex flex-col justify-between shadow-xs border border-stone-200/50">
+            <motion.div
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15, margin: "-30px 0px" }}
+              transition={{ duration: 0.75, ease: LUXURY_EASE }}
+              className="rounded-3xl bg-[#f4f3ec] p-8 sm:p-10 lg:p-12 flex flex-col justify-between shadow-xs border border-stone-200/50"
+            >
               <div className="space-y-8 sm:space-y-10">
                 {/* Phone */}
                 <div className="flex items-start">
@@ -197,10 +204,16 @@ export default function ContactUsClient() {
                   allowFullScreen
                 />
               </div>
-            </div>
+            </motion.div>
 
             {/* Box 2: Question Not Answered Yet? Modular Form */}
-            <div className="rounded-3xl bg-[#f4f3ec] p-8 sm:p-10 lg:p-12 flex flex-col justify-between shadow-xs border border-stone-200/50">
+            <motion.div
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15, margin: "-30px 0px" }}
+              transition={{ duration: 0.75, delay: 0.15, ease: LUXURY_EASE }}
+              className="rounded-3xl bg-[#f4f3ec] p-8 sm:p-10 lg:p-12 flex flex-col justify-between shadow-xs border border-stone-200/50"
+            >
               <div>
                 <h3 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight font-sans mb-7 sm:mb-8">
                   Question not answered yet?
@@ -426,7 +439,7 @@ export default function ContactUsClient() {
                   )}
                 </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 

@@ -23,6 +23,7 @@ import {
   Layers,
 } from "lucide-react";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
+import { LUXURY_EASE } from "@/components/ui/AnimatedSection";
 
 // Persona type definition
 type PersonaType = "buyer" | "investor" | "seller";
@@ -190,11 +191,11 @@ export default function HowWeWorkClientView() {
 
   // Animation variants
   const fadeIn = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 25 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
+      transition: { duration: 0.75, ease: LUXURY_EASE },
     },
   };
 
