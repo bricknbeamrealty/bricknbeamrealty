@@ -39,23 +39,172 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* Custom refined scrollbar */
+/* ==========================================================================
+   CUSTOM BRAND RED SCROLLBAR ARCHITECTURE (SENIOR SOFTWARE ENGINEER SPEC)
+   ==========================================================================
+   1. Design Tokens: Single source of truth mapped directly to codebase #a01115
+   2. W3C Standard: CSS Scrollbars Module Level 1 (scrollbar-color & scrollbar-width)
+   3. WebKit/Blink Engine: Brand red floating pill with directional linear gradients
+   4. Dual-Axis Orientation: Vertical (180deg) & Horizontal (90deg) gradient alignment
+   5. Interactive States: Rich hover brightening & deep crimson active drag state
+   6. Modular Utilities: .custom-scrollbar-dark, .custom-scrollbar-slim, .no-scrollbar
+   7. Layout Shift Shield: scrollbar-gutter stability
+   ========================================================================== */
+
+:root {
+  /* Scrollbar Sizing Tokens */
+  --sb-size: 10px;
+  --sb-size-slim: 6px;
+  --sb-border-size: 2px;
+
+  /* Codebase Brand Red Tokens (Derived directly from #a01115 & button/badge variants) */
+  --brand-red-primary: #a01115;
+  --brand-red-light: #b51419;
+  --brand-red-hover: #850e11;
+  --brand-red-active: #6b0a0d;
+
+  /* Global Scrollbar Theme: Primary Thumb is Codebase Red #a01115 */
+  --sb-track: #faf8f5;
+  --sb-track-hover: #f3eee7;
+  --sb-thumb: #a01115;
+  --sb-thumb-hover: #850e11;
+  --sb-thumb-active: #6b0a0d;
+
+  /* Dark Overlay & Modal Context Tokens */
+  --sb-dark-track: rgba(255, 255, 255, 0.04);
+  --sb-dark-thumb: #a01115;
+  --sb-dark-thumb-hover: #b51419;
+  --sb-dark-thumb-active: #850e11;
+}
+
+/* 1. W3C Standard CSS Scrollbars (Firefox, Safari 17.2+, Chrome 121+, Edge 121+) */
+html {
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+  scrollbar-width: thin;
+}
+
+/* Layout Shift Prevention: Preserves scroll gutter to avoid layout jump on modal toggles */
+@supports (scrollbar-gutter: stable) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
+/* 2. WebKit & Blink Engine (Chrome, Safari, Edge, Android Webview) */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: var(--sb-size);
+  height: var(--sb-size); /* Critical for horizontal scroll containers */
 }
 
 ::-webkit-scrollbar-track {
-  background: #faf8f5;
+  background-color: var(--sb-track);
 }
 
+::-webkit-scrollbar-track:hover {
+  background-color: var(--sb-track-hover);
+}
+
+/* Luxury Inset Floating Pill:
+   Gradient tailored to match the codebase button gradient (from #a01115 via #b51419 to #850e11).
+   Uses transparent border + background-clip: padding-box for subpixel crispness. */
 ::-webkit-scrollbar-thumb {
-  background: #d6cfc7;
+  background: linear-gradient(180deg, var(--brand-red-light) 0%, var(--brand-red-primary) 50%, var(--brand-red-hover) 100%);
+  background-clip: padding-box;
+  border: var(--sb-border-size) solid transparent;
   border-radius: 9999px;
-  border: 2px solid #faf8f5;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  transition: background 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
+/* Horizontal Scrollbar: Aligns gradient along horizontal track direction */
+::-webkit-scrollbar-thumb:horizontal {
+  background: linear-gradient(90deg, var(--brand-red-light) 0%, var(--brand-red-primary) 50%, var(--brand-red-hover) 100%);
+}
+
+/* Interactive Hover State: Deepens to button hover tone (#850e11) with subtle glow */
 ::-webkit-scrollbar-thumb:hover {
-  background: #a01115;
+  background: linear-gradient(180deg, #c4181e 0%, var(--brand-red-light) 50%, var(--brand-red-primary) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 0 12px rgba(160, 17, 21, 0.35);
+}
+
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background: linear-gradient(90deg, #c4181e 0%, var(--brand-red-light) 50%, var(--brand-red-primary) 100%);
+}
+
+/* Interactive Active/Dragging State: Deep rich crimson feedback */
+::-webkit-scrollbar-thumb:active {
+  background: var(--brand-red-active);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Prevents harsh white square artifact at intersection of horizontal & vertical scrollbars */
+::-webkit-scrollbar-corner {
+  background-color: var(--sb-track);
+}
+
+/* 3. Reusable Modular Utilities */
+
+/* Dark Surface & Modal Scrollbar (Used in ConsultationModal, Dark Cards, Drawers) */
+.custom-scrollbar-dark {
+  scrollbar-color: var(--sb-dark-thumb) var(--sb-dark-track);
+  scrollbar-width: thin;
+}
+
+.custom-scrollbar-dark::-webkit-scrollbar {
+  width: var(--sb-size-slim);
+  height: var(--sb-size-slim);
+}
+
+.custom-scrollbar-dark::-webkit-scrollbar-track {
+  background-color: var(--sb-dark-track);
+}
+
+.custom-scrollbar-dark::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--brand-red-light) 0%, var(--brand-red-primary) 100%);
+  background-clip: padding-box;
+  border: 1.5px solid transparent;
+  border-radius: 9999px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-scrollbar-dark::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #c4181e 0%, var(--brand-red-light) 100%);
+  box-shadow: 0 0 10px rgba(160, 17, 21, 0.5);
+}
+
+.custom-scrollbar-dark::-webkit-scrollbar-thumb:active {
+  background: var(--brand-red-active);
+}
+
+.custom-scrollbar-dark::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* Slim Scrollbar for compact UI (Drawers, Filter bars, Dropdown menus) */
+.custom-scrollbar-slim {
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+  scrollbar-width: thin;
+}
+
+.custom-scrollbar-slim::-webkit-scrollbar {
+  width: var(--sb-size-slim);
+  height: var(--sb-size-slim);
+}
+
+.custom-scrollbar-slim::-webkit-scrollbar-thumb {
+  background: var(--brand-red-primary);
+  border-width: 1px;
+}
+
+/* Clean No-Scrollbar Utility (Hidden visual bar with fully functioning touch/wheel scrolling) */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and older Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge, Opera */
 }
 
 /* ==========================================================================

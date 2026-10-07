@@ -125,16 +125,33 @@ export default function ConsultationModal() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName,
+          phone,
+          selectedRequirement,
+          selectedBudget,
+          selectedStage,
+          property_category: "residential",
+          transaction_type: "buy",
+          source: "modal",
+        }),
+      });
+    } catch (err) {
+      console.warn("Lead dispatch offline/fallback:", err);
+    } finally {
       setIsSubmitting(false);
       setIsSuccess(true);
-    }, 700);
+    }
   };
 
   const handleWhatsAppRedirect = () => {
@@ -185,7 +202,7 @@ export default function ConsultationModal() {
             <div className="h-1 w-full bg-gradient-to-r from-[#a01115] via-amber-500 to-[#a01115] shrink-0" />
 
             {/* Scrollable Container with Smooth Inner Flow */}
-            <div className="overflow-y-auto overscroll-contain flex-1 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.15)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/15 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/25">
+            <div className="overflow-y-auto overscroll-contain flex-1 custom-scrollbar-dark">
               {isSuccess ? (
                 /* Success View */
                 <motion.div

@@ -201,7 +201,7 @@ export default function Navbar() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.8 }}
-              className="fixed inset-x-0 bottom-0 z-10 rounded-t-[36px] border-t border-stone-200 bg-white/98 px-6 pt-3 pb-8 shadow-[0_-20px_50px_rgba(0,0,0,0.15)] backdrop-blur-3xl max-h-[88vh] overflow-y-auto text-stone-900"
+              className="fixed inset-x-0 bottom-0 z-10 rounded-t-[36px] border-t border-stone-200 bg-white/98 px-6 pt-3 pb-8 shadow-[0_-20px_50px_rgba(0,0,0,0.15)] backdrop-blur-3xl max-h-[88vh] overflow-y-auto custom-scrollbar-slim text-stone-900"
             >
               {/* Grab / Pull Handle Bar */}
               <div className="mx-auto w-12 h-1.5 rounded-full bg-stone-300 mb-4" />

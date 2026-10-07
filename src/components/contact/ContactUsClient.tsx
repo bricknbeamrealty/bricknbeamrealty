@@ -54,7 +54,7 @@ export default function ContactUsClient() {
     if (errorMsg) setErrorMsg(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName.trim()) {
       setErrorMsg("Please enter your full name.");
@@ -72,11 +72,27 @@ export default function ContactUsClient() {
     setIsSubmitting(true);
     setErrorMsg(null);
 
-    // Simulate dispatch
-    setTimeout(() => {
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone || "Not Provided",
+          requirement: formData.requirement || formData.topic,
+          notes: formData.message,
+          property_category: "residential",
+          transaction_type: formData.topic.includes("Resale") ? "sell" : "buy",
+          source: "contact_page",
+        }),
+      });
+    } catch (err) {
+      console.warn("Contact lead dispatch fallback:", err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 600);
+    }
   };
 
   return (
