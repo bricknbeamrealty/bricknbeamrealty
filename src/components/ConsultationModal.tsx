@@ -355,7 +355,7 @@ export default function ConsultationModal() {
                                 if (errors.fullName) setErrors((prev) => ({ ...prev, fullName: undefined }));
                               }}
                               placeholder="e.g. Rahul Sharma"
-                              className={`w-full px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm text-white placeholder:text-zinc-500 bg-zinc-900/80 hover:border-zinc-700 focus:bg-zinc-900 focus:outline-none transition-all ${
+                              className={`w-full px-3.5 py-2.5 rounded-xl border text-base sm:text-sm text-white placeholder:text-zinc-500 bg-zinc-900/80 hover:border-zinc-700 focus:bg-zinc-900 focus:outline-none transition-all ${
                                 errors.fullName
                                   ? "border-red-500 focus:border-red-400"
                                   : "border-zinc-800 focus:border-white/30"
@@ -385,7 +385,7 @@ export default function ConsultationModal() {
                                   if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
                                 }}
                                 placeholder="98765 43210"
-                                className={`w-full pl-12 pr-3.5 py-2.5 rounded-xl border text-xs sm:text-sm text-white placeholder:text-zinc-500 bg-zinc-900/80 hover:border-zinc-700 focus:bg-zinc-900 focus:outline-none transition-all ${
+                                className={`w-full pl-12 pr-3.5 py-2.5 rounded-xl border text-base sm:text-sm text-white placeholder:text-zinc-500 bg-zinc-900/80 hover:border-zinc-700 focus:bg-zinc-900 focus:outline-none transition-all ${
                                   errors.phone
                                     ? "border-red-500 focus:border-red-400"
                                     : "border-zinc-800 focus:border-white/30"
@@ -441,7 +441,7 @@ export default function ConsultationModal() {
                               Estimated budget
                             </span>
                           </div>
-                          <div className="grid grid-cols-4 gap-2">
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                             {BUDGET_RANGES.map((b) => {
                               const isSelected = selectedBudget === b;
                               return (
@@ -449,7 +449,7 @@ export default function ConsultationModal() {
                                   type="button"
                                   key={b}
                                   onClick={() => setSelectedBudget((prev) => (prev === b ? "" : b))}
-                                  className={`py-2 px-1 rounded-xl text-[10.5px] sm:text-xs font-medium transition-all text-center border cursor-pointer truncate ${
+                                  className={`py-2 px-2 rounded-xl text-xs font-medium transition-all text-center border cursor-pointer ${
                                     isSelected
                                       ? "bg-[#a01115] text-white border-[#a01115] shadow-md shadow-[#a01115]/30 font-semibold"
                                       : "bg-zinc-900/70 hover:bg-zinc-850 hover:border-zinc-700 text-zinc-300 border-zinc-800"

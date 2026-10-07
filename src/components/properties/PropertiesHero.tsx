@@ -182,7 +182,7 @@ export default function PropertiesHero({
                       onFilterChange("searchQuery", e.target.value)
                     }
                     placeholder="Search by project or builder..."
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white placeholder-zinc-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white placeholder-zinc-400 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function PropertiesHero({
                     onChange={(e) =>
                       onFilterChange("propertyType", e.target.value)
                     }
-                    className="w-full pl-10 pr-8 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all appearance-none cursor-pointer"
+                    className="w-full pl-10 pr-8 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all appearance-none cursor-pointer"
                   >
                     <option value="all">All Property Types</option>
                     <option value="residential">Residential</option>
@@ -224,7 +224,7 @@ export default function PropertiesHero({
                     onChange={(e) =>
                       onFilterChange("location", e.target.value)
                     }
-                    className="w-full pl-10 pr-8 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all appearance-none cursor-pointer"
+                    className="w-full pl-10 pr-8 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all appearance-none cursor-pointer"
                   >
                     <option value="all">All Locations</option>
                     <option value="pokhran">Pokhran Road</option>
@@ -248,7 +248,7 @@ export default function PropertiesHero({
                     id="bhk-select"
                     value={filters.bhk}
                     onChange={(e) => onFilterChange("bhk", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all appearance-none cursor-pointer"
                   >
                     <option value="all">Any BHK</option>
                     <option value="1">1 BHK</option>
@@ -271,7 +271,7 @@ export default function PropertiesHero({
                     onChange={(e) =>
                       onFilterChange("budget", e.target.value)
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-900/90 border border-white/15 text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#a01115] focus:border-transparent transition-all appearance-none cursor-pointer"
                   >
                     <option value="all">Any Budget</option>
                     <option value="under-1cr">Under ₹1.0 Cr</option>

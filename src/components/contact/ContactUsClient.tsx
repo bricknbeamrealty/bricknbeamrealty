@@ -280,7 +280,7 @@ export default function ContactUsClient() {
                                 onChange={handleInputChange}
                                 placeholder="e.g. Rahul Sharma"
                                 required
-                                className="w-full bg-transparent text-stone-900 placeholder:text-stone-400 text-sm outline-none font-normal"
+                                className="w-full bg-transparent text-stone-900 placeholder:text-stone-400 text-base sm:text-sm outline-none font-normal"
                               />
                             </div>
                           </div>
@@ -301,7 +301,7 @@ export default function ContactUsClient() {
                                 onChange={handleInputChange}
                                 placeholder="e.g. rahul@example.com"
                                 required
-                                className="w-full bg-transparent text-stone-900 placeholder:text-stone-400 text-sm outline-none font-normal"
+                                className="w-full bg-transparent text-stone-900 placeholder:text-stone-400 text-base sm:text-sm outline-none font-normal"
                               />
                             </div>
                           </div>
@@ -327,7 +327,7 @@ export default function ContactUsClient() {
                                 onChange={handleInputChange}
                                 placeholder="98200 XXXXX"
                                 maxLength={10}
-                                className="w-full bg-transparent text-stone-900 placeholder:text-stone-400 text-sm outline-none font-normal"
+                                className="w-full bg-transparent text-stone-900 placeholder:text-stone-400 text-base sm:text-sm outline-none font-normal"
                               />
                             </div>
                           </div>
@@ -345,7 +345,7 @@ export default function ContactUsClient() {
                                 name="topic"
                                 value={formData.topic}
                                 onChange={handleInputChange}
-                                className="w-full bg-transparent text-stone-900 text-sm outline-none font-normal cursor-pointer"
+                                className="w-full bg-transparent text-stone-900 text-base sm:text-sm outline-none font-normal cursor-pointer"
                               >
                                 <option value="General Question">General Real Estate Question</option>
                                 <option value="Schedule Site Visit">Schedule VIP Site Visit</option>
@@ -366,7 +366,7 @@ export default function ContactUsClient() {
                           </label>
                           <span className="text-[10px] text-stone-500">Quick selection</span>
                         </div>
-                        <div className="grid grid-cols-4 gap-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                           {["1 BHK", "2 BHK", "3 BHK", "Penthouse / Luxury"].map((chip) => {
                             const isSelected = formData.requirement === chip;
                             return (
@@ -406,7 +406,7 @@ export default function ContactUsClient() {
                               onChange={handleInputChange}
                               placeholder="How can our Thane advisory team help you? Please specify preferred location, budget, or timeline..."
                               required
-                              className="w-full bg-transparent text-stone-900 placeholder:text-stone-400 text-sm outline-none resize-none font-normal"
+                              className="w-full bg-transparent text-stone-900 placeholder:text-stone-400 text-base sm:text-sm outline-none resize-none font-normal"
                             />
                           </div>
                         </div>

@@ -49,7 +49,7 @@ export default function WhatsAppButton() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 15 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            className="absolute bottom-16 sm:bottom-20 right-0 w-[310px] sm:w-[350px] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-black/10 z-50 bg-[#efeae2] font-sans"
+            className="absolute bottom-16 sm:bottom-20 right-0 w-[min(320px,calc(100vw-2.5rem))] sm:w-[350px] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-black/10 z-50 bg-[#efeae2] font-sans"
           >
             {/* Header: Dark WhatsApp Teal */}
             <div className="bg-[#005c4b] p-4 flex items-center justify-between text-white">

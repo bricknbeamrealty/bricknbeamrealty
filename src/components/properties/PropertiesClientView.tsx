@@ -358,11 +358,11 @@ export default function PropertiesClientView() {
           </div>
 
           {/* Sort By Dropdown */}
-          <div className="flex items-center gap-2 self-end sm:self-auto">
+          <div className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-2.5">
             <span className="text-xs text-stone-500 font-medium whitespace-nowrap">
               Sort by:
             </span>
-            <div className="relative">
+            <div className="relative flex-1 sm:flex-none">
               <select
                 value={sortBy}
                 onChange={(e) => {
@@ -371,7 +371,7 @@ export default function PropertiesClientView() {
                     e.target.value as "featured" | "price-asc" | "price-desc" | "possession"
                   );
                 }}
-                className="pl-3 pr-8 py-2 rounded-xl bg-white border border-stone-200 text-xs sm:text-sm font-medium text-stone-700 shadow-xs focus:outline-none focus:ring-2 focus:ring-[#a01115]/30 cursor-pointer appearance-none"
+                className="w-full sm:w-auto pl-3 pr-8 py-2 rounded-xl bg-white border border-stone-200 text-sm font-medium text-stone-700 shadow-xs focus:outline-none focus:ring-2 focus:ring-[#a01115]/30 cursor-pointer appearance-none"
               >
                 <option value="featured">Featured First</option>
                 <option value="price-asc">Price: Low to High</option>

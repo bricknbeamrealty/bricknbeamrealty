@@ -8,8 +8,16 @@
 }
 
 /* ==========================================================================
-   LENIS SMOOTH SCROLLING STYLES
+   GLOBAL RESPONSIVE & LENIS SMOOTH SCROLLING STYLES
    ========================================================================== */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+}
+
 html.lenis,
 html.lenis body {
   height: auto;

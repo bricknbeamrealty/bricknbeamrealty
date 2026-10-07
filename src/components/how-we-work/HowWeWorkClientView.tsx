@@ -390,10 +390,10 @@ export default function HowWeWorkClientView() {
           </div>
 
           {/* Vertical Connected Timeline Track */}
-          <div className="relative max-w-5xl mx-auto pl-6 sm:pl-12 md:pl-20">
+          <div className="relative max-w-5xl mx-auto pl-9 sm:pl-12 md:pl-20">
             {/* The Continuous Vertical Spine */}
             <div
-              className="absolute left-[15px] sm:left-[27px] md:left-[35px] top-6 bottom-16 w-[3px] bg-gradient-to-b from-[#a01115] via-amber-600 to-[#a01115] rounded-full shadow-[0_0_10px_rgba(160,17,21,0.2)]"
+              className="absolute left-[14.5px] sm:left-[27px] md:left-[35px] top-6 bottom-16 w-[3px] bg-gradient-to-b from-[#a01115] via-amber-600 to-[#a01115] rounded-full shadow-[0_0_10px_rgba(160,17,21,0.2)]"
               aria-hidden="true"
             />
 
@@ -416,7 +416,7 @@ export default function HowWeWorkClientView() {
                   >
                     {/* Spine Node Marker */}
                     <div
-                      className={`absolute -left-[30px] sm:-left-[42px] md:-left-[50px] top-5 w-8 h-8 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center text-white transition-all duration-300 shadow-md ${
+                      className={`absolute -left-[36px] sm:-left-[42px] md:-left-[50px] top-5 w-8 h-8 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center text-white transition-all duration-300 shadow-md ${
                         isHighlighted
                           ? "bg-[#a01115] ring-4 ring-[#a01115]/25 scale-110 shadow-lg shadow-[#a01115]/30"
                           : "bg-stone-800 group-hover:bg-[#a01115] ring-2 ring-white"
