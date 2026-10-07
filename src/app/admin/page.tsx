@@ -121,19 +121,11 @@ export default function AdminDashboardPage() {
           ========================================================================= */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-white/10">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#a01115]">
-              Executive Overview
-            </span>
-            <span className="text-[10px] bg-white/10 text-zinc-300 px-2 py-0.5 rounded-full font-medium">
-              Live Real-Time
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-serif">
-            Business Intelligence
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            Dashboard
           </h1>
-          <p className="text-xs text-zinc-400 mt-0.5">
-            Holistic lead performance, conversion ratios, and Thane portfolio enquiries.
+          <p className="text-xs text-zinc-400 mt-1">
+            Track your website leads and performance in real time.
           </p>
         </div>
 
@@ -174,7 +166,7 @@ export default function AdminDashboardPage() {
             title="Refresh analytics data"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? "animate-spin text-[#a01115]" : ""}`} />
-            <span className="hidden sm:inline">Sync</span>
+            <span>Refresh</span>
           </button>
         </div>
       </div>
@@ -213,18 +205,17 @@ export default function AdminDashboardPage() {
         <div className="bg-[#131519] border border-white/10 rounded-2xl p-5 shadow-xl relative overflow-hidden group hover:border-[#a01115]/30 transition-all">
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
-              Total Enquiries
+              Total Leads
             </span>
             <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-zinc-300 group-hover:text-[#a01115] transition-colors">
               <Users className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-bold font-serif text-white tracking-tight">
+          <div className="text-3xl font-bold text-white tracking-tight">
             {isLoading ? "..." : stats.totalLeads}
           </div>
-          <p className="text-[11px] text-zinc-400 mt-1 flex items-center gap-1.5">
-            <span className="text-emerald-400 font-medium">100% Verified</span>
-            <span>MMR Inbound</span>
+          <p className="text-[11px] text-zinc-400 mt-1">
+            All enquiries received
           </p>
         </div>
 
@@ -238,12 +229,11 @@ export default function AdminDashboardPage() {
               <Sparkles className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-bold font-serif text-white tracking-tight">
+          <div className="text-3xl font-bold text-white tracking-tight">
             {isLoading ? "..." : stats.newThisWeek}
           </div>
-          <p className="text-[11px] text-zinc-400 mt-1 flex items-center gap-1.5">
-            <span className="text-rose-400 font-medium">Last 7 Days</span>
-            <span>Requires Action</span>
+          <p className="text-[11px] text-zinc-400 mt-1">
+            Received in the last 7 days
           </p>
         </div>
 
@@ -257,14 +247,11 @@ export default function AdminDashboardPage() {
               <Target className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-bold font-serif text-white tracking-tight">
+          <div className="text-3xl font-bold text-white tracking-tight">
             {isLoading ? "..." : `${stats.conversionRate}%`}
           </div>
-          <p className="text-[11px] text-zinc-400 mt-1 flex items-center gap-1.5">
-            <span className="text-emerald-400 font-medium">
-              {stats.convertedCount} Converted
-            </span>
-            <span>of {stats.totalLeads} total</span>
+          <p className="text-[11px] text-zinc-400 mt-1">
+            {stats.convertedCount} of {stats.totalLeads} leads converted
           </p>
         </div>
 
@@ -272,27 +259,26 @@ export default function AdminDashboardPage() {
         <div className="bg-[#131519] border border-white/10 rounded-2xl p-5 shadow-xl relative overflow-hidden group hover:border-[#a01115]/30 transition-all">
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
-              Deals Converted
+              Converted Leads
             </span>
             <div className="w-8 h-8 rounded-lg bg-emerald-950/40 border border-emerald-800/40 flex items-center justify-center text-emerald-400">
               <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-bold font-serif text-emerald-400 tracking-tight">
+          <div className="text-3xl font-bold text-emerald-400 tracking-tight">
             {isLoading ? "..." : stats.convertedCount}
           </div>
-          <p className="text-[11px] text-zinc-400 mt-1 flex items-center gap-1.5">
-            <span className="text-zinc-300">0% Brokerage</span>
-            <span>Direct Developer</span>
+          <p className="text-[11px] text-zinc-400 mt-1">
+            Successfully closed deals
           </p>
         </div>
       </div>
 
       {/* =========================================================================
-          THE THREE CHARTS (STRICT ORDER PER STEP 3/4 SPEC)
+          THE THREE CHARTS
           1. Line Chart: Leads Over Time
-          2. Pie Chart: Lead Status Breakdown
-          3. Bar Chart: Category x Transaction Matrix
+          2. Pie Chart: Leads by Status
+          3. Bar Chart: Leads by Property & Type
           ========================================================================= */}
 
       {/* CHART 1: LINE CHART (Leads Over Time) */}
@@ -301,26 +287,23 @@ export default function AdminDashboardPage() {
           <div>
             <div className="flex items-center gap-2">
               <LineIcon className="w-4 h-4 text-[#a01115]" />
-              <h2 className="text-base sm:text-lg font-bold text-white font-serif">
+              <h2 className="text-base sm:text-lg font-bold text-white">
                 Leads Over Time
               </h2>
             </div>
             <p className="text-xs text-zinc-400 mt-0.5">
-              Daily enquiry velocity across the past {daysToggle} days.
+              Daily enquiries over the last {daysToggle} days.
             </p>
           </div>
-          <span className="text-[11px] bg-white/5 border border-white/10 px-2.5 py-1 rounded-full text-zinc-300 self-start sm:self-auto">
-            Volume Tracker
-          </span>
         </div>
 
         <div className="h-[280px] sm:h-[320px] w-full pt-4">
           {!hasData && !isLoading ? (
             <div className="h-full flex flex-col items-center justify-center text-center text-zinc-500 border border-dashed border-white/10 rounded-xl">
               <LineIcon className="w-8 h-8 mb-2 opacity-40 text-[#a01115]" />
-              <p className="text-sm font-semibold text-zinc-300">No leads recorded yet</p>
+              <p className="text-sm font-semibold text-zinc-300">No leads yet</p>
               <p className="text-xs text-zinc-500 max-w-xs mt-1">
-                Once visitors submit the consultation modal or contact form, your daily timeline will chart here.
+                Your daily enquiries will appear here as visitors submit forms.
               </p>
             </div>
           ) : (
@@ -377,12 +360,12 @@ export default function AdminDashboardPage() {
           <div>
             <div className="flex items-center gap-2 mb-1">
               <PieIcon className="w-4 h-4 text-[#a01115]" />
-              <h2 className="text-base sm:text-lg font-bold text-white font-serif">
-                Lead Status Breakdown
+              <h2 className="text-base sm:text-lg font-bold text-white">
+                Leads by Status
               </h2>
             </div>
             <p className="text-xs text-zinc-400">
-              Distribution across lifecycle stages.
+              Breakdown of leads by their current status.
             </p>
           </div>
 
@@ -390,9 +373,9 @@ export default function AdminDashboardPage() {
             {!hasData && !isLoading ? (
               <div className="h-full w-full flex flex-col items-center justify-center text-center text-zinc-500 border border-dashed border-white/10 rounded-xl">
                 <PieIcon className="w-8 h-8 mb-2 opacity-40 text-amber-500" />
-                <p className="text-sm font-semibold text-zinc-300">No status data</p>
+                <p className="text-sm font-semibold text-zinc-300">No leads yet</p>
                 <p className="text-xs text-zinc-500 max-w-xs mt-1">
-                  Lifecycle distribution will populate as leads are updated.
+                  Status distribution will appear here once leads are received.
                 </p>
               </div>
             ) : (
@@ -439,12 +422,12 @@ export default function AdminDashboardPage() {
           </div>
 
           <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs text-zinc-400">
-            <span>6 Lifecycle Stages</span>
+            <span>6 Stages</span>
             <Link
               href="/admin/leads"
               className="text-[#a01115] hover:text-rose-400 inline-flex items-center gap-1 font-semibold"
             >
-              <span>Manage Pipeline</span>
+              <span>View All Leads</span>
               <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
@@ -455,12 +438,12 @@ export default function AdminDashboardPage() {
           <div>
             <div className="flex items-center gap-2 mb-1">
               <BarChart3 className="w-4 h-4 text-[#a01115]" />
-              <h2 className="text-base sm:text-lg font-bold text-white font-serif">
-                Segment Comparison
+              <h2 className="text-base sm:text-lg font-bold text-white">
+                Leads by Property &amp; Type
               </h2>
             </div>
             <p className="text-xs text-zinc-400">
-              Leads grouped by Property Category &times; Transaction Type (Residential vs Commercial).
+              Residential and Commercial leads for Buy, Sell, and Rent.
             </p>
           </div>
 
@@ -468,9 +451,9 @@ export default function AdminDashboardPage() {
             {!hasData && !isLoading ? (
               <div className="h-full flex flex-col items-center justify-center text-center text-zinc-500 border border-dashed border-white/10 rounded-xl">
                 <BarChart3 className="w-8 h-8 mb-2 opacity-40 text-blue-500" />
-                <p className="text-sm font-semibold text-zinc-300">No segment data</p>
+                <p className="text-sm font-semibold text-zinc-300">No leads yet</p>
                 <p className="text-xs text-zinc-500 max-w-xs mt-1">
-                  Enquiry preferences between Buy, Sell, and Rent will display here.
+                  Property category and type breakdown will appear here.
                 </p>
               </div>
             ) : (
@@ -535,7 +518,7 @@ export default function AdminDashboardPage() {
                 <span>Commercial</span>
               </span>
             </div>
-            <span className="text-[10px] text-zinc-500">Thane &amp; MMR Segments</span>
+            <span className="text-[10px] text-zinc-500">Thane &amp; MMR</span>
           </div>
         </div>
       </div>

@@ -9,10 +9,12 @@ import {
   Send,
   BadgeCheck,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
   const { isOpen: isConsultationOpen } = useConsultationModal();
   const [isOpen, setIsOpen] = useState(false);
   const [timeString, setTimeString] = useState("17:03");
@@ -35,7 +37,8 @@ export default function WhatsAppButton() {
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank", "noopener,noreferrer");
   };
 
-  if (isConsultationOpen) {
+  // Hide floating WhatsApp widget on all Admin Panel routes
+  if (pathname?.startsWith("/admin") || isConsultationOpen) {
     return null;
   }
 

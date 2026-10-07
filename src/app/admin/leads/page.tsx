@@ -241,19 +241,11 @@ export default function AdminLeadsPage() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-white/10">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#a01115]">
-              Executive CRM
-            </span>
-            <span className="text-[10px] bg-white/10 text-zinc-300 px-2 py-0.5 rounded-full font-medium">
-              Live Supabase Sync
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-serif">
-            Leads Pipeline
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            Leads
           </h1>
-          <p className="text-xs text-zinc-400 mt-0.5">
-            Real-time enquiries captured from consultation modals and contact forms across Thane &amp; MMR.
+          <p className="text-xs text-zinc-400 mt-1">
+            View, search, and update client enquiries.
           </p>
         </div>
 
@@ -363,12 +355,12 @@ export default function AdminLeadsPage() {
             {/* Table Header */}
             <thead className="bg-[#17191e] border-b border-white/10 text-zinc-400 uppercase tracking-wider font-semibold text-[10px]">
               <tr>
-                <th className="py-3.5 px-4">Client Name</th>
-                <th className="py-3.5 px-4">Contact Details</th>
-                <th className="py-3.5 px-4">Segment / Type</th>
-                <th className="py-3.5 px-4">Requirement Details</th>
-                <th className="py-3.5 px-4">Status (Live Edit)</th>
-                <th className="py-3.5 px-4">Date &amp; Source</th>
+                <th className="py-3.5 px-4">Name</th>
+                <th className="py-3.5 px-4">Contact</th>
+                <th className="py-3.5 px-4">Category &amp; Type</th>
+                <th className="py-3.5 px-4">Requirement</th>
+                <th className="py-3.5 px-4">Status</th>
+                <th className="py-3.5 px-4">Date</th>
               </tr>
             </thead>
 
@@ -409,13 +401,13 @@ export default function AdminLeadsPage() {
                       <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-zinc-500">
                         <Users className="w-6 h-6" />
                       </div>
-                      <p className="text-sm font-semibold text-white font-serif">
-                        No Leads Found
+                      <p className="text-sm font-semibold text-zinc-200">
+                        No leads found
                       </p>
                       <p className="text-xs text-zinc-400 max-w-sm">
                         {searchTerm || statusFilter !== "all" || categoryFilter !== "all"
-                          ? "No enquiries match your active filter criteria. Try clearing filters."
-                          : "Enquiries submitted through the website modal and contact page will appear here live."}
+                          ? "No enquiries match your active search or filters."
+                          : "New enquiries submitted on your website will appear here."}
                       </p>
                     </div>
                   </td>
@@ -570,8 +562,8 @@ export default function AdminLeadsPage() {
             Showing <strong className="text-white">{leads.length}</strong> of{" "}
             <strong className="text-white">{totalCount}</strong> leads
           </span>
-          <span className="text-[10px] uppercase tracking-wider text-zinc-500">
-            Brick &amp; Beams Executive Portal
+          <span className="text-[10px] text-zinc-500">
+            Brick &amp; Beams Admin
           </span>
         </div>
       </div>

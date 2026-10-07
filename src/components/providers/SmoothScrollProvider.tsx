@@ -38,7 +38,12 @@ export default function SmoothScrollProvider({
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (prefersReducedMotion) {
+    // Do not run Lenis smooth scrolling inside Admin Panel
+    if (prefersReducedMotion || pathname?.startsWith("/admin")) {
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
       return;
     }
 
@@ -94,7 +99,7 @@ export default function SmoothScrollProvider({
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, []);
+  }, [pathname]);
 
   // When pathname changes, smoothly scroll back to top of the new page
   useEffect(() => {

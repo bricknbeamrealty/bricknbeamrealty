@@ -30,7 +30,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
       active: pathname === "/admin",
     },
     {
-      label: "Leads Table",
+      label: "Leads",
       href: "/admin/leads",
       icon: Users,
       active: pathname === "/admin/leads" || pathname.startsWith("/admin/leads/"),
@@ -38,11 +38,14 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0e0f12] text-zinc-100 flex flex-col lg:flex-row font-sans selection:bg-[#a01115] selection:text-white">
+    <div className="h-screen max-h-screen w-full bg-[#0e0f12] text-zinc-100 flex flex-col lg:flex-row overflow-hidden font-sans selection:bg-[#a01115] selection:text-white">
       {/* =========================================================================
-          DESKTOP SIDEBAR
+          DESKTOP FIXED SIDEBAR (PINNED)
           ========================================================================= */}
-      <aside className="hidden lg:flex w-72 shrink-0 flex-col justify-between border-r border-white/10 bg-[#121418] p-6">
+      <aside
+        data-lenis-prevent
+        className="hidden lg:flex w-72 shrink-0 h-screen max-h-screen flex-col justify-between border-r border-white/10 bg-[#121418] p-6 z-30 select-none overflow-y-auto overscroll-contain custom-scrollbar-slim"
+      >
         <div className="space-y-8">
           {/* Brand Header */}
           <div className="space-y-2">
@@ -51,11 +54,11 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                 <Layers className="w-5 h-5" />
               </div>
               <div>
-                <span className="font-serif font-bold text-lg text-white tracking-tight block">
+                <span className="font-bold text-lg text-white tracking-tight block">
                   Brick &amp; Beams
                 </span>
-                <span className="text-[10px] uppercase tracking-widest font-semibold text-[#a01115] block">
-                  Executive Suite
+                <span className="text-[11px] font-medium text-zinc-400 block">
+                  Admin Panel
                 </span>
               </div>
             </Link>
@@ -93,10 +96,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
           >
             <span className="flex items-center gap-2">
               <ExternalLink className="w-3.5 h-3.5" />
-              <span>Live Website</span>
-            </span>
-            <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-zinc-300">
-              MMR
+              <span>View Website</span>
             </span>
           </Link>
 
@@ -106,7 +106,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
             className="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-950/30 transition-all cursor-pointer"
           >
             <LogOut className="w-3.5 h-3.5" />
-            <span>Lock Admin Session</span>
+            <span>Log Out</span>
           </button>
         </div>
       </aside>
@@ -114,7 +114,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
       {/* =========================================================================
           MOBILE TOP NAVBAR
           ========================================================================= */}
-      <header className="lg:hidden flex items-center justify-between px-5 py-4 border-b border-white/10 bg-[#121418] sticky top-0 z-40 backdrop-blur-md">
+      <header className="lg:hidden shrink-0 flex items-center justify-between px-5 py-4 border-b border-white/10 bg-[#121418] sticky top-0 z-40 backdrop-blur-md">
         <Link href="/admin" className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-[#a01115] flex items-center justify-center text-white">
             <Layers className="w-4 h-4" />
@@ -179,7 +179,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
               target="_blank"
               className="flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 text-sm text-zinc-300"
             >
-              <span>Visit Live Website</span>
+              <span>View Website</span>
               <ExternalLink className="w-4 h-4" />
             </Link>
             <button
@@ -191,16 +191,19 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
               className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-rose-950/40 text-rose-300 text-sm font-medium"
             >
               <LogOut className="w-4 h-4" />
-              <span>Lock Admin Session</span>
+              <span>Log Out</span>
             </button>
           </div>
         </div>
       )}
 
       {/* =========================================================================
-          MAIN CONTENT AREA
+          MAIN CONTENT AREA (INDEPENDENTLY SCROLLING)
           ========================================================================= */}
-      <main className="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scrollbar-dark">
+      <main
+        data-lenis-prevent
+        className="flex-1 h-full min-h-0 min-w-0 overflow-y-auto overflow-x-hidden overscroll-contain custom-scrollbar-dark"
+      >
         {children}
       </main>
     </div>

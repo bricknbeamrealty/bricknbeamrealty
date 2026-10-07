@@ -178,11 +178,11 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#a01115]/10 border border-[#a01115]/30 text-[#a01115] shadow-lg shadow-[#a01115]/20 mb-1">
                 <Lock className="w-7 h-7" />
               </div>
-              <h1 className="text-2xl font-bold tracking-tight text-white font-serif">
+              <h1 className="text-2xl font-bold tracking-tight text-white">
                 Brick &amp; Beams Admin
               </h1>
               <p className="text-xs text-zinc-400">
-                Enter your administrative passcode to access lead management and business analytics.
+                Enter your admin passcode to log in.
               </p>
             </div>
 
@@ -234,10 +234,10 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
                 className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.99] text-white text-sm font-semibold shadow-lg shadow-[#a01115]/30 hover:shadow-xl hover:shadow-[#a01115]/40 transition-all disabled:opacity-60 cursor-pointer"
               >
                 {isSubmitting ? (
-                  <span>Verifying...</span>
+                  <span>Checking...</span>
                 ) : (
                   <>
-                    <span>Unlock Dashboard</span>
+                    <span>Log In</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
@@ -248,13 +248,13 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
             <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between text-xs text-zinc-500">
               <span className="inline-flex items-center gap-1.5 text-zinc-400">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                Protected Session
+                Admin Login
               </span>
               <Link
                 href="/"
                 className="text-zinc-400 hover:text-white transition-colors underline-offset-4 hover:underline"
               >
-                Return to Website &rarr;
+                Go to Website &rarr;
               </Link>
             </div>
           </div>
