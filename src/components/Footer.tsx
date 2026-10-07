@@ -113,76 +113,79 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-sm font-semibold font-sans text-white tracking-wide">
-              Quick Links
-            </h3>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300">
-              <li>
-                <Link href="/" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>Home</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/properties" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>Properties</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/how-we-work" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>How We Work</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/about-us" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>About Us</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact-us" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>Contact Us</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Navigation Links Group: 2-column layout on mobile, independent grid items on tablet & desktop via sm:contents */}
+          <div className="grid grid-cols-2 gap-6 sm:contents">
+            {/* Column 2: Quick Links */}
+            <div className="lg:col-span-2 space-y-4">
+              <h3 className="text-sm font-semibold font-sans text-white tracking-wide">
+                Quick Links
+              </h3>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300">
+                <li>
+                  <Link href="/" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>Home</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/properties" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>Properties</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/how-we-work" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>How We Work</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about-us" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>About Us</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact-us" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>Contact Us</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Column 3: Legal & Support */}
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-sm font-semibold font-sans text-white tracking-wide">
-              Legal &amp; Support
-            </h3>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300">
-              <li>
-                <Link href="/privacy-policy" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>Privacy Policy</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-and-conditions" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>Terms &amp; Conditions</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/disclaimer" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>Disclaimer</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/#faq" className="group flex items-center gap-1.5 hover:text-white transition-colors">
-                  <ChevronRight className="w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
-                  <span>FAQ</span>
-                </Link>
-              </li>
-            </ul>
+            {/* Column 3: Legal & Support */}
+            <div className="lg:col-span-2 space-y-4">
+              <h3 className="text-sm font-semibold font-sans text-white tracking-wide">
+                Legal &amp; Support
+              </h3>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-300">
+                <li>
+                  <Link href="/privacy-policy" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>Privacy Policy</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms-and-conditions" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>Terms &amp; Conditions</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/disclaimer" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>Disclaimer</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#faq" className="group flex items-center gap-1.5 hover:text-white transition-colors">
+                    <ChevronRight className="hidden sm:inline-block w-3 h-3 text-[#a01115] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
+                    <span>FAQ</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Column 4: Contact Info */}
