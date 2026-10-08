@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -26,10 +26,15 @@ import {
   Check,
   Copy,
   Info,
+  UploadCloud,
+  Zap,
+  Loader2,
+  ImageIcon,
 } from "lucide-react";
 import { useAdminAuth } from "../AdminAuthContext";
 import { useAdminTheme } from "../AdminThemeContext";
 import { Property, PropertyType } from "@/data/properties";
+import { compressImage, formatFileSize } from "@/lib/compressImage";
 
 // Image Presets for rapid one-click selection
 const IMAGE_PRESETS = [
@@ -144,6 +149,17 @@ export default function AdminPropertiesPage() {
 
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
+  // Image Upload & Client-side WebP Compression State
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [uploadProgressText, setUploadProgressText] = useState("");
+  const [compressionStats, setCompressionStats] = useState<{
+    originalSize: string;
+    compressedSize: string;
+    savingsPercent: number;
+  } | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+
   const showToast = useCallback(
     (type: "success" | "error", message: string) => {
       setToast({ type, message });
@@ -151,6 +167,84 @@ export default function AdminPropertiesPage() {
     },
     []
   );
+
+  // Client-Side Image Compression & Upload Handler
+  const handleImageUpload = async (file: File) => {
+    if (!file) return;
+
+    const validTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "image/avif",
+      "image/gif",
+    ];
+    if (!validTypes.includes(file.type.toLowerCase())) {
+      showToast(
+        "error",
+        "Please select a valid image file (JPEG, PNG, WEBP, AVIF, or GIF)."
+      );
+      return;
+    }
+
+    const originalBytes = file.size;
+    setIsUploadingImage(true);
+    setUploadProgressText("Optimizing image & converting to WebP...");
+    setCompressionStats(null);
+
+    try {
+      // Step 1: Client-Side WebP Compression & Resizing (targeting ~300-400KB, max 1600px)
+      const optimizedFile = await compressImage(file, {
+        maxSizeMB: 0.4,
+        maxWidthOrHeight: 1600,
+        fileType: "image/webp",
+        initialQuality: 0.82,
+      });
+
+      const compressedBytes = optimizedFile.size;
+      const savings = Math.max(
+        0,
+        Math.round(((originalBytes - compressedBytes) / originalBytes) * 100)
+      );
+
+      setCompressionStats({
+        originalSize: formatFileSize(originalBytes),
+        compressedSize: formatFileSize(compressedBytes),
+        savingsPercent: savings,
+      });
+
+      setUploadProgressText("Uploading optimized WebP asset to storage...");
+
+      // Step 2: Upload optimized WebP file via API
+      const uploadData = new FormData();
+      uploadData.append("file", optimizedFile);
+
+      const res = await fetch("/api/admin/properties/upload", {
+        method: "POST",
+        headers: {
+          "x-admin-passcode": passcode,
+        },
+        body: uploadData,
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success && data.publicUrl) {
+        setFormData((prev) => ({ ...prev, image: data.publicUrl }));
+        showToast(
+          "success",
+          `Image optimized (${savings}% smaller) and uploaded successfully!`
+        );
+      } else {
+        showToast("error", data.error || "Failed to upload image.");
+      }
+    } catch (err) {
+      console.error("Image upload/compression error:", err);
+      showToast("error", "Error optimizing or uploading image.");
+    } finally {
+      setIsUploadingImage(false);
+      setUploadProgressText("");
+    }
+  };
 
   // Fetch properties from Admin API
   const fetchProperties = useCallback(
@@ -221,6 +315,9 @@ export default function AdminPropertiesPage() {
     setFormData(EMPTY_PROPERTY_FORM);
     setFormHighlightsText("");
     setFormAmenitiesText("");
+    setCompressionStats(null);
+    setIsUploadingImage(false);
+    setUploadProgressText("");
     setIsFormOpen(true);
   };
 
@@ -253,6 +350,9 @@ export default function AdminPropertiesPage() {
     });
     setFormHighlightsText((prop.keyHighlights || []).join("\n"));
     setFormAmenitiesText((prop.amenities || []).join(", "));
+    setCompressionStats(null);
+    setIsUploadingImage(false);
+    setUploadProgressText("");
     setIsFormOpen(true);
   };
 
@@ -1810,24 +1910,149 @@ export default function AdminPropertiesPage() {
                 </div>
               </div>
 
-              {/* SECTION 4: MEDIA & PHOTO PRESETS */}
+              {/* SECTION 4: MEDIA & PHOTO UPLOAD WITH WEBP OPTIMIZATION */}
               <div className="space-y-4 pt-4 border-t border-inherit">
-                <h3
-                  className={`text-xs font-bold uppercase tracking-wider flex items-center gap-2 ${
-                    isDark ? "text-zinc-400" : "text-zinc-500"
-                  }`}
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-[#a01115]" />
-                  <span>Media &amp; Hero Photography</span>
-                </h3>
+                <div className="flex items-center justify-between">
+                  <h3
+                    className={`text-xs font-bold uppercase tracking-wider flex items-center gap-2 ${
+                      isDark ? "text-zinc-400" : "text-zinc-500"
+                    }`}
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-[#a01115]" />
+                    <span>Media &amp; Hero Photography</span>
+                  </h3>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                    <Zap className="w-3 h-3 text-emerald-400" />
+                    Auto-WebP Optimization
+                  </span>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {/* Image URL input */}
-                  <div className="md:col-span-2 space-y-3">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
+                  <div className="md:col-span-2 space-y-3.5">
+                    {/* Interactive Dropzone */}
                     <div>
                       <label className="text-xs font-semibold block mb-1.5">
-                        Image URL / File Path *
+                        Upload Project Photo *
                       </label>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp,image/avif,image/gif"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) handleImageUpload(file);
+                          e.target.value = "";
+                        }}
+                      />
+
+                      <div
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                          setIsDragging(true);
+                        }}
+                        onDragLeave={() => setIsDragging(false)}
+                        onDrop={(e) => {
+                          e.preventDefault();
+                          setIsDragging(false);
+                          const file = e.dataTransfer.files?.[0];
+                          if (file) handleImageUpload(file);
+                        }}
+                        onClick={() => {
+                          if (!isUploadingImage) fileInputRef.current?.click();
+                        }}
+                        className={`relative group rounded-2xl border-2 border-dashed p-6 text-center cursor-pointer transition-all ${
+                          isDragging
+                            ? "border-[#a01115] bg-[#a01115]/10 scale-[1.01]"
+                            : isDark
+                            ? "border-white/15 bg-[#181a20]/70 hover:border-white/30 hover:bg-[#181a20]"
+                            : "border-zinc-300 bg-zinc-50/70 hover:border-[#a01115]/50 hover:bg-zinc-100/60"
+                        }`}
+                      >
+                        {isUploadingImage ? (
+                          <div className="py-4 space-y-3">
+                            <Loader2 className="w-8 h-8 text-[#a01115] animate-spin mx-auto" />
+                            <div className="space-y-1">
+                              <p className={`text-xs font-bold ${isDark ? "text-white" : "text-zinc-900"}`}>
+                                {uploadProgressText || "Processing image..."}
+                              </p>
+                              <p className={`text-[11px] ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>
+                                Compressing client-side to modern WebP format
+                              </p>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="space-y-2 py-1">
+                            <div className="w-11 h-11 rounded-2xl bg-[#a01115]/10 text-[#a01115] flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                              <UploadCloud className="w-6 h-6" />
+                            </div>
+                            <div>
+                              <p
+                                className={`text-xs sm:text-sm font-semibold ${
+                                  isDark ? "text-zinc-200" : "text-zinc-800"
+                                }`}
+                              >
+                                Click to upload or drag &amp; drop photo
+                              </p>
+                              <p
+                                className={`text-[11px] mt-0.5 ${
+                                  isDark ? "text-zinc-500" : "text-zinc-400"
+                                }`}
+                              >
+                                Automatically compressed &amp; converted to WebP (Max 1600px width)
+                              </p>
+                            </div>
+                            <div className="pt-1 flex items-center justify-center gap-2">
+                              <span
+                                className={`text-[10px] px-2 py-0.5 rounded-md border font-mono ${
+                                  isDark
+                                    ? "bg-white/5 border-white/10 text-zinc-400"
+                                    : "bg-zinc-100 border-zinc-200 text-zinc-600"
+                                }`}
+                              >
+                                JPG • PNG • WEBP • AVIF
+                              </span>
+                              <span
+                                className={`text-[10px] px-2 py-0.5 rounded-md border font-mono ${
+                                  isDark
+                                    ? "bg-white/5 border-white/10 text-zinc-400"
+                                    : "bg-zinc-100 border-zinc-200 text-zinc-600"
+                                }`}
+                              >
+                                Max 10MB
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Compression Savings Live Pill */}
+                    {compressionStats && (
+                      <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between text-xs animate-in fade-in duration-300">
+                        <div className="flex items-center gap-2">
+                          <Zap className="w-4 h-4 text-emerald-400 shrink-0" />
+                          <span className={isDark ? "text-emerald-200" : "text-emerald-900"}>
+                            Optimized: <strong>{compressionStats.originalSize}</strong> →{" "}
+                            <strong className="text-emerald-400">{compressionStats.compressedSize}</strong>
+                          </span>
+                        </div>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-[10px]">
+                          -{compressionStats.savingsPercent}% Reduced
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Image URL Manual Input fallback */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="text-xs font-semibold">
+                          Image URL / Direct Path
+                        </label>
+                        <span className={`text-[11px] ${isDark ? "text-zinc-500" : "text-zinc-400"}`}>
+                          Auto-filled on upload or editable manually
+                        </span>
+                      </div>
                       <input
                         type="text"
                         required
@@ -1835,7 +2060,7 @@ export default function AdminPropertiesPage() {
                         onChange={(e) =>
                           setFormData((p) => ({ ...p, image: e.target.value }))
                         }
-                        placeholder="e.g., /images/properties/raymond-ten-x-thane.webp"
+                        placeholder="e.g., /images/properties/raymond-ten-x-thane.webp or https://..."
                         className={`w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border font-mono transition-colors outline-none focus:ring-2 focus:ring-[#a01115]/50 ${
                           isDark
                             ? "bg-[#181a20] border-white/10 text-white placeholder-zinc-500"
@@ -1851,7 +2076,7 @@ export default function AdminPropertiesPage() {
                           isDark ? "text-zinc-400" : "text-zinc-500"
                         }`}
                       >
-                        1-Click Photo Presets (From Thane Library):
+                        Or Choose From Thane Library Presets:
                       </span>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {IMAGE_PRESETS.map((preset) => {
@@ -1860,9 +2085,10 @@ export default function AdminPropertiesPage() {
                             <button
                               key={preset.path}
                               type="button"
-                              onClick={() =>
-                                setFormData((p) => ({ ...p, image: preset.path }))
-                              }
+                              onClick={() => {
+                                setFormData((p) => ({ ...p, image: preset.path }));
+                                setCompressionStats(null);
+                              }}
                               className={`p-2 rounded-xl border text-left flex items-center gap-2 transition-all cursor-pointer ${
                                 isSelected
                                   ? "bg-[#a01115]/20 border-[#a01115] text-[#a01115] font-semibold"
@@ -1889,29 +2115,60 @@ export default function AdminPropertiesPage() {
                     </div>
                   </div>
 
-                  {/* Live Thumbnail Preview */}
-                  <div>
+                  {/* Live Thumbnail Preview & Metadata */}
+                  <div className="space-y-2">
                     <label
-                      className={`text-xs font-semibold block mb-1.5 ${
+                      className={`text-xs font-semibold block ${
                         isDark ? "text-zinc-400" : "text-zinc-500"
                       }`}
                     >
-                      Live Preview
+                      Live Preview &amp; Asset
                     </label>
-                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-inherit bg-zinc-900">
+                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-inherit bg-zinc-900 shadow-inner group">
                       {formData.image ? (
-                        <Image
-                          src={formData.image}
-                          alt="Preview"
-                          fill
-                          className="object-cover"
-                        />
+                        <>
+                          <Image
+                            src={formData.image}
+                            alt="Preview"
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                          <div className="absolute top-2 right-2">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setFormData((p) => ({ ...p, image: "" }));
+                                setCompressionStats(null);
+                              }}
+                              title="Clear photo"
+                              className="p-1.5 rounded-lg bg-black/60 text-white/80 hover:text-white hover:bg-rose-600 transition-colors cursor-pointer"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                          <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-white text-[10px] pointer-events-none">
+                            <span className="px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md font-mono">
+                              {formData.image.endsWith(".webp") ? "WEBP / Optimized" : "Image Asset"}
+                            </span>
+                            <span className="px-2 py-0.5 rounded-md bg-emerald-500/80 font-bold backdrop-blur-md">
+                              Ready
+                            </span>
+                          </div>
+                        </>
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-xs text-zinc-500">
-                          No image
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-xs text-zinc-500 gap-1.5">
+                          <ImageIcon className="w-8 h-8 opacity-40 text-zinc-500" />
+                          <span>No Image Selected</span>
                         </div>
                       )}
                     </div>
+
+                    {formData.image && (
+                      <p className="text-[10px] font-mono text-zinc-400 truncate px-1">
+                        {formData.image}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
