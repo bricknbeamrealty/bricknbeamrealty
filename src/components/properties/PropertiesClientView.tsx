@@ -217,44 +217,52 @@ export default function PropertiesClientView() {
         if (data.success && Array.isArray(data.properties) && data.properties.length > 0) {
           if (!isMounted) return;
           const mapped: Property[] = data.properties.map((p: any) => {
-            const bhks = Array.isArray(p.bhk) ? p.bhk : [p.bhk || "2 BHK"];
-            const bhkNumeric: number[] = bhks
-              .map((b: string) => parseInt(b.replace(/[^0-9]/g, ""), 10))
-              .filter((n: number) => !isNaN(n));
+            const rawBhks = Array.isArray(p.bhks) && p.bhks.length > 0 
+              ? p.bhks 
+              : Array.isArray(p.bhk) && p.bhk.length > 0 
+              ? p.bhk 
+              : [p.bhks || p.bhk || "2 BHK"];
+            const bhkNumeric: number[] = Array.isArray(p.bhkNumeric) && p.bhkNumeric.length > 0
+              ? p.bhkNumeric
+              : rawBhks
+                  .map((b: string) => parseInt(String(b).replace(/[^0-9]/g, ""), 10))
+                  .filter((n: number) => !isNaN(n));
 
             return {
-              id: p.slug || p.id,
-              slug: p.slug || p.id,
-              title: p.title,
-              developer: p.developer,
-              propertyType: (p.category === "commercial"
+              id: p.id || p.slug || "prop",
+              slug: p.slug || p.id || "prop",
+              title: p.title || "Untitled Property",
+              developer: p.developer || "Developer",
+              propertyType: (p.propertyType || (p.category === "commercial"
                 ? "commercial"
                 : p.category === "industrial"
                 ? "industrial"
-                : "residential") as PropertyType,
-              propertyTypeLabel: p.type || "Luxury High-Rise",
-              location: p.location,
-              subLocation: p.sub_location || p.location,
-              priceStartingFrom: p.starting_price,
-              pricing: p.price_range || p.starting_price,
+                : "residential")) as PropertyType,
+              propertyTypeLabel: p.propertyTypeLabel || p.type || "Residential High-Rise",
+              location: p.location || "Thane West",
+              subLocation: p.subLocation || p.sub_location || p.location || "Thane West",
+              priceStartingFrom: p.priceStartingFrom || p.starting_price || "₹1.00 Cr",
+              pricing: p.pricing || p.price_range || p.priceStartingFrom || p.starting_price || "Price on Request",
               priceNumeric:
-                typeof p.price_numeric === "number" && p.price_numeric > 0
+                typeof p.priceNumeric === "number" && p.priceNumeric > 0
+                  ? p.priceNumeric
+                  : typeof p.price_numeric === "number" && p.price_numeric > 0
                   ? p.price_numeric > 100000
                     ? Math.round(p.price_numeric / 100000)
                     : p.price_numeric
                   : 100,
-              area: p.carpet_area || "Contact for area",
-              possession: p.possession || "2027",
-              possessionYear: p.possession_year || 2027,
-              bhks,
+              area: p.area || p.carpet_area || "Contact for area",
+              possession: p.possession || "2028",
+              possessionYear: Number(p.possessionYear || p.possession_year) || 2028,
+              bhks: rawBhks,
               bhkNumeric: bhkNumeric.length > 0 ? bhkNumeric : [2],
-              rera: p.rera_number || "Applied",
+              rera: p.rera || p.rera_number || "Applied",
               status: p.status === "Ready to Move" ? "Ready to Move" : "Under Construction",
-              isFeatured: Boolean(p.is_featured),
+              isFeatured: Boolean(p.isFeatured ?? p.is_featured),
               image: p.image || "/images/properties/raymond-ten-x-thane.webp",
               overview: p.overview || "",
               amenities: Array.isArray(p.amenities) ? p.amenities : [],
-              keyHighlights: Array.isArray(p.highlights) ? p.highlights : [],
+              keyHighlights: Array.isArray(p.keyHighlights) ? p.keyHighlights : Array.isArray(p.highlights) ? p.highlights : [],
             };
           });
           setPropertiesList(mapped);

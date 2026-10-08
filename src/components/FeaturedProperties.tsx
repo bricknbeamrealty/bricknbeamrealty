@@ -272,21 +272,29 @@ export default function FeaturedProperties() {
         const data = await res.json();
         if (data.success && Array.isArray(data.properties) && data.properties.length > 0) {
           if (!isMounted) return;
-          const mapped: PropertyItem[] = data.properties.map((p: any) => ({
-            id: p.slug || p.id,
-            developer: p.developer,
-            location: p.location,
-            title: p.title,
-            subLocation: p.sub_location || p.location,
-            area: p.carpet_area || "Contact for area",
-            possession: p.possession || "2027",
-            bhks: Array.isArray(p.bhk) ? p.bhk : [p.bhk || "2 BHK"],
-            pricing: p.price_range || p.starting_price,
-            rera: p.rera_number || "Applied",
-            status: p.status === "Ready to Move" ? "Ready to Move" : "Under Construction",
-            isFeatured: Boolean(p.is_featured),
-            image: p.image || "/images/properties/raymond-ten-x-thane.webp",
-          }));
+          const mapped: PropertyItem[] = data.properties.map((p: any) => {
+            const rawBhks = Array.isArray(p.bhks) && p.bhks.length > 0
+              ? p.bhks
+              : Array.isArray(p.bhk) && p.bhk.length > 0
+              ? p.bhk
+              : [p.bhks || p.bhk || "2 BHK"];
+
+            return {
+              id: p.id || p.slug || "prop",
+              developer: p.developer || "Developer",
+              location: p.location || "Thane West",
+              title: p.title || "Untitled Property",
+              subLocation: p.subLocation || p.sub_location || p.location || "Thane West",
+              area: p.area || p.carpet_area || "Contact for area",
+              possession: p.possession || "2028",
+              bhks: rawBhks,
+              pricing: p.pricing || p.price_range || p.priceStartingFrom || p.starting_price || "Price on Request",
+              rera: p.rera || p.rera_number || "Applied",
+              status: p.status === "Ready to Move" ? "Ready to Move" : "Under Construction",
+              isFeatured: Boolean(p.isFeatured ?? p.is_featured),
+              image: p.image || "/images/properties/raymond-ten-x-thane.webp",
+            };
+          });
           setPropertiesList(mapped);
         }
       } catch {
