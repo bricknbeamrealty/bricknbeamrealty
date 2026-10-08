@@ -3,18 +3,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
-  TrendingUp,
   Users,
   Target,
   CheckCircle2,
-  Calendar,
   RefreshCw,
   ArrowRight,
   PieChart as PieIcon,
   BarChart3,
   LineChart as LineIcon,
   AlertCircle,
-  Building2,
   Sparkles,
 } from "lucide-react";
 import {
@@ -76,9 +73,10 @@ export default function AdminDashboardPage() {
 
   const fetchAnalytics = useCallback(
     async (isManual = false) => {
-      if (isManual) setIsRefreshing(true);
-      else setIsLoading(true);
-      setErrorMsg(null);
+      if (isManual) {
+        setIsRefreshing(true);
+        setErrorMsg(null);
+      }
 
       try {
         const res = await fetch(`/api/admin/analytics?days=${daysToggle}`, {
@@ -104,7 +102,16 @@ export default function AdminDashboardPage() {
   );
 
   useEffect(() => {
-    fetchAnalytics();
+    let ignore = false;
+    void (async () => {
+      await Promise.resolve();
+      if (!ignore) {
+        await fetchAnalytics();
+      }
+    })();
+    return () => {
+      ignore = true;
+    };
   }, [fetchAnalytics]);
 
   const stats = data?.stats || {

@@ -272,27 +272,27 @@ export default function FeaturedProperties() {
         const data = await res.json();
         if (data.success && Array.isArray(data.properties) && data.properties.length > 0) {
           if (!isMounted) return;
-          const mapped: PropertyItem[] = data.properties.map((p: any) => {
+          const mapped: PropertyItem[] = data.properties.map((p: Record<string, unknown>) => {
             const rawBhks = Array.isArray(p.bhks) && p.bhks.length > 0
-              ? p.bhks
+              ? (p.bhks as string[])
               : Array.isArray(p.bhk) && p.bhk.length > 0
-              ? p.bhk
-              : [p.bhks || p.bhk || "2 BHK"];
+              ? (p.bhk as string[])
+              : [String(p.bhks || p.bhk || "2 BHK")];
 
             return {
-              id: p.id || p.slug || "prop",
-              developer: p.developer || "Developer",
-              location: p.location || "Thane West",
-              title: p.title || "Untitled Property",
-              subLocation: p.subLocation || p.sub_location || p.location || "Thane West",
-              area: p.area || p.carpet_area || "Contact for area",
-              possession: p.possession || "2028",
+              id: String(p.id || p.slug || "prop"),
+              developer: String(p.developer || "Developer"),
+              location: String(p.location || "Thane West"),
+              title: String(p.title || "Untitled Property"),
+              subLocation: String(p.subLocation || p.sub_location || p.location || "Thane West"),
+              area: String(p.area || p.carpet_area || "Contact for area"),
+              possession: String(p.possession || "2028"),
               bhks: rawBhks,
-              pricing: p.pricing || p.price_range || p.priceStartingFrom || p.starting_price || "Price on Request",
-              rera: p.rera || p.rera_number || "Applied",
-              status: p.status === "Ready to Move" ? "Ready to Move" : "Under Construction",
+              pricing: String(p.pricing || p.price_range || p.priceStartingFrom || p.starting_price || "Price on Request"),
+              rera: String(p.rera || p.rera_number || "Applied"),
+              status: (p.status === "Ready to Move" ? "Ready to Move" : "Under Construction") as "Ready to Move" | "Under Construction",
               isFeatured: Boolean(p.isFeatured ?? p.is_featured),
-              image: p.image || "/images/properties/raymond-ten-x-thane.webp",
+              image: String(p.image || "/images/properties/raymond-ten-x-thane.webp"),
             };
           });
           setPropertiesList(mapped);

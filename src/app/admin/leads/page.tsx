@@ -68,8 +68,9 @@ export default function AdminLeadsPage() {
   // Fetch leads from Supabase via admin API
   const fetchLeads = useCallback(
     async (isManualRefresh = false) => {
-      if (isManualRefresh) setIsRefreshing(true);
-      else setIsLoading(true);
+      if (isManualRefresh) {
+        setIsRefreshing(true);
+      }
 
       try {
         const params = new URLSearchParams();
@@ -113,7 +114,16 @@ export default function AdminLeadsPage() {
   );
 
   useEffect(() => {
-    fetchLeads();
+    let ignore = false;
+    void (async () => {
+      await Promise.resolve();
+      if (!ignore) {
+        await fetchLeads();
+      }
+    })();
+    return () => {
+      ignore = true;
+    };
   }, [fetchLeads]);
 
   // Handle inline status change writing directly back to Supabase

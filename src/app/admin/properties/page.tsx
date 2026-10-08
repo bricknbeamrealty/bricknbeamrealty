@@ -249,8 +249,9 @@ export default function AdminPropertiesPage() {
   // Fetch properties from Admin API
   const fetchProperties = useCallback(
     async (isManual = false) => {
-      if (isManual) setIsRefreshing(true);
-      else setIsLoading(true);
+      if (isManual) {
+        setIsRefreshing(true);
+      }
 
       try {
         const res = await fetch("/api/admin/properties", {
@@ -276,7 +277,16 @@ export default function AdminPropertiesPage() {
   );
 
   useEffect(() => {
-    fetchProperties();
+    let ignore = false;
+    void (async () => {
+      await Promise.resolve();
+      if (!ignore) {
+        await fetchProperties();
+      }
+    })();
+    return () => {
+      ignore = true;
+    };
   }, [fetchProperties]);
 
   // Filtered properties computed

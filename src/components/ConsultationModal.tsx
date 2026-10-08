@@ -122,14 +122,11 @@ export default function ConsultationModal() {
 
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Sync BHK selection with project data
-  useEffect(() => {
-    if (projectData?.bhks && projectData.bhks.length > 0) {
-      setSelectedBhk(projectData.bhks[0]);
-    } else {
-      setSelectedBhk("");
-    }
-  }, [projectData]);
+  const [prevProjectData, setPrevProjectData] = useState(projectData);
+  if (projectData !== prevProjectData) {
+    setPrevProjectData(projectData);
+    setSelectedBhk(projectData?.bhks && projectData.bhks.length > 0 ? projectData.bhks[0] : "");
+  }
 
   // Dynamic Options according to category and intent
   const activeRequirements =

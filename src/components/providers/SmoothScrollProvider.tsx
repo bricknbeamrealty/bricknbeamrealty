@@ -1,6 +1,13 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useRef } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
 import Lenis from "lenis";
 import { usePathname } from "next/navigation";
 
@@ -110,7 +117,7 @@ export default function SmoothScrollProvider({
     }
   }, [pathname]);
 
-  const scrollTo = (
+  const scrollTo = useCallback((
     target: string | HTMLElement | number,
     options?: {
       offset?: number;
@@ -129,10 +136,20 @@ export default function SmoothScrollProvider({
     } else if (target instanceof HTMLElement) {
       target.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({
+      get lenis() {
+        return lenisRef.current;
+      },
+      scrollTo,
+    }),
+    [scrollTo]
+  );
 
   return (
-    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, scrollTo }}>
+    <SmoothScrollContext.Provider value={contextValue}>
       {children}
     </SmoothScrollContext.Provider>
   );

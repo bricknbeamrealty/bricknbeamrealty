@@ -7,7 +7,6 @@ import React, {
   useEffect,
   useCallback,
 } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Lock,
@@ -20,7 +19,6 @@ import {
 } from "lucide-react";
 import {
   useAdminTheme,
-  AdminThemeToggle,
   AdminThemeIconButton,
 } from "./AdminThemeContext";
 

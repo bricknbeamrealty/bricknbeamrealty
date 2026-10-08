@@ -31,19 +31,19 @@ export function AdminThemeProvider({
   children: React.ReactNode;
 }) {
   const [theme, setThemeState] = useState<AdminTheme>("dark");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(THEME_STORAGE_KEY) as AdminTheme | null;
-      if (stored === "light" || stored === "dark") {
-        setThemeState(stored);
+    const handle = requestAnimationFrame(() => {
+      try {
+        const stored = localStorage.getItem(THEME_STORAGE_KEY) as AdminTheme | null;
+        if (stored === "light" || stored === "dark") {
+          setThemeState(stored);
+        }
+      } catch {
+        // localStorage may fail in restricted/private contexts
       }
-    } catch {
-      // localStorage may fail in restricted/private contexts
-    } finally {
-      setMounted(true);
-    }
+    });
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   const setTheme = useCallback((newTheme: AdminTheme) => {

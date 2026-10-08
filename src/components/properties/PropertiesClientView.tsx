@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo, useTransition, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -16,17 +15,12 @@ import { PropertyCardSkeletonGrid } from "@/components/ui/Skeleton";
 import { LUXURY_EASE } from "@/components/ui/AnimatedSection";
 import {
   MapPin,
-  Calendar,
   ShieldCheck,
   Sparkles,
-  Ruler,
   ArrowUpRight,
-  Filter,
   CheckCircle2,
-  Phone,
   Building,
   RotateCcw,
-  Layers,
   ChevronDown,
 } from "lucide-react";
 
@@ -203,7 +197,7 @@ function PropertyListingCard({
 
 export default function PropertiesClientView() {
   const { openModal } = useConsultationModal();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const [isFilteringLoading, setIsFilteringLoading] = useState(false);
   const [propertiesList, setPropertiesList] = useState<Property[]>(PROPERTIES);
 
@@ -216,53 +210,53 @@ export default function PropertiesClientView() {
         const data = await res.json();
         if (data.success && Array.isArray(data.properties) && data.properties.length > 0) {
           if (!isMounted) return;
-          const mapped: Property[] = data.properties.map((p: any) => {
+          const mapped: Property[] = data.properties.map((p: Record<string, unknown>) => {
             const rawBhks = Array.isArray(p.bhks) && p.bhks.length > 0 
-              ? p.bhks 
+              ? (p.bhks as string[])
               : Array.isArray(p.bhk) && p.bhk.length > 0 
-              ? p.bhk 
-              : [p.bhks || p.bhk || "2 BHK"];
+              ? (p.bhk as string[])
+              : [String(p.bhks || p.bhk || "2 BHK")];
             const bhkNumeric: number[] = Array.isArray(p.bhkNumeric) && p.bhkNumeric.length > 0
-              ? p.bhkNumeric
+              ? (p.bhkNumeric as number[])
               : rawBhks
                   .map((b: string) => parseInt(String(b).replace(/[^0-9]/g, ""), 10))
                   .filter((n: number) => !isNaN(n));
 
             return {
-              id: p.id || p.slug || "prop",
-              slug: p.slug || p.id || "prop",
-              title: p.title || "Untitled Property",
-              developer: p.developer || "Developer",
+              id: String(p.id || p.slug || "prop"),
+              slug: String(p.slug || p.id || "prop"),
+              title: String(p.title || "Untitled Property"),
+              developer: String(p.developer || "Developer"),
               propertyType: (p.propertyType || (p.category === "commercial"
                 ? "commercial"
                 : p.category === "industrial"
                 ? "industrial"
                 : "residential")) as PropertyType,
-              propertyTypeLabel: p.propertyTypeLabel || p.type || "Residential High-Rise",
-              location: p.location || "Thane West",
-              subLocation: p.subLocation || p.sub_location || p.location || "Thane West",
-              priceStartingFrom: p.priceStartingFrom || p.starting_price || "₹1.00 Cr",
-              pricing: p.pricing || p.price_range || p.priceStartingFrom || p.starting_price || "Price on Request",
+              propertyTypeLabel: String(p.propertyTypeLabel || p.type || "Residential High-Rise"),
+              location: String(p.location || "Thane West"),
+              subLocation: String(p.subLocation || p.sub_location || p.location || "Thane West"),
+              priceStartingFrom: String(p.priceStartingFrom || p.starting_price || "₹1.00 Cr"),
+              pricing: String(p.pricing || p.price_range || p.priceStartingFrom || p.starting_price || "Price on Request"),
               priceNumeric:
                 typeof p.priceNumeric === "number" && p.priceNumeric > 0
                   ? p.priceNumeric
                   : typeof p.price_numeric === "number" && p.price_numeric > 0
-                  ? p.price_numeric > 100000
-                    ? Math.round(p.price_numeric / 100000)
-                    : p.price_numeric
+                  ? (p.price_numeric as number) > 100000
+                    ? Math.round((p.price_numeric as number) / 100000)
+                    : (p.price_numeric as number)
                   : 100,
-              area: p.area || p.carpet_area || "Contact for area",
-              possession: p.possession || "2028",
+              area: String(p.area || p.carpet_area || "Contact for area"),
+              possession: String(p.possession || "2028"),
               possessionYear: Number(p.possessionYear || p.possession_year) || 2028,
               bhks: rawBhks,
               bhkNumeric: bhkNumeric.length > 0 ? bhkNumeric : [2],
-              rera: p.rera || p.rera_number || "Applied",
-              status: p.status === "Ready to Move" ? "Ready to Move" : "Under Construction",
+              rera: String(p.rera || p.rera_number || "Applied"),
+              status: (p.status === "Ready to Move" ? "Ready to Move" : "Under Construction") as "Ready to Move" | "Under Construction",
               isFeatured: Boolean(p.isFeatured ?? p.is_featured),
-              image: p.image || "/images/properties/raymond-ten-x-thane.webp",
-              overview: p.overview || "",
-              amenities: Array.isArray(p.amenities) ? p.amenities : [],
-              keyHighlights: Array.isArray(p.keyHighlights) ? p.keyHighlights : Array.isArray(p.highlights) ? p.highlights : [],
+              image: String(p.image || "/images/properties/raymond-ten-x-thane.webp"),
+              overview: String(p.overview || ""),
+              amenities: Array.isArray(p.amenities) ? (p.amenities as string[]) : [],
+              keyHighlights: Array.isArray(p.keyHighlights) ? (p.keyHighlights as string[]) : Array.isArray(p.highlights) ? (p.highlights as string[]) : [],
             };
           });
           setPropertiesList(mapped);
@@ -392,7 +386,7 @@ export default function PropertiesClientView() {
       // Default: featured first
       return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
     });
-  }, [filters, sortBy]);
+  }, [propertiesList, filters, sortBy]);
 
   return (
     <div className="min-h-screen bg-[#faf8f5] text-stone-900 selection:bg-[#a01115] selection:text-white relative overflow-x-hidden font-sans">

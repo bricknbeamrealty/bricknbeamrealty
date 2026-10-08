@@ -9,7 +9,6 @@ import {
   MapPin,
   Home,
   ChevronRight,
-  ArrowRight,
   RotateCcw,
   Building2,
 } from "lucide-react";
@@ -65,13 +64,6 @@ export default function PropertiesHero({
         ease: [0.22, 1, 0.36, 1] as const,
       },
     },
-  };
-
-  const handleScrollToGrid = () => {
-    const gridEl = document.getElementById("properties-listing-grid");
-    if (gridEl) {
-      gridEl.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   };
 
   const isAnyFilterActive =
@@ -291,7 +283,7 @@ export default function PropertiesHero({
                   <strong className="text-white font-medium">
                     {filteredCount}
                   </strong>{" "}
-                  matching {filteredCount === 1 ? "property" : "properties"}
+                  matching of {totalCount} {totalCount === 1 ? "property" : "properties"}
                 </span>
                 <button
                   type="button"
