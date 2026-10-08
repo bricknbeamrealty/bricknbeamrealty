@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
+  Building2,
   Users,
   ExternalLink,
   LogOut,
@@ -32,6 +33,12 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
       href: "/admin",
       icon: LayoutDashboard,
       active: pathname === "/admin",
+    },
+    {
+      label: "Properties",
+      href: "/admin/properties",
+      icon: Building2,
+      active: pathname === "/admin/properties" || pathname.startsWith("/admin/properties/"),
     },
     {
       label: "Leads",

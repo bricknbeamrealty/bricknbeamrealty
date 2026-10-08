@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -261,6 +261,43 @@ function FeaturedCardItem({
 
 export default function FeaturedProperties() {
   const { openModal } = useConsultationModal();
+  const [propertiesList, setPropertiesList] = useState<PropertyItem[]>(PROPERTIES);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchLiveProperties() {
+      try {
+        const res = await fetch("/api/properties?featured=true");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.success && Array.isArray(data.properties) && data.properties.length > 0) {
+          if (!isMounted) return;
+          const mapped: PropertyItem[] = data.properties.map((p: any) => ({
+            id: p.slug || p.id,
+            developer: p.developer,
+            location: p.location,
+            title: p.title,
+            subLocation: p.sub_location || p.location,
+            area: p.carpet_area || "Contact for area",
+            possession: p.possession || "2027",
+            bhks: Array.isArray(p.bhk) ? p.bhk : [p.bhk || "2 BHK"],
+            pricing: p.price_range || p.starting_price,
+            rera: p.rera_number || "Applied",
+            status: p.status === "Ready to Move" ? "Ready to Move" : "Under Construction",
+            isFeatured: Boolean(p.is_featured),
+            image: p.image || "/images/properties/raymond-ten-x-thane.webp",
+          }));
+          setPropertiesList(mapped);
+        }
+      } catch {
+        // Fallback silently to static PROPERTIES
+      }
+    }
+    fetchLiveProperties();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div className="w-full">
@@ -270,7 +307,7 @@ export default function FeaturedProperties() {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         staggerDelay={0.12}
       >
-        {PROPERTIES.map((property, index) => (
+        {propertiesList.map((property, index) => (
           <FeaturedCardItem
             key={property.id}
             property={property}

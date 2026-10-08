@@ -10,7 +10,7 @@ import FinalCTA from "@/components/FinalCTA";
 import PropertiesHero, {
   PropertiesFilterState,
 } from "@/components/properties/PropertiesHero";
-import { PROPERTIES, Property } from "@/data/properties";
+import { PROPERTIES, Property, PropertyType } from "@/data/properties";
 import { useConsultationModal } from "@/context/ConsultationModalContext";
 import { PropertyCardSkeletonGrid } from "@/components/ui/Skeleton";
 import { LUXURY_EASE } from "@/components/ui/AnimatedSection";
@@ -205,6 +205,69 @@ export default function PropertiesClientView() {
   const { openModal } = useConsultationModal();
   const [isPending, startTransition] = useTransition();
   const [isFilteringLoading, setIsFilteringLoading] = useState(false);
+  const [propertiesList, setPropertiesList] = useState<Property[]>(PROPERTIES);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchLiveProperties() {
+      try {
+        const res = await fetch("/api/properties");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.success && Array.isArray(data.properties) && data.properties.length > 0) {
+          if (!isMounted) return;
+          const mapped: Property[] = data.properties.map((p: any) => {
+            const bhks = Array.isArray(p.bhk) ? p.bhk : [p.bhk || "2 BHK"];
+            const bhkNumeric: number[] = bhks
+              .map((b: string) => parseInt(b.replace(/[^0-9]/g, ""), 10))
+              .filter((n: number) => !isNaN(n));
+
+            return {
+              id: p.slug || p.id,
+              slug: p.slug || p.id,
+              title: p.title,
+              developer: p.developer,
+              propertyType: (p.category === "commercial"
+                ? "commercial"
+                : p.category === "industrial"
+                ? "industrial"
+                : "residential") as PropertyType,
+              propertyTypeLabel: p.type || "Luxury High-Rise",
+              location: p.location,
+              subLocation: p.sub_location || p.location,
+              priceStartingFrom: p.starting_price,
+              pricing: p.price_range || p.starting_price,
+              priceNumeric:
+                typeof p.price_numeric === "number" && p.price_numeric > 0
+                  ? p.price_numeric > 100000
+                    ? Math.round(p.price_numeric / 100000)
+                    : p.price_numeric
+                  : 100,
+              area: p.carpet_area || "Contact for area",
+              possession: p.possession || "2027",
+              possessionYear: p.possession_year || 2027,
+              bhks,
+              bhkNumeric: bhkNumeric.length > 0 ? bhkNumeric : [2],
+              rera: p.rera_number || "Applied",
+              status: p.status === "Ready to Move" ? "Ready to Move" : "Under Construction",
+              isFeatured: Boolean(p.is_featured),
+              image: p.image || "/images/properties/raymond-ten-x-thane.webp",
+              overview: p.overview || "",
+              amenities: Array.isArray(p.amenities) ? p.amenities : [],
+              keyHighlights: Array.isArray(p.highlights) ? p.highlights : [],
+            };
+          });
+          setPropertiesList(mapped);
+        }
+      } catch {
+        // Fallback silently to static seed data
+      }
+    }
+    fetchLiveProperties();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Initial Filter State
   const initialFilterState: PropertiesFilterState = {
@@ -248,7 +311,7 @@ export default function PropertiesClientView() {
 
   // Filter and Sort Engine
   const filteredProperties = useMemo(() => {
-    return PROPERTIES.filter((property) => {
+    return propertiesList.filter((property) => {
       // 0. Property Type Filter (Residential, Commercial, Industrial)
       if (filters.propertyType !== "all") {
         if (property.propertyType !== filters.propertyType) return false;

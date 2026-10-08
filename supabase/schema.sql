@@ -119,3 +119,79 @@ CREATE POLICY "Allow service role full access"
     WITH CHECK (true);
 
 COMMENT ON TABLE public.leads IS 'Brick & Beams leads capturing residential & commercial enquiries with live admin tracking.';
+
+-- ==============================================================================
+-- 8. Create the properties table for the CMS
+-- ==============================================================================
+CREATE TABLE IF NOT EXISTS public.properties (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    slug TEXT UNIQUE NOT NULL,
+    developer TEXT NOT NULL,
+    location TEXT NOT NULL,
+    sub_location TEXT NOT NULL,
+    starting_price TEXT NOT NULL,
+    price_range TEXT NOT NULL,
+    price_numeric BIGINT NOT NULL DEFAULT 0,
+    bhk TEXT[] NOT NULL DEFAULT '{}',
+    carpet_area TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'Under Construction',
+    category TEXT NOT NULL DEFAULT 'residential',
+    type TEXT NOT NULL DEFAULT 'Luxury Apartments',
+    possession TEXT NOT NULL,
+    possession_year INTEGER NOT NULL DEFAULT 2026,
+    image TEXT NOT NULL,
+    gallery TEXT[] DEFAULT '{}',
+    rera_number TEXT,
+    is_featured BOOLEAN NOT NULL DEFAULT false,
+    overview TEXT,
+    highlights TEXT[] DEFAULT '{}',
+    amenities TEXT[] DEFAULT '{}',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
+);
+
+-- Indexes for lightning fast querying and CMS operations
+CREATE INDEX IF NOT EXISTS idx_properties_slug ON public.properties (slug);
+CREATE INDEX IF NOT EXISTS idx_properties_category ON public.properties (category);
+CREATE INDEX IF NOT EXISTS idx_properties_status ON public.properties (status);
+CREATE INDEX IF NOT EXISTS idx_properties_is_featured ON public.properties (is_featured);
+CREATE INDEX IF NOT EXISTS idx_properties_created_at ON public.properties (created_at DESC);
+
+-- Trigger to auto-update updated_at timestamp on property edits
+CREATE OR REPLACE FUNCTION public.handle_properties_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = timezone('utc'::text, now());
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS set_properties_updated_at ON public.properties;
+
+CREATE TRIGGER set_properties_updated_at
+    BEFORE UPDATE ON public.properties
+    FOR EACH ROW
+    EXECUTE FUNCTION public.handle_properties_updated_at();
+
+-- Row Level Security (RLS) for properties
+ALTER TABLE public.properties ENABLE ROW LEVEL SECURITY;
+
+-- Allow public read access (for website visitors to browse properties)
+DROP POLICY IF EXISTS "Allow public read access for properties" ON public.properties;
+CREATE POLICY "Allow public read access for properties"
+    ON public.properties
+    FOR SELECT
+    TO anon, authenticated
+    USING (true);
+
+-- Allow full access to service_role (used securely by Next.js Admin CMS Route Handlers)
+DROP POLICY IF EXISTS "Allow service role full access for properties" ON public.properties;
+CREATE POLICY "Allow service role full access for properties"
+    ON public.properties
+    FOR ALL
+    TO service_role
+    USING (true)
+    WITH CHECK (true);
+
+COMMENT ON TABLE public.properties IS 'Brick & Beams properties CMS storing real estate project listings.';

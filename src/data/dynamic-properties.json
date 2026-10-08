@@ -1,0 +1,299 @@
+[
+  {
+    "id": "raymond-ten-x-era",
+    "slug": "raymond-ten-x-era",
+    "developer": "Raymond Realty",
+    "propertyType": "residential",
+    "propertyTypeLabel": "Residential High-Rise",
+    "location": "Thane West",
+    "title": "Raymond Ten X Era",
+    "subLocation": "Pokhran Road 1 • Near Viviana Mall, Thane West",
+    "priceStartingFrom": "₹1.35 Cr",
+    "pricing": "₹1.35 Cr - ₹2.55 Cr",
+    "priceNumeric": 135,
+    "area": "580 - 1150 sq.ft.",
+    "possession": "Dec-2028",
+    "possessionYear": 2028,
+    "bhks": [
+      "2 BHK",
+      "3 BHK"
+    ],
+    "bhkNumeric": [
+      2,
+      3
+    ],
+    "rera": "P51700049533",
+    "status": "Under Construction",
+    "isFeatured": true,
+    "image": "/images/properties/raymond-ten-x-thane.webp",
+    "overview": "A flagship landmark on Pokhran Road 1 offering elevated smart living with 40+ lifestyle amenities, panoramic Yeoor Hills views, and 2-min connectivity to Viviana Mall and Eastern Express Highway.",
+    "amenities": [
+      "Clubhouse & Infinity Pool",
+      "Gymnasium & Yoga Deck",
+      "Kids Play Forest",
+      "High-Speed Elevators",
+      "EV Charging Stations",
+      "Multi-Tier Security"
+    ],
+    "keyHighlights": [
+      "2 Mins to Viviana Mall & Jupiter Hospital",
+      "Upcoming Metro Line 4 Station within 500m",
+      "Zero Brokerage on Direct Builder Booking"
+    ]
+  },
+  {
+    "id": "godrej-ascend",
+    "slug": "godrej-ascend",
+    "developer": "Godrej Properties",
+    "propertyType": "residential",
+    "propertyTypeLabel": "Residential Community",
+    "location": "Thane West",
+    "title": "Godrej Ascend",
+    "subLocation": "Kolshet Road • Prime IT Corridor, Thane West",
+    "priceStartingFrom": "₹79 Lakhs",
+    "pricing": "₹79 Lakhs - ₹1.85 Cr",
+    "priceNumeric": 79,
+    "area": "420 - 950 sq.ft.",
+    "possession": "Dec-2027",
+    "possessionYear": 2027,
+    "bhks": [
+      "1 BHK",
+      "2 BHK",
+      "3 BHK"
+    ],
+    "bhkNumeric": [
+      1,
+      2,
+      3
+    ],
+    "rera": "P51700034608",
+    "status": "Under Construction",
+    "isFeatured": true,
+    "image": "/images/properties/godrej-ascend-thane.webp",
+    "overview": "Sprawled across 6+ acres in Kolshet Road, Godrej Ascend delivers grand sky lounges, dual clubhouses, and superior connectivity to both Eastern and Western Express corridors.",
+    "amenities": [
+      "Grand Central Clubhouse",
+      "Olympic-Length Lap Pool",
+      "Badminton & Squash Courts",
+      "Sky Lounge & Observatories",
+      "Co-Working Business Pods",
+      "Lush Landscaped Lawns"
+    ],
+    "keyHighlights": [
+      "Direct Access to Kolshet High Street",
+      "Close to D-Mart, Orchids International, & Lodha World School",
+      "Pre-Launch Advantage Pricing Available"
+    ]
+  },
+  {
+    "id": "rustomjee-uptown-urbania",
+    "slug": "rustomjee-uptown-urbania",
+    "developer": "Rustomjee Group",
+    "propertyType": "residential",
+    "propertyTypeLabel": "Gated Township",
+    "location": "Thane West",
+    "title": "Rustomjee Uptown Urbania",
+    "subLocation": "Majiwada Junction • Eastern Express Highway, Thane West",
+    "priceStartingFrom": "₹1.25 Cr",
+    "pricing": "₹1.25 Cr - ₹2.40 Cr",
+    "priceNumeric": 125,
+    "area": "680 - 1280 sq.ft.",
+    "possession": "Immediate Possession",
+    "possessionYear": 2025,
+    "bhks": [
+      "2 BHK",
+      "3 BHK"
+    ],
+    "bhkNumeric": [
+      2,
+      3
+    ],
+    "rera": "P51700050811",
+    "status": "Ready to Move",
+    "isFeatured": true,
+    "image": "/images/properties/rustomjee-urbania-thane.webp",
+    "overview": "A ready-to-move-in township masterpiece at Majiwada Junction featuring self-contained urban infrastructure, top-rated school, rooftop infinity deck, and instant highway connectivity.",
+    "amenities": [
+      "Rustomjee Cambridge International School On-Site",
+      "Leon's World Experiential Kids Center",
+      "Rooftop Sunset Lounge & Café",
+      "Full Sized Tennis & Basketball Courts",
+      "Multi-Specialty Medical Clinic Onsite",
+      "24/7 Power Backup & Gated Security"
+    ],
+    "keyHighlights": [
+      "Ready to Move with OC Received",
+      "Zero GST on Ready Possession Units",
+      "Instant Eastern Express Highway On-Ramp"
+    ]
+  },
+  {
+    "id": "balaji-olympia",
+    "slug": "balaji-olympia",
+    "developer": "Balaji Group",
+    "propertyType": "residential",
+    "propertyTypeLabel": "Residential Apartments",
+    "location": "Thane West",
+    "title": "Balaji Olympia",
+    "subLocation": "Ghodbunder Road • Near Suraj Water Park, Thane West",
+    "priceStartingFrom": "₹68 Lakhs",
+    "pricing": "₹68 Lakhs - ₹1.25 Cr",
+    "priceNumeric": 68,
+    "area": "450 - 890 sq.ft.",
+    "possession": "Jun-2026",
+    "possessionYear": 2026,
+    "bhks": [
+      "1 BHK",
+      "2 BHK"
+    ],
+    "bhkNumeric": [
+      1,
+      2
+    ],
+    "rera": "P51700028714",
+    "status": "Under Construction",
+    "isFeatured": false,
+    "image": "/images/properties/balaji-olympia.webp",
+    "overview": "Balaji Olympia brings affordable luxury living to Ghodbunder Road with optimal space design, Vaastu-compliant layouts, and easy access to Thane’s leading retail and commercial centers.",
+    "amenities": [
+      "Rooftop Jogging Track",
+      "Fitness Center & Indoor Games",
+      "Party Hall & Banquet Deck",
+      "Intercom & Video Door Phone",
+      "Rainwater Harvesting System",
+      "Landscaped Podium Gardens"
+    ],
+    "keyHighlights": [
+      "High Rental Yield Corridor on Ghodbunder Road",
+      "5 Mins to Upcoming Metro Line 4 Station",
+      "Attractively Priced for First-Time Homebuyers"
+    ]
+  },
+  {
+    "id": "regency-luxuria",
+    "slug": "regency-luxuria",
+    "developer": "Regency Group",
+    "propertyType": "residential",
+    "propertyTypeLabel": "Residential High-Rise",
+    "location": "Thane",
+    "title": "Regency Luxuria",
+    "subLocation": "Thane Extension • Rapid Transit Corridor",
+    "priceStartingFrom": "₹95 Lakhs",
+    "pricing": "₹95 Lakhs - ₹1.95 Cr",
+    "priceNumeric": 95,
+    "area": "750 - 1450 sq.ft.",
+    "possession": "Dec-2025",
+    "possessionYear": 2025,
+    "bhks": [
+      "2 BHK",
+      "3 BHK"
+    ],
+    "bhkNumeric": [
+      2,
+      3
+    ],
+    "rera": "P51700031120",
+    "status": "Under Construction",
+    "isFeatured": false,
+    "image": "/images/properties/regency-luxuria.webp",
+    "overview": "A lifestyle high-rise enclave delivering lavish sun-drenched sundecks, Italian marble finishes in lobbies, and grand podium recreational amenities crafted by Regency Group.",
+    "amenities": [
+      "Grand Double-Height Entrance Lobby",
+      "Temperature Controlled Swimming Pool",
+      "Spa & Jacuzzi Wellness Center",
+      "Mini Theater & Screening Room",
+      "Children's Themed Water Play Zone",
+      "Smart Home Automation Provisions"
+    ],
+    "keyHighlights": [
+      "Spacious Balconies with Scenic Hill Vistas",
+      "MahaRERA Milestone-Linked Payment Plans",
+      "Direct Developer Pricing Guarantee"
+    ]
+  },
+  {
+    "id": "shelar-supremus",
+    "slug": "shelar-supremus",
+    "developer": "Shelar Group",
+    "propertyType": "commercial",
+    "propertyTypeLabel": "Grade-A Commercial Suites",
+    "location": "Thane West",
+    "title": "Shelar Supremus",
+    "subLocation": "Wagle Estate • Prime Commercial District, Thane West",
+    "priceStartingFrom": "₹85 Lakhs",
+    "pricing": "₹85 Lakhs - ₹1.65 Cr",
+    "priceNumeric": 85,
+    "area": "380 - 720 sq.ft.",
+    "possession": "Immediate Possession",
+    "possessionYear": 2025,
+    "bhks": [
+      "Executive Suites",
+      "Boutique Offices"
+    ],
+    "bhkNumeric": [
+      1,
+      2
+    ],
+    "rera": "P51700022941",
+    "status": "Ready to Move",
+    "isFeatured": true,
+    "image": "/images/properties/shelar-supremus.webp",
+    "overview": "Located in the vibrant commercial core of Wagle Estate, Shelar Supremus offers contemporary smart corporate suites and executive offices ideal for established firms and high-yield investors.",
+    "amenities": [
+      "Executive Business Conference Lounge",
+      "Rooftop Sunset Deck & Bistro",
+      "State-of-the-Art Gymnasium",
+      "High-Speed Fiber Connectivity",
+      "Biometric Access & 24/7 Surveillance",
+      "Automated Stacker Parking"
+    ],
+    "keyHighlights": [
+      "Walking Distance to Major Corporate IT Parks",
+      "Exceptional 6.8%+ Commercial Rental Yield",
+      "Ready to Move - Immediate Rental Inflow"
+    ]
+  },
+  {
+    "id": "lodha-industrial-park-thane",
+    "slug": "lodha-industrial-park-thane",
+    "developer": "Lodha / Macrotech",
+    "propertyType": "industrial",
+    "propertyTypeLabel": "Industrial & Logistics Park",
+    "location": "Thane Corridor",
+    "title": "Lodha Industrial & Logistics Hub",
+    "subLocation": "Thane-Bhiwandi Corridor • Mumbai-Nashik Expressway",
+    "priceStartingFrom": "₹1.45 Cr",
+    "pricing": "₹1.45 Cr - ₹4.50 Cr",
+    "priceNumeric": 145,
+    "area": "1,800 - 8,500 sq.ft.",
+    "possession": "Dec-2025",
+    "possessionYear": 2025,
+    "bhks": [
+      "Industrial Gala",
+      "Warehousing Bay"
+    ],
+    "bhkNumeric": [
+      1,
+      2,
+      3
+    ],
+    "rera": "P51700028210",
+    "status": "Under Construction",
+    "isFeatured": false,
+    "image": "/images/luxury-modern-villa.jpg",
+    "overview": "A master-planned Grade-A industrial, warehousing, and logistics park equipped with heavy-load flooring, 12m clear height, trailer maneuvering roads, and green building compliance.",
+    "amenities": [
+      "Heavy Duty Concrete Internal Roads",
+      "12m Clear Ceiling Heights & Dock Levelers",
+      "Dedicated High-Tension Power Feeder",
+      "Advanced Fire Hydrant & Sprinkler Grid",
+      "Driver Resting Pavilion & Canteen",
+      "24/7 Gated Truck Management System"
+    ],
+    "keyHighlights": [
+      "Direct Mumbai-Nashik Expressway Access",
+      "Zero Brokerage on Direct Developer Allotments",
+      "Ideal for FMCG, Pharma & E-Commerce Hubs"
+    ]
+  }
+]
