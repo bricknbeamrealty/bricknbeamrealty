@@ -36,6 +36,7 @@ const AdminAuthContext = createContext<AdminAuthContextType | undefined>(
 );
 
 const SESSION_STORAGE_KEY = "bnb_admin_passcode";
+const LOCAL_STORAGE_KEY = "bnb_admin_passcode_persist";
 
 export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const [passcode, setPasscode] = useState("");
@@ -63,6 +64,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
           setAuthError("");
           if (typeof window !== "undefined") {
             sessionStorage.setItem(SESSION_STORAGE_KEY, codeToTest);
+            localStorage.setItem(LOCAL_STORAGE_KEY, codeToTest);
           }
           return true;
         } else {
@@ -70,6 +72,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
           setIsAuthenticated(false);
           if (typeof window !== "undefined") {
             sessionStorage.removeItem(SESSION_STORAGE_KEY);
+            localStorage.removeItem(LOCAL_STORAGE_KEY);
           }
           return false;
         }
@@ -90,7 +93,8 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
       try {
         const stored =
           typeof window !== "undefined"
-            ? sessionStorage.getItem(SESSION_STORAGE_KEY)
+            ? (sessionStorage.getItem(SESSION_STORAGE_KEY) ||
+               localStorage.getItem(LOCAL_STORAGE_KEY))
             : null;
 
         if (stored) {
@@ -102,14 +106,19 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
             if (res.ok && data.success) {
               setPasscode(stored);
               setIsAuthenticated(true);
+              // Ensure both storages are synced
+              sessionStorage.setItem(SESSION_STORAGE_KEY, stored);
+              localStorage.setItem(LOCAL_STORAGE_KEY, stored);
             } else {
               sessionStorage.removeItem(SESSION_STORAGE_KEY);
+              localStorage.removeItem(LOCAL_STORAGE_KEY);
             }
           }
         }
       } catch {
         if (active) {
           sessionStorage.removeItem(SESSION_STORAGE_KEY);
+          localStorage.removeItem(LOCAL_STORAGE_KEY);
         }
       } finally {
         if (active) {
@@ -139,6 +148,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
     setAuthError("");
     if (typeof window !== "undefined") {
       sessionStorage.removeItem(SESSION_STORAGE_KEY);
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
     }
   };
 

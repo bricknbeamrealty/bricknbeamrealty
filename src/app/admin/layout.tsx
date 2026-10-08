@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Building2,
   Users,
+  Settings,
   ExternalLink,
   LogOut,
   Menu,
@@ -20,6 +21,13 @@ import {
   AdminThemeToggle,
   AdminThemeIconButton,
 } from "./AdminThemeContext";
+import { AdminPwaProvider } from "./AdminPwaContext";
+import {
+  AdminNotificationCenter,
+  AdminPwaInstallBanner,
+  AdminMobileBottomBar,
+  AdminForegroundLeadToast,
+} from "./AdminPwaComponents";
 
 function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -45,6 +53,12 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
       href: "/admin/leads",
       icon: Users,
       active: pathname === "/admin/leads" || pathname.startsWith("/admin/leads/"),
+    },
+    {
+      label: "Settings",
+      href: "/admin/settings",
+      icon: Settings,
+      active: pathname === "/admin/settings" || pathname.startsWith("/admin/settings/"),
     },
   ];
 
@@ -184,6 +198,9 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         </Link>
 
         <div className="flex items-center gap-2">
+          {/* Push notification bell */}
+          <AdminNotificationCenter />
+
           {/* Quick theme button for mobile header */}
           <AdminThemeIconButton />
 
@@ -303,16 +320,27 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
       {/* =========================================================================
           MAIN CONTENT AREA (INDEPENDENTLY SCROLLING)
           ========================================================================= */}
-      <main
-        data-lenis-prevent
-        className={`flex-1 h-full min-h-0 min-w-0 overflow-y-auto overflow-x-hidden overscroll-contain transition-colors duration-200 ${
-          isDark
-            ? "custom-scrollbar-dark bg-[#0e0f12]"
-            : "custom-scrollbar-admin-light bg-[#f8f9fa]"
-        }`}
-      >
-        {children}
-      </main>
+      <div className="flex-1 flex flex-col min-h-0 min-w-0 overflow-hidden">
+        {/* PWA Install Banner */}
+        <AdminPwaInstallBanner />
+
+        {/* Foreground Live Lead Toast */}
+        <AdminForegroundLeadToast />
+
+        <main
+          data-lenis-prevent
+          className={`flex-1 h-full min-h-0 min-w-0 overflow-y-auto overflow-x-hidden overscroll-contain transition-colors duration-200 ${
+            isDark
+              ? "custom-scrollbar-dark bg-[#0e0f12]"
+              : "custom-scrollbar-admin-light bg-[#f8f9fa]"
+          }`}
+        >
+          {children}
+        </main>
+
+        {/* Mobile Native-like Bottom Navigation Bar */}
+        <AdminMobileBottomBar />
+      </div>
     </div>
   );
 }
@@ -325,7 +353,9 @@ export default function AdminLayout({
   return (
     <AdminThemeProvider>
       <AdminAuthProvider>
-        <AdminLayoutContent>{children}</AdminLayoutContent>
+        <AdminPwaProvider>
+          <AdminLayoutContent>{children}</AdminLayoutContent>
+        </AdminPwaProvider>
       </AdminAuthProvider>
     </AdminThemeProvider>
   );

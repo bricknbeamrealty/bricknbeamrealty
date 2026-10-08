@@ -31,6 +31,7 @@ import {
 } from "recharts";
 import { useAdminAuth } from "./AdminAuthContext";
 import { useAdminTheme, AdminThemeIconButton } from "./AdminThemeContext";
+import { AdminNotificationCenter } from "./AdminPwaComponents";
 
 interface AnalyticsResponse {
   success: boolean;
@@ -206,6 +207,9 @@ export default function AdminDashboardPage() {
               Last 90 Days
             </button>
           </div>
+
+          {/* Push Notifications Bell */}
+          <AdminNotificationCenter />
 
           {/* Refresh Button */}
           <button

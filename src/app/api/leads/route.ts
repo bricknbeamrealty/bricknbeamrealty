@@ -4,6 +4,7 @@ import {
   isSupabaseConfigured,
   LeadInput,
 } from "@/lib/supabaseServer";
+import { notifyAdminsOfNewLead } from "@/lib/webPush";
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,18 +28,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!isSupabaseConfigured()) {
-      // Graceful offline fallback if Supabase credentials are not yet entered
-      console.warn("Supabase is not configured. Simulating lead capture for:", { fullName, phone });
-      return NextResponse.json({
-        success: true,
-        simulated: true,
-        message: "Enquiry recorded successfully (Supabase credentials not configured).",
-      });
-    }
-
-    const supabase = getSupabaseServerClient();
-
     const leadRecord: LeadInput = {
       full_name: fullName,
       phone,
@@ -51,6 +40,21 @@ export async function POST(req: NextRequest) {
       source,
       notes,
     };
+
+    if (!isSupabaseConfigured()) {
+      // Graceful offline fallback if Supabase credentials are not yet entered
+      console.warn("Supabase is not configured. Simulating lead capture for:", { fullName, phone });
+      notifyAdminsOfNewLead(leadRecord).catch((err) => {
+        console.error("WebPush notification error (simulated):", err);
+      });
+      return NextResponse.json({
+        success: true,
+        simulated: true,
+        message: "Enquiry recorded successfully (Supabase credentials not configured).",
+      });
+    }
+
+    const supabase = getSupabaseServerClient();
 
     const { data, error } = await supabase
       .from("leads")
@@ -70,6 +74,11 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Trigger instant real-time Web Push notification to admin PWA mobile devices
+    notifyAdminsOfNewLead(data || leadRecord).catch((err) => {
+      console.error("WebPush notification error:", err);
+    });
 
     return NextResponse.json({
       success: true,

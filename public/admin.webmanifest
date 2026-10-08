@@ -1,0 +1,47 @@
+{
+  "name": "Brick & Beams Admin",
+  "short_name": "B&B Admin",
+  "description": "Real-time Lead Management & Property Admin Portal for Brick & Beams",
+  "start_url": "/admin",
+  "scope": "/admin",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0e0f12",
+  "theme_color": "#a01115",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Leads",
+      "short_name": "Leads",
+      "description": "View & manage incoming client leads",
+      "url": "/admin/leads",
+      "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Properties",
+      "short_name": "Properties",
+      "description": "Manage property listings",
+      "url": "/admin/properties",
+      "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}

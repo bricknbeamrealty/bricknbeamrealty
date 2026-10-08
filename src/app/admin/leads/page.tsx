@@ -14,6 +14,7 @@ import {
 import { WhatsAppIcon, PhoneIcon } from "@/components/icons/BrandIcons";
 import { useAdminAuth } from "../AdminAuthContext";
 import { useAdminTheme, AdminThemeIconButton } from "../AdminThemeContext";
+import { AdminNotificationCenter } from "../AdminPwaComponents";
 import { Lead, LeadStatus } from "@/lib/supabaseServer";
 
 const ALL_STATUSES: LeadStatus[] = [
@@ -305,6 +306,8 @@ export default function AdminLeadsPage() {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2.5">
+          <AdminNotificationCenter />
+
           <button
             type="button"
             onClick={() => fetchLeads(true)}
