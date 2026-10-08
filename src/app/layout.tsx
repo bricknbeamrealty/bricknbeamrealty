@@ -1,24 +1,9 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ConsultationModal from "@/components/ConsultationModal";
 import { ConsultationModalProvider } from "@/context/ConsultationModalContext";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  axes: ["opsz"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Brick & Beams | Premier Real Estate Advisory in Thane",
@@ -43,8 +28,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
-      <body className="antialiased font-sans bg-[#faf8f5] text-stone-900 selection:bg-[#a01115] selection:text-white min-h-screen relative">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body
+        suppressHydrationWarning
+        className="antialiased font-sans bg-[#faf8f5] text-stone-900 selection:bg-[#a01115] selection:text-white min-h-screen relative"
+      >
         <SmoothScrollProvider>
           <ConsultationModalProvider>
             {children}

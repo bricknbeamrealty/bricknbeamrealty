@@ -37,7 +37,7 @@ function PropertyListingCard({
 }: {
   property: Property;
   idx: number;
-  openModal: () => void;
+  openModal: (property?: Property) => void;
 }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const shouldReduceMotion = useReducedMotion();
@@ -189,7 +189,7 @@ function PropertyListingCard({
 
           <button
             type="button"
-            onClick={openModal}
+            onClick={() => openModal(property)}
             className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-[#a01115] hover:bg-[#850e11] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold font-sans transition-all shadow-sm shadow-[#a01115]/20 cursor-pointer"
           >
             <span>Enquire Now</span>

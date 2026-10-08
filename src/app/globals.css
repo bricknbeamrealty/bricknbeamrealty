@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: var(--font-fraunces), "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-sans), "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --color-brand-maroon: #a01115;
   --color-brand-600: #a01115;
+}
+
+:root {
+  --font-fraunces: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* ==========================================================================
@@ -195,6 +200,31 @@ html {
 .custom-scrollbar-slim::-webkit-scrollbar-thumb {
   background: var(--brand-red-primary);
   border-width: 1px;
+}
+
+/* Light Surface Admin Scrollbar */
+.custom-scrollbar-admin-light {
+  scrollbar-color: #cbd5e1 #f1f5f9;
+  scrollbar-width: thin;
+}
+
+.custom-scrollbar-admin-light::-webkit-scrollbar {
+  width: var(--sb-size-slim);
+  height: var(--sb-size-slim);
+}
+
+.custom-scrollbar-admin-light::-webkit-scrollbar-track {
+  background-color: #f1f5f9;
+}
+
+.custom-scrollbar-admin-light::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+
+.custom-scrollbar-admin-light::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 /* Clean No-Scrollbar Utility (Hidden visual bar with fully functioning touch/wheel scrolling) */

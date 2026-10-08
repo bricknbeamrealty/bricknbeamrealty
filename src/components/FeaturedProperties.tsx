@@ -86,7 +86,7 @@ function FeaturedCardItem({
 }: {
   property: PropertyItem;
   index: number;
-  openModal: () => void;
+  openModal: (property?: PropertyItem) => void;
 }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -95,11 +95,11 @@ function FeaturedCardItem({
       <div
         role="button"
         tabIndex={0}
-        onClick={openModal}
+        onClick={() => openModal(property)}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            openModal();
+            openModal(property);
           }
         }}
         aria-label={`View details for ${property.title} by ${property.developer}`}
@@ -243,7 +243,7 @@ function FeaturedCardItem({
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  openModal();
+                  openModal(property);
                 }}
                 className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 font-semibold font-sans text-xs leading-none text-white bg-[#a01115] hover:bg-[#850e11] active:bg-[#6b0b0e] rounded-xl transition-all shadow-sm hover:shadow cursor-pointer"
                 title="Quick Details"
